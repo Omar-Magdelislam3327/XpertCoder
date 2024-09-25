@@ -1,0 +1,54 @@
+:root {
+  --primaryColor: #00816F;
+  --secondaryColor: #2ddbca;
+}
+
+.btn-xpert {
+  background-color: var(--primaryColor);
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.btn-xpert:hover {
+  background-color: var(--secondaryColor);
+}
+
+.btn-xpert:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.btn-xpert:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
+h6::selection {
+  background: var(--primaryColor);
+  color: white;
+}
+
+span::selection,
+p::selection,
+label::selection,
+input::selection {
+  background: var(--secondaryColor);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primaryColor);
+}
