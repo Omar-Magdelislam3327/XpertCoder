@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  hoveredCard: string = 'web';
 
+  setHoveredCard(card: string) {
+    if (card) {
+      this.hoveredCard = card;
+    }
+  }
 }

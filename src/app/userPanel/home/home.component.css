@@ -7,7 +7,7 @@
     border: 4px solid;
     border-color: transparent;
     font-size: 16px;
-    background-color: inherit;
+    background-color: transparent;
     border-radius: 100px;
     font-weight: 600;
     color: var(--primaryColor);
@@ -88,6 +88,92 @@
   }
 }
 
-#home {
-  height: 200vh;
+.section1 {
+  h1 {
+    font-size: 58px;
+    color: white;
+  }
+
+  p {
+    color: whitesmoke;
+  }
+
+  .txt {
+    position: relative;
+  }
+
+  .shadow {
+    position: absolute;
+    top: 10px;
+    width: 404.031px;
+    height: 404.031px;
+    border-radius: 304.031px;
+    opacity: 0.15000000596046448;
+    background: var(--primaryColor);
+    filter: blur(100px);
+  }
+}
+
+
+.section2 {
+  .client img {
+    filter: grayscale(100%) !important;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .client img:hover {
+    filter: grayscale(0%) !important;
+  }
+
+}
+
+.section3 {
+  .imag {
+    position: relative;
+    height: 100%;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+
+      height: auto;
+
+      opacity: 0;
+
+      transition: opacity 0.5s ease-in-out;
+
+    }
+
+    img.visible {
+      opacity: 1;
+    }
+  }
+
+  .card {
+    background-color: #121624;
+    color: white;
+    border-radius: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .card.active {
+    background-color: var(--primaryColor);
+  }
+}
+
+.section4 {
+  .card {
+    background-color: transparent;
+    border: 1px solid var(--primaryColor);
+    transition: 0.4s;
+  }
+
+  .card:hover {
+    background-color: var(--primaryColor);
+    color: white;
+  }
 }

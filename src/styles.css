@@ -52,3 +52,7 @@ input::selection {
 ::-webkit-scrollbar-thumb {
   background-color: var(--primaryColor);
 }
+
+body {
+  background-color: #07090D !important;
+}
