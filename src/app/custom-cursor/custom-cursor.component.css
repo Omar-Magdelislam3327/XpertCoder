@@ -1,0 +1,14 @@
+/* .custom-cursor {
+  position: fixed;
+  width: 350px;
+  height: 350px;
+  background-color: white;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.01;
+  z-index: 9999;
+}
+
+body {
+  cursor: auto;
+} */

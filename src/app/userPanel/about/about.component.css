@@ -1,0 +1,144 @@
+.section1 {
+  /* background: linear-gradient(180deg, #0D0D0D, #1B1B1B); */
+  color: white;
+
+  .btn-xpert {
+    border-radius: 10px;
+  }
+}
+
+.section2 {
+  .team-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-img-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-img-container img {
+    transition: transform 0.5s ease;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    color: white;
+    text-align: center;
+  }
+
+  .team-card:hover img {
+    transform: scale(1.1);
+  }
+
+  .team-card:hover .card-overlay {
+    opacity: 1;
+  }
+
+  .another {
+    .team-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-img-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-img-container img {
+      transition: transform 0.5s ease;
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .card-overlay-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #008170c9;
+      padding: 10px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      color: white;
+      text-align: center;
+    }
+
+    .team-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .team-card:hover .card-overlay-bottom {
+      opacity: 1;
+    }
+
+  }
+
+  .third {
+    .card {
+      background-color: #121624;
+      color: white;
+      border-radius: 10px;
+      transition: 0.3s;
+
+
+    }
+
+    p {
+      color: gray;
+      font-weight: 600;
+    }
+
+    img {
+      margin-bottom: 10px;
+      border-radius: 15px;
+      filter: grayscale(100%);
+      transition: 0.4s;
+    }
+
+    .card:hover img {
+      filter: grayscale(0%);
+    }
+  }
+
+
+}
+
+.section4 {
+  .service {
+    cursor: pointer;
+  }
+
+  .service:hover button {
+    background-color: var(--primaryColor);
+  }
+
+  button {
+    background-color: transparent;
+    width: 80px;
+    height: 80px;
+    border: 2px solid #F5F7FA;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+  }
+}

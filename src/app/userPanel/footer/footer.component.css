@@ -1,0 +1,68 @@
+footer {
+  background: linear-gradient(135deg, #121624 0%, #1a1f26 100%);
+  color: white;
+
+  ul {
+    list-style: none;
+  }
+
+
+  .social {
+    position: relative;
+  }
+
+  .fa-brands {
+    font-size: 20px;
+    padding: 10px;
+    margin-right: 10px;
+    color: gray;
+    border: 1px solid grey;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+    z-index: 12 !important;
+  }
+
+  .fa-brands::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-color: currentColor;
+    transition: 0.3s;
+    z-index: -1 !important;
+  }
+
+  .fa-brands:hover {
+    color: white;
+    border: 1px solid transparent;
+  }
+
+  .fa-brands:hover::after {
+    top: 0;
+    height: 100%;
+  }
+
+  .fa-facebook::after {
+    background-color: #3b5998;
+  }
+
+  .fa-linkedin::after {
+    background-color: #0077B5;
+  }
+
+  .fa-instagram::after {
+    background-color: #e4405f;
+  }
+
+  .fa-youtube::after {
+    background-color: #FF0000;
+  }
+
+  a:hover {
+    color: var(--primaryColor) !important;
+  }
+}

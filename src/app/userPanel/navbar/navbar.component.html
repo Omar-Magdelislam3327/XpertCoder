@@ -9,23 +9,31 @@
     </button>
     <div class="collapse navbar-collapse text-lg-start text-center" id="navbarSupportedContent">
       <ul class="navbar-nav m-auto mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+        <li class="nav-item ">
+          <a class="nav-link effect" routerLink="/home" routerLinkActive="active">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/about" routerLinkActive="active">About us</a>
+        <li class="nav-item ">
+          <a class="nav-link effect" routerLink="/about" routerLinkActive="active">About us</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/services" routerLinkActive="active">Services</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link text-white dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Services
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/web">Web Development</a></li>
+            <li><a class="dropdown-item" routerLink="/mobile">Mobile Development</a></li>
+            <li><a class="dropdown-item" routerLink="/ui">UI/UX Design</a></li>
+            <li><a class="dropdown-item" routerLink="/testing">Software Testing</a></li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/portfolio" routerLinkActive="active">Portfolio</a>
+        <li class="nav-item ">
+          <a class="nav-link effect" routerLink="/portfolio" routerLinkActive="active">Portfolio</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/Join" routerLinkActive="active">Join Us</a>
+        <li class="nav-item ">
+          <a class="nav-link effect" routerLink="/Join" routerLinkActive="active">Join Us</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/blog" routerLinkActive="active">Blog</a>
+        <li class="nav-item ">
+          <a class="nav-link effect" routerLink="/blog" routerLinkActive="active">Blog</a>
         </li>
       </ul>
       <form>

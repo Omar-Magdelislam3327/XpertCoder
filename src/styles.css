@@ -55,4 +55,9 @@ input::selection {
 
 body {
   background-color: #07090D !important;
+  cursor: auto;
+}
+
+html {
+  scroll-behavior: smooth;
 }

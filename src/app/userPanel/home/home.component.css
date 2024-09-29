@@ -138,13 +138,9 @@
       top: 0;
       left: 0;
       width: 100%;
-
       height: auto;
-
       opacity: 0;
-
       transition: opacity 0.5s ease-in-out;
-
     }
 
     img.visible {
@@ -175,5 +171,66 @@
   .card:hover {
     background-color: var(--primaryColor);
     color: white;
+  }
+}
+
+.section5 {
+  .card {
+    background-color: tomato;
+  }
+}
+
+.section6 {
+  li .active {
+    background-color: var(--primaryColor);
+    color: white !important;
+  }
+
+  .nav-link {
+    color: var(--primaryColor) !important;
+    font-weight: 500;
+  }
+
+  .card {
+    background-color: #121624;
+    border-radius: 20px;
+
+    img {
+      padding-bottom: 60px;
+      transition: 0.4s;
+    }
+
+    .fa-solid {
+      transition: 0.4s;
+    }
+  }
+
+  .card:hover {
+    img {
+      transform: scale(1.04);
+    }
+
+    .fa-solid {
+      transform: translateY(-10px) translateX(6px);
+    }
+  }
+}
+
+.section8 {
+
+  .carde {
+    background-color: #121624;
+    box-shadow: 0px 10px 40px 0px #0000000D;
+    border-radius: 16px;
+  }
+
+  .imag img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+
+  .fa-star {
+    color: gold;
   }
 }

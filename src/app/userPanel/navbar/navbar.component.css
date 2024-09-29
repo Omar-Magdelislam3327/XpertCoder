@@ -7,7 +7,7 @@
   transition: 0.3s;
 }
 
-.nav-link {
+.effect {
   position: relative;
   font-size: 18px;
   color: white;
@@ -18,11 +18,11 @@
   cursor: pointer;
 }
 
-.nav-link:hover {
+.effect:hover {
   color: var(--primaryColor);
 }
 
-.nav-link::after {
+.effect::after {
   content: "";
   position: absolute;
   bottom: 10px;
@@ -35,8 +35,18 @@
   transform: translateX(-50%);
 }
 
-.nav-link:hover::after {
+.effect:hover::after {
   width: 50%;
+}
+
+.nav-link {
+  font-size: 18px;
+  color: white;
+  font-weight: 400;
+  line-height: 30px;
+  padding: 20px !important;
+  transition: 0.2s;
+  cursor: pointer;
 }
 
 .container {
