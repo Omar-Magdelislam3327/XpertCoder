@@ -16,6 +16,9 @@ import { SoftTestingComponent } from './userPanel/soft-testing/soft-testing.comp
 import { PortfolioComponent } from './userPanel/portfolio/portfolio.component';
 import { CustomCursorComponent } from './custom-cursor/custom-cursor.component';
 import { ProjectDetailsComponent } from './userPanel/project-details/project-details.component';
+import { JoinComponent } from './userPanel/join/join.component';
+import { ContactComponent } from './userPanel/contact/contact.component';
+import { BlogComponent } from './userPanel/blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { ProjectDetailsComponent } from './userPanel/project-details/project-det
     PortfolioComponent,
     CustomCursorComponent,
     ProjectDetailsComponent,
+    JoinComponent,
+    ContactComponent,
+    BlogComponent,
   ],
   imports: [
     BrowserModule,

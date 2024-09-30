@@ -56,6 +56,7 @@ input::selection {
 body {
   background-color: #07090D !important;
   cursor: auto;
+  overflow-x: hidden !important;
 }
 
 html {

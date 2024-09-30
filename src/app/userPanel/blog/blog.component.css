@@ -1,0 +1,19 @@
+.card {
+  background-color: #121624;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.15);
+  transition: 0.3s;
+
+  img {
+    transition: 0.3s;
+  }
+}
+
+.card:hover {
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.17);
+
+  img {
+    filter: brightness(115%);
+  }
+}

@@ -27,7 +27,7 @@
   .box {
     position: relative;
     background-color: #121624;
-    border-radius: 15px;
+    border-radius: 24px;
     display: flex;
     overflow: hidden;
     transition: 0.3s;
@@ -41,8 +41,14 @@
   .img-wrapper {
     overflow: hidden;
     position: relative;
-    border-radius: 15px;
+    border-radius: 16px;
     transition: transform 0.3s, box-shadow 0.3s ease-in-out;
+  }
+
+  @media (max-width:768px) {
+    .img-wrapper {
+      border-radius: 0;
+    }
   }
 
   .img-wrapper img {
@@ -78,5 +84,17 @@
     background-color: var(--primaryColor);
     color: white;
     transform: translateX(10px);
+  }
+
+  .country,
+  .type {
+    padding: 10px;
+    background-color: #0f121d;
+    color: white;
+    border-radius: 8px;
+  }
+
+  .btn-xpert {
+    border-radius: 10px;
   }
 }

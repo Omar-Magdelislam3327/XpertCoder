@@ -1,0 +1,95 @@
+<app-navbar></app-navbar>
+<main id="contact">
+  <section class="section1 py-5 px-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-12">
+          <div class="txt">
+            <h2 class="fw-bold fs-1 text-white">
+              Contact Us
+            </h2>
+            <p class="text-white-50">
+              Feel free to contact us and we will get back to you as soon as we can.
+            </p>
+          </div>
+        </div>
+        <form>
+          <div class="row mb-5 job-categories">
+            <div class="col-md-4 mt-3">
+              <input type="radio" name="job-category" value="Web Design and Development">
+              <label class="job-option">
+                Web Design and Development
+              </label>
+            </div>
+            <div class="col-md-4 mt-3">
+              <input type="radio" name="job-category" value="Mobile Development">
+              <label class="job-option">
+                Mobile Development
+              </label>
+            </div>
+            <div class="col-md-4 mt-3">
+              <input type="radio" name="job-category" value="Software Testing">
+              <label class="job-option">
+                Software Testing
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-5 col-lg-6">
+              <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="mb-5 col-lg-6">
+              <input type="text" class="form-control" id="company" placeholder="Your Company" required>
+            </div>
+            <div class="mb-5 col-lg-6">
+              <input type="email" class="form-control" id="email" placeholder="Your Email"
+                pattern=".+@(gmail\.com|icloud\.com)" required>
+            </div>
+            <div class="mb-5 col-lg-6">
+              <input type="tel" class="form-control" id="phone" placeholder="Your Phone" required>
+            </div>
+            <div class="mb-5 col-lg-12">
+              <input type="text" class="form-control" id="project" placeholder="Tell us about project" required>
+            </div>
+            <div class="row mb-5 job-categories">
+              <label class="budget">Project Budget (EGP)</label>
+              <div class="col-md-3 mt-3">
+                <input type="radio" name="budget-category" value="10k - 30k">
+                <label class="job-option">
+                  10k - 20k
+                </label>
+              </div>
+              <div class="col-md-3 mt-3">
+                <input type="radio" name="budget-category" value="30k - 50k">
+                <label class="job-option">
+                  30k - 40k
+                </label>
+              </div>
+              <div class="col-md-3 mt-3">
+                <input type="radio" name="budget-category" value="50k - 100k">
+                <label class="job-option">
+                  50k - 100k
+                </label>
+              </div>
+              <div class="col-md-3 mt-3">
+                <input type="radio" name="budget-category" value="> 100k">
+                <label class="job-option">
+                  > 100k
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="mb-5 custom-file-upload">
+            <label for="resume" class="upload-label">
+              <i class="fa fa-paperclip"></i> Add attachment
+            </label>
+            <input type="file" id="resume" class="form-control-file" accept=".pdf" required>
+          </div>
+          <button type="submit" class="btn-xpert">Send Request</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>

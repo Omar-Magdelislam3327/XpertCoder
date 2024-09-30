@@ -8,6 +8,9 @@ import { UiuxComponent } from './userPanel/uiux/uiux.component';
 import { SoftTestingComponent } from './userPanel/soft-testing/soft-testing.component';
 import { PortfolioComponent } from './userPanel/portfolio/portfolio.component';
 import { ProjectDetailsComponent } from './userPanel/project-details/project-details.component';
+import { JoinComponent } from './userPanel/join/join.component';
+import { ContactComponent } from './userPanel/contact/contact.component';
+import { BlogComponent } from './userPanel/blog/blog.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -18,7 +21,10 @@ const routes: Routes = [
   { path: "ui", component: UiuxComponent },
   { path: "testing", component: SoftTestingComponent },
   { path: "portfolio", component: PortfolioComponent },
-  { path: "project", component: ProjectDetailsComponent }
+  { path: "project", component: ProjectDetailsComponent },
+  { path: "join", component: JoinComponent },
+  { path: "contact", component: ContactComponent },
+  { path: "blog", component: BlogComponent }
 ];
 
 @NgModule({
