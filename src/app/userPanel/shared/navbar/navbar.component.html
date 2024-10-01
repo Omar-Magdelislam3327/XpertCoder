@@ -15,8 +15,9 @@
         <li class="nav-item ">
           <a class="nav-link effect" routerLink="/about" routerLinkActive="active">About us</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link text-white dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+        <li class="nav-item dropdown d-none d-lg-block">
+          <a class="nav-link text-black dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Services
           </a>
           <ul class="dropdown-menu">
@@ -26,6 +27,20 @@
             <li><a class="dropdown-item" routerLink="/testing">Software Testing</a></li>
           </ul>
         </li>
+
+        <li class="nav-item dropdown d-block d-lg-none">
+          <a class="nav-link text-black" role="button">
+            Services
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/web">Web Development</a></li>
+            <li><a class="dropdown-item" routerLink="/mobile">Mobile Development</a></li>
+            <li><a class="dropdown-item" routerLink="/ui">UI/UX Design</a></li>
+            <li><a class="dropdown-item" routerLink="/testing">Software Testing</a></li>
+          </ul>
+        </li>
+
+
         <li class="nav-item ">
           <a class="nav-link effect" routerLink="/portfolio" routerLinkActive="active">Portfolio</a>
         </li>

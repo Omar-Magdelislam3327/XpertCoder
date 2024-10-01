@@ -1,11 +1,13 @@
 .card {
-  background-color: #121624;
+  background-color: whitesmoke;
   border: none;
   border-radius: 10px;
   box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.15);
   transition: 0.3s;
 
   img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     transition: 0.3s;
   }
 }

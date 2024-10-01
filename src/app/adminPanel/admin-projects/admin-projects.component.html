@@ -1,0 +1,114 @@
+<div class="container p-5">
+  <div class="title">
+    <h2 class="fw-bold text-success">Add New Project</h2>
+    <p>
+
+    </p>
+  </div>
+  <div class="row">
+    <form class="form">
+
+      <div class="form-group mt-3">
+        <label for="name">Project Name</label>
+        <input type="text" class="form-control shadow-none" id="name" required>
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="description">Project Description</label>
+        <input type="text" class="form-control shadow-none" id="description" required>
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="type">Project Type</label>
+        <select class="form-select shadow-none" name="" id="">
+          <option value="" disabled selected>Select Project Type</option>
+          <option value="web">Web development</option>
+          <option value="mobile">Mobile development</option>
+          <option value="mobile">UI/UX</option>
+          <option value="software">Software Testing</option>
+        </select>
+      </div>
+
+      <div class="row country-industry">
+        <div class="form-group mt-3 col-6">
+          <label for="country">Client Country</label>
+          <select class="form-select shadow-none">
+            <option value="" disabled selected>Select Country</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+            <option value="Canada">Canada</option>
+            <option value="Australia">Australia</option>
+          </select>
+        </div>
+        <div class="form-group mt-3 col-6">
+          <label for="industry">Client Industry</label>
+          <input type="text" class="form-control shadow-none" id="industry" required>
+        </div>
+      </div>
+
+      <div class="row clientInfo">
+        <div class="form-group mt-3 col-6">
+          <label for="logo">Client Logo</label>
+          <input type="file" class="form-control shadow-none" id="logo" required>
+        </div>
+        <div class="form-group mt-3 col-6">
+          <label for="Cname">Client Name</label>
+          <input type="text" class="form-control shadow-none" id="Cname" required>
+        </div>
+      </div>
+
+      <div class="row projectInfo">
+        <div class="form-group mt-3 col-4">
+          <label for="duration">Project Duration</label>
+          <input type="text" class="form-control shadow-none" id="duration" required>
+        </div>
+        <div class="form-group mt-3 col-4">
+          <label for="members">Team Members</label>
+          <input type="text" class="form-control shadow-none" id="members" required>
+        </div>
+        <div class="form-group mt-3 col-4">
+          <label for="rating">Client Rating</label>
+          <input type="text" class="form-control shadow-none" id="rating" required>
+        </div>
+      </div>
+
+      <div class="row mt-3 align-items-center feature" *ngFor="let feature of features; let i = index">
+        <div class="form-group col-8">
+          <label for="feature{{i}}">Feature {{i + 1}}</label>
+          <input type="text" class="form-control shadow-none" id="feature{{i}}" [(ngModel)]="features[i]"
+            name="feature{{i}}" required>
+        </div>
+        <div class="col-2">
+          <button type="button" class="btn btn-danger" (click)="removeFeature(i)"
+            *ngIf="features.length > 1">Remove</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary mt-3" (click)="addFeature()">+ Add Feature</button>
+
+      <div class="form-group mt-3">
+        <div class="form-group mt-3 ">
+          <label for="pImage">Project Image</label>
+          <input type="file" class="form-control shadow-none" id="pImage" required>
+        </div>
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="review">Client Review</label>
+        <input type="text" class="form-control shadow-none" id="review" required>
+      </div>
+
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-success shadow-none">Add Project</button>
+        <button type="reset" class="btn btn-danger ms-3 shadow-none">Reset</button>
+      </div>
+      <div class="text-center mt-3">
+      </div>
+    </form>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-12">
+
+    </div>
+  </div>
+</div>

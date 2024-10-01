@@ -6,7 +6,7 @@
 }
 
 h3 {
-  color: white;
+  color: black;
   font-size: 35px;
   margin-bottom: 20px;
 }
@@ -14,7 +14,7 @@ h3 {
 .form-control {
   background-color: transparent;
   color: #C1C1C1;
-  font-size: 35px;
+  font-size: 24px;
   border: none;
   border-radius: 0;
   border-bottom: 1px solid #C1C1C1;
@@ -27,11 +27,11 @@ h3 {
 }
 
 .form-control:focus {
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid black;
 }
 
 .form-control::placeholder {
-  font-size: 35px;
+  font-size: 24px;
   color: #C1C1C1;
 }
 
@@ -39,7 +39,7 @@ h3 {
   position: relative;
   padding: 10px 20px;
   background-color: transparent;
-  color: white;
+  color: black;
   border: 2px solid #ccc;
   border-radius: 25px;
   font-size: 14px;
@@ -68,9 +68,9 @@ input[type="radio"]:disabled {
 }
 
 input[type="radio"]:checked+.job-option {
-  background-color: white;
-  color: #838383;
-  border-color: #838383;
+  background-color: #109482;
+  color: white;
+  border-color: transparent;
   font-weight: bold;
 }
 
@@ -89,14 +89,14 @@ input[type="radio"]:checked+.job-option {
 .custom-file-upload {
   position: relative;
   font-size: 16px;
-  color: white;
+  color: black;
   cursor: pointer;
 }
 
 .upload-label {
   position: relative;
   font-size: 22px;
-  color: white;
+  color: black;
   cursor: pointer;
 }
 

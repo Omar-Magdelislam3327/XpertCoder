@@ -54,7 +54,8 @@ input::selection {
 }
 
 body {
-  background-color: #07090D !important;
+  /* background-color: #07090D !important; */
+  background-color: white !important;
   cursor: auto;
   overflow-x: hidden !important;
 }
