@@ -13,209 +13,21 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card">
+        <div class="col-lg-4 col-12 mt-3" *ngFor="let blog of blogs">
+          <a [routerLink]="['/blog', blog.id]" class="card text-decoration-none">
             <div class="imag">
-              <img src="assets/vendors/imgs/blog1.jpeg" class="img-fluid" alt="">
+              <img [src]="blog.image" class="img-fluid" alt="">
             </div>
             <div>
               <div class="main p-3">
-                <h4 class="my-3 text-black">What is SPA</h4>
-                <p class="text-black-50">Single Page Applications (SPAs) are a powerful tool for building modern web
-                  applications.</p>
+                <h4 class="my-3 text-black">{{blog.title}}</h4>
+                <p class="text-black-50">{{blog.description | slice : 10 : 100 }}</p>
                 <div class="date">
-                  <small class="text-black-50">October 12, 2024</small>
+                  <small class="text-black-50">{{blog.date}}</small>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card">
-            <div class="imag">
-              <img src="assets/vendors/imgs/blog1.jpeg" class="img-fluid" alt="">
-            </div>
-            <div>
-              <div class="main p-3">
-                <h4 class="my-3 text-black">What is SPA</h4>
-                <p class="text-black-50">Single Page Applications (SPAs) are a powerful tool for building modern web
-                  applications.</p>
-                <div class="date">
-                  <small class="text-black-50">October 12, 2024</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card">
-            <div class="imag">
-              <img src="assets/vendors/imgs/blog1.jpeg" class="img-fluid" alt="">
-            </div>
-            <div>
-              <div class="main p-3">
-                <h4 class="my-3 text-black">What is SPA</h4>
-                <p class="text-black-50">Single Page Applications (SPAs) are a powerful tool for building modern web
-                  applications.</p>
-                <div class="date">
-                  <small class="text-black-50">October 12, 2024</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card">
-            <div class="imag">
-              <img src="assets/vendors/imgs/blog1.jpeg" class="img-fluid" alt="">
-            </div>
-            <div>
-              <div class="main p-3">
-                <h4 class="my-3 text-black">What is SPA</h4>
-                <p class="text-black-50">Single Page Applications (SPAs) are a powerful tool for building modern web
-                  applications.</p>
-                <div class="date">
-                  <small class="text-black-50">October 12, 2024</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card">
-            <div class="imag">
-              <img src="assets/vendors/imgs/blog1.jpeg" class="img-fluid" alt="">
-            </div>
-            <div>
-              <div class="main p-3">
-                <h4 class="my-3 text-black">What is SPA</h4>
-                <p class="text-black-50">Single Page Applications (SPAs) are a powerful tool for building modern web
-                  applications.</p>
-                <div class="date">
-                  <small class="text-black-50">October 12, 2024</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card">
-            <div class="imag">
-              <img src="assets/vendors/imgs/blog1.jpeg" class="img-fluid" alt="">
-            </div>
-            <div>
-              <div class="main p-3">
-                <h4 class="my-3 text-black">What is SPA</h4>
-                <p class="text-black-50">Single Page Applications (SPAs) are a powerful tool for building modern web
-                  applications.</p>
-                <div class="date">
-                  <small class="text-black-50">October 12, 2024</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card">
-            <div class="imag">
-              <img src="assets/vendors/imgs/blog1.jpeg" class="img-fluid" alt="">
-            </div>
-            <div>
-              <div class="main p-3">
-                <h4 class="my-3 text-black">What is SPA</h4>
-                <p class="text-black-50">Single Page Applications (SPAs) are a powerful tool for building modern web
-                  applications.</p>
-                <div class="date">
-                  <small class="text-black-50">October 12, 2024</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card">
-            <div class="imag">
-              <img src="assets/vendors/imgs/blog1.jpeg" class="img-fluid" alt="">
-            </div>
-            <div>
-              <div class="main p-3">
-                <h4 class="my-3 text-black">What is SPA</h4>
-                <p class="text-black-50">Single Page Applications (SPAs) are a powerful tool for building modern web
-                  applications.</p>
-                <div class="date">
-                  <small class="text-black-50">October 12, 2024</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card">
-            <div class="imag">
-              <img src="assets/vendors/imgs/blog1.jpeg" class="img-fluid" alt="">
-            </div>
-            <div>
-              <div class="main p-3">
-                <h4 class="my-3 text-black">What is SPA</h4>
-                <p class="text-black-50">Single Page Applications (SPAs) are a powerful tool for building modern web
-                  applications.</p>
-                <div class="date">
-                  <small class="text-black-50">October 12, 2024</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card">
-            <div class="imag">
-              <img src="assets/vendors/imgs/blog1.jpeg" class="img-fluid" alt="">
-            </div>
-            <div>
-              <div class="main p-3">
-                <h4 class="my-3 text-black">What is SPA</h4>
-                <p class="text-black-50">Single Page Applications (SPAs) are a powerful tool for building modern web
-                  applications.</p>
-                <div class="date">
-                  <small class="text-black-50">October 12, 2024</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card">
-            <div class="imag">
-              <img src="assets/vendors/imgs/blog1.jpeg" class="img-fluid" alt="">
-            </div>
-            <div>
-              <div class="main p-3">
-                <h4 class="my-3 text-black">What is SPA</h4>
-                <p class="text-black-50">Single Page Applications (SPAs) are a powerful tool for building modern web
-                  applications.</p>
-                <div class="date">
-                  <small class="text-black-50">October 12, 2024</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card">
-            <div class="imag">
-              <img src="assets/vendors/imgs/blog1.jpeg" class="img-fluid" alt="">
-            </div>
-            <div>
-              <div class="main p-3">
-                <h4 class="my-3 text-black">What is SPA</h4>
-                <p class="text-black-50">Single Page Applications (SPAs) are a powerful tool for building modern web
-                  applications.</p>
-                <div class="date">
-                  <small class="text-black-50">October 12, 2024</small>
-                </div>
-              </div>
-            </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>

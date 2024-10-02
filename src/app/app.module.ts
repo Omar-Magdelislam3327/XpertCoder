@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './userPanel/home/home.component';
@@ -26,6 +25,10 @@ import { AdminClientsComponent } from './adminPanel/admin-clients/admin-clients.
 import { AdminCareersComponent } from './adminPanel/admin-careers/admin-careers.component';
 import { AdminMessagesComponent } from './adminPanel/admin-messages/admin-messages.component';
 import { FormsModule } from '@angular/forms';
+import { AdminTeamComponent } from './adminPanel/admin-team/admin-team.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BlogDetailsComponent } from './userPanel/blog-details/blog-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,13 +52,17 @@ import { FormsModule } from '@angular/forms';
     AdminClientsComponent,
     AdminCareersComponent,
     AdminMessagesComponent,
+    AdminTeamComponent,
+    BlogDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CarouselModule,
     DialogModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Projects } from 'src/app/modules/projects';
+import { ProjectsApiService } from 'src/app/services/projects-api.service';
 
 @Component({
   selector: 'app-project-details',
@@ -6,6 +9,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./project-details.component.css']
 })
 export class ProjectDetailsComponent {
+  id: any;
+  allProjects = new Projects();
+  constructor(private api: ProjectsApiService, private activ: ActivatedRoute) {
+    this.id = this.activ.snapshot.params['id'];
+    this.api.getById(this.id).subscribe((data: any) => {
+      this.allProjects = data;
+    })
+  }
 
   onMouseMove(event: MouseEvent) {
     const card = event.currentTarget as HTMLElement;

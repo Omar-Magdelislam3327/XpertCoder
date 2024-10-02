@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-careers.component.css']
 })
 export class AdminCareersComponent {
+  uploadedCVUrl: string = '';
 
+  handleFileInput(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.uploadedCVUrl = URL.createObjectURL(file);
+    }
+  }
 }

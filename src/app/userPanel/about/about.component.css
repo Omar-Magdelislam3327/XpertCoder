@@ -52,44 +52,44 @@
     opacity: 1;
   }
 
-  .another {
-    .team-card {
-      position: relative;
-      overflow: hidden;
-    }
+  .another .team-card {
+    position: relative;
+    overflow: hidden;
+  }
 
-    .card-img-container {
-      position: relative;
-      overflow: hidden;
-    }
+  .another .card-img-container {
+    position: relative;
+    overflow: hidden;
+  }
 
-    .card-img-container img {
-      transition: transform 0.5s ease;
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+  .another .card-img-container img {
+    transition: transform 0.5s ease;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 
-    .card-overlay-bottom {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #008170c9;
-      padding: 10px;
-      opacity: 0;
-      transition: 0.5s ease;
-      color: white;
-      text-align: center;
-    }
+  .another .card-overlay-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #008170c9;
+    padding: 10px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    color: white;
+    text-align: center;
+  }
 
-    .team-card:hover img {
-      transform: scale(1.1);
-    }
+  .another .team-card:hover img {
+    transform: scale(1.1);
+  }
 
-    .team-card:hover .card-overlay-bottom {
-      opacity: 1;
-    }
+  .another .team-card:hover .card-overlay-bottom {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -123,8 +123,8 @@
 
   button {
     background-color: transparent;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     border: 2px solid black;
     border-radius: 16px;
     display: flex;

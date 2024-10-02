@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Projects } from 'src/app/modules/projects';
+import { ProjectsApiService } from 'src/app/services/projects-api.service';
 
 @Component({
   selector: 'app-admin-projects',
@@ -6,20 +9,41 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-projects.component.css']
 })
 export class AdminProjectsComponent {
-  features: string[] = ['']; // Initially one feature
+  id: any;
+  allProjects: Projects = new Projects();
 
-  // Add new feature input
+  constructor(private api: ProjectsApiService, private activ: ActivatedRoute) {
+    this.id = this.activ.snapshot.params['id'];
+    this.allProjects.features = [];
+  }
+
   addFeature() {
-    this.features.push('');
+    this.allProjects.features.push('');
+    console.log('Features after adding:', this.allProjects.features);
   }
 
-  // Remove a feature input (optional)
+  updateFeature(event: Event, index: number) {
+    const inputElement = event.target as HTMLInputElement;
+    const value = inputElement.value;
+    if (value.length <= 1) {
+      this.allProjects.features[index] = value;
+    } else {
+      this.allProjects.features[index] = value.charAt(0);
+    }
+  }
+
   removeFeature(index: number) {
-    this.features.splice(index, 1);
+    this.allProjects.features.splice(index, 1);
+    console.log('Features after remove:', this.allProjects.features);
   }
 
-  // Submit the form
-  onSubmit() {
-    console.log(this.features);
+  add() {
+    this.api.post(this.allProjects).subscribe(
+      (data: any) => {
+        this.allProjects = data;
+        console.log("Project added successfully", this.allProjects);
+        location.reload();
+      }
+    );
   }
 }

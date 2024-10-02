@@ -17,7 +17,8 @@ import { AdminBlogsComponent } from './adminPanel/admin-blogs/admin-blogs.compon
 import { AdminClientsComponent } from './adminPanel/admin-clients/admin-clients.component';
 import { AdminCareersComponent } from './adminPanel/admin-careers/admin-careers.component';
 import { AdminMessagesComponent } from './adminPanel/admin-messages/admin-messages.component';
-
+import { AdminTeamComponent } from './adminPanel/admin-team/admin-team.component';
+import { BlogDetailsComponent } from './userPanel/blog-details/blog-details.component';
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -27,10 +28,11 @@ const routes: Routes = [
   { path: "ui", component: UiuxComponent },
   { path: "testing", component: SoftTestingComponent },
   { path: "portfolio", component: PortfolioComponent },
-  { path: "project", component: ProjectDetailsComponent },
+  { path: "project/:id", component: ProjectDetailsComponent },
   { path: "join", component: JoinComponent },
   { path: "contact", component: ContactComponent },
   { path: "blog", component: BlogComponent },
+  { path: "blog/:id", component: BlogDetailsComponent },
   {
     path: 'admin',
     component: AdminComponent,
@@ -39,7 +41,8 @@ const routes: Routes = [
       { path: "blogs", component: AdminBlogsComponent },
       { path: "clients", component: AdminClientsComponent },
       { path: "careers", component: AdminCareersComponent },
-      { path: "messages", component: AdminMessagesComponent }
+      { path: "messages", component: AdminMessagesComponent },
+      { path: "team", component: AdminTeamComponent }
     ]
   },
 ];

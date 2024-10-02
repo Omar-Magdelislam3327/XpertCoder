@@ -1,0 +1,41 @@
+.box {
+
+  background-color: #fff;
+  border: 2px solid #f1f1f1;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: black;
+  border: none;
+  border-radius: 10px;
+
+  h4 {
+    color: var(--primaryColor);
+  }
+
+  span {
+    font-size: 18px;
+    color: var(--primaryColor);
+  }
+
+  .btn-purble {
+    padding: 0.375rem 0.75rem;
+  }
+
+  .btn-outline-purble {
+    padding: 0.475rem 0.65rem;
+  }
+
+  .upper {
+    position: relative;
+  }
+
+  .fa-square-xmark {
+    position: absolute;
+    right: -20px;
+    top: -10px;
+    padding: 10px;
+    color: red;
+    cursor: pointer;
+  }
+}

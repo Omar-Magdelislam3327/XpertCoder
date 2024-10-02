@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<main id="blog">
+  <section class="section1 p-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="fs-1 fw-bold text-black text-center">
+            {{ blog.title }}
+          </h2>
+          <p class="text-black-50 text-center">
+            Published on: {{ blog.date | date: 'yyyy-MM-dd' }}
+          </p>
+          <img [src]="blog.image" class="img-fluid" alt="">
+          <div class="mt-3">
+            <p class="text-black-50">{{ blog.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>

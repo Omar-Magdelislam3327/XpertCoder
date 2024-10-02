@@ -70,3 +70,7 @@ footer {
     color: var(--primaryColor) !important;
   }
 }
+
+.contact {
+  padding-left: 100px !important;
+}

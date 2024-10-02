@@ -1,36 +1,29 @@
 <div class="container p-5">
   <div class="title">
-    <h2 class="fw-bold text-success">Add New Client</h2>
+    <h2 class="fw-bold text-success">Add New Member</h2>
   </div>
   <div class="row">
     <form class="form">
 
       <div class="row info">
         <div class="form-group mt-3 col-6">
-          <label for="name">Client Name</label>
+          <label for="name">Member Name</label>
           <input type="text" class="form-control shadow-none" id="name" required>
         </div>
         <div class="form-group mt-3 col-6">
-          <label for="title">Client Title</label>
+          <label for="title">Member Title</label>
           <input type="text" class="form-control shadow-none" id="title" required>
         </div>
       </div>
 
-      <div class="row clientInfo">
 
-        <div class="form-group mt-3 col-6">
-          <label for="logo">Client Logo</label>
-          <input type="file" class="form-control shadow-none" id="logo" required>
-        </div>
-
-        <div class="form-group mt-3 col-6">
-          <label for="review">Client Review</label>
-          <input type="text" class="form-control shadow-none" id="review" required>
-        </div>
-
+      <div class="form-group mt-3">
+        <label for="image">Member Image</label>
+        <input type="file" class="form-control shadow-none" id="image" required>
       </div>
+
       <div class="text-center mt-3">
-        <button type="submit" class="btn btn-success shadow-none">Add Client</button>
+        <button type="submit" class="btn btn-success shadow-none">Add Member</button>
         <button type="reset" class="btn btn-danger ms-3 shadow-none">Reset</button>
       </div>
 

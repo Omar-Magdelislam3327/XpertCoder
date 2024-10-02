@@ -34,7 +34,7 @@
 
 .activ {
   position: relative;
-  background-color: #F6F9FF;
+  background-color: white;
   border-radius: 27px;
 
   a {
@@ -59,7 +59,7 @@ ul>.activ::before {
   height: 80px;
   width: 53px;
   border-bottom-right-radius: 100%;
-  box-shadow: 0 40px 0 0 #F6F9FF;
+  box-shadow: 0 40px 0 0 white;
   transform: rotateZ(360deg);
 }
 
@@ -69,7 +69,7 @@ ul>.activ::after {
   height: 80px;
   width: 53px;
   border-top-right-radius: 100%;
-  box-shadow: 0 -40px 0 0 #F6F9FF;
+  box-shadow: 0 -40px 0 0 white;
   transform: rotateZ(360deg);
 }
 
