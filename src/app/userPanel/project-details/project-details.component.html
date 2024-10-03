@@ -3,26 +3,23 @@
   <section class="section1 px-3 py-5">
     <div class="container">
       <div class="row">
-        <h2 class="fs-1 fw-bold text-black">
-          {{allProjects.projectName}}
-        </h2>
-        <p class="text-black-50">
-          {{allProjects.projectDescription}}
-        </p>
+        <h2 class="fs-1 fw-bold text-black">{{ allProjects.projectName }}</h2>
+        <p class="text-black-50">{{ allProjects.projectDescription }}</p>
         <img [src]="allProjects.clientLogo" class="img-fluid" alt="">
       </div>
     </div>
   </section>
+
   <section class="section2 px-3 py-5">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-12">
           <div class="about">
             <h3 class="text-black">About client</h3>
-            <p class="text-black-50"><span class="fw-bold">Client</span>: {{allProjects.clientName}} company</p>
+            <p class="text-black-50"><span class="fw-bold">Client</span>: {{ allProjects.clientName }} company</p>
             <p class="text-black-50">Our client is based on helping small and medium companies in managing their
-              employees in an easy, smooth
-              way where both management and employees find it easy to track PTO and earned balance</p>
+              employees in an easy, smooth way where both management and employees find it easy to track PTO and earned
+              balance</p>
           </div>
         </div>
         <div class="col-lg-4 col-12">
@@ -30,41 +27,30 @@
             <h5 class="text-black">Country</h5>
             <div class="d-flex gap-2 flex-wrap align-items-center">
               <img src="../../../assets/vendors/imgs/egypt.webp" width="50" alt="">
-              <p class="text-black-50 m-0">{{allProjects.clientCountry}}</p>
+              <p class="text-black-50 m-0">{{ allProjects.clientCountry }}</p>
             </div>
             <h5 class="mt-3 text-black">Industry</h5>
-            <p class="text-black-50">{{allProjects.clientIndustry}}
-            </p>
+            <p class="text-black-50">{{ allProjects.clientIndustry }}</p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
   <section class="section3 px-3 py-5">
     <div class="container">
       <div class="row">
-        <div class="col-lg-4 col-12 mt-3">
+        <div class="col-lg-4 col-12 mt-3"
+          *ngFor="let stat of [{title: 'Members', value: allProjects.members}, {title: 'Duration', value: allProjects.projectDuration + ' Months'}, {title: 'Rating', value: '+ ' + allProjects.clientRating}]">
           <div class="card p-3" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave()">
-            <h3 class="text-black fw-bold fs-2">{{allProjects.members}} Members</h3>
-            <p class="text-black-50">Team</p>
-          </div>
-
-        </div>
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card p-3" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave()">
-            <h3 class="text-black fw-bold fs-2">{{allProjects.projectDuration}} Months</h3>
-            <p class="text-black-50">Duration</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12 mt-3">
-          <div class="card p-3" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave()">
-            <h3 class="text-black fw-bold fs-2">+ {{allProjects.clientRating}}</h3>
-            <p class="text-black-50">Rating</p>
+            <h3 class="text-black fw-bold fs-2">{{ stat.value }}</h3>
+            <p class="text-black-50">{{ stat.title }}</p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
   <section class="section4 px-3 py-5">
     <div class="container">
       <div class="row">
@@ -74,26 +60,24 @@
       </div>
     </div>
   </section>
+
   <section class="section5 px-3 py-5">
     <div class="container">
       <div class="row">
         <div class="col-lg-6">
           <div class="txt">
             <h3 class="text-black fw-bold">Features</h3>
-            <p class="text-black-50">
-              Day off is a small to medium company’s best friend. It is smooth, easy, and completely configurable where
-              HRs and company owners can configure and manage their company leave type rules, whether they want their
-              employees’ balance in hours or days. Always stay updated!
-            </p>
+            <p class="text-black-50">Day off is a small to medium company’s best friend. It is smooth, easy, and
+              completely configurable...</p>
 
             <div class="list row">
               <div class="col-lg-6 mt-3" *ngFor="let feature of allProjects.features; let i = index">
-                <div class="feature d-flex flex-column">
-                  <div class="num">
-                    <h6>{{ (i + 1) | number: '2.0' }}</h6>
+                <div class="feature">
+                  <div class="num me-3">
+                    <h6>{{ i + 1 }}</h6>
                   </div>
                   <div class="text">
-                    <p class="text-black-50 fw-bold">{{ feature }}</p>
+                    <p class="text-black-50 fw-bold">{{ feature.featureName }}</p>
                   </div>
                 </div>
               </div>
@@ -107,9 +91,10 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
+
+
   <section class="section6 px-3 py-5">
     <div class="container">
       <div class="row">
@@ -117,11 +102,11 @@
           <div class="review">
             <h3 class="fw-bold text-black">What client say</h3>
             <div class="carde">
-              <div class="tope  pb-3">
+              <div class="tope pb-3">
                 <i class="fa-solid fa-quote-left"></i>
-                <p class="text-black-50">{{allProjects.clientReview}}</p>
+                <p class="text-black-50">{{ allProjects.clientReview }}</p>
                 <div class="txt">
-                  <h6 class="p-0 m-0 text-black">{{allProjects.clientName}}</h6>
+                  <h6 class="p-0 m-0 text-black">{{ allProjects.clientName }}</h6>
                 </div>
               </div>
               <div class="btm d-flex justify-content-start align-items-center flex-wrap">
@@ -137,6 +122,7 @@
       </div>
     </div>
   </section>
+
   <section class="section7 px-3 py-5">
     <div class="container">
       <div class="title">
@@ -145,7 +131,6 @@
       <div class="row">
         <div class="col-12 mt-2">
           <div class="row box">
-
             <div class="col-lg-6 p-lg-3 p-0">
               <div class="imag img-wrapper">
                 <img src="../../../assets/vendors/imgs/rouh.jpg" class="img-fluid" alt="">
@@ -155,36 +140,25 @@
             <div class="col-lg-6 p-3">
               <div class="txt">
                 <h3 class="text-black fs-1">Rouh</h3>
-                <p class="text-black-50">
-                  Rouh is a web application built using Angular that allows users to create and share rough sketches.
-                  It's a collaborative platform where users can share their designs, discuss ideas, and receive feedback
-                  from
-                  other users.
-                </p>
+                <p class="text-black-50">Rouh is a web application built using Angular that allows users to create and
+                  share rough sketches...</p>
                 <div class="d-flex flex-column gap-5 mt-3">
                   <div class="d-flex flex-wrap gap-3">
                     <div class="country">
                       <img src="../../../assets/vendors/imgs/egypt.webp" width="30" class="img-fluid" alt=""> Egypt
                     </div>
-                    <div class="type">
-                      Web Development
-                    </div>
-                    <div class="type">
-                      HR management
-                    </div>
+                    <div class="type">Web Development</div>
+                    <div class="type">HR management</div>
                   </div>
                 </div>
                 <button class="arrow d-lg-block d-none">
                   <i class="fa-solid fa-arrow-right fs-1 text-black p-1"></i>
                 </button>
                 <div class="text-center mt-3 d-block d-lg-none ">
-                  <button class="col-12 btn-xpert">
-                    View Project
-                  </button>
+                  <button class="col-12 btn-xpert">View Project</button>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>

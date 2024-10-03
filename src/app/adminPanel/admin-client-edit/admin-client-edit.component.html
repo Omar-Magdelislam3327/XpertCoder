@@ -1,0 +1,40 @@
+<div class="container p-5">
+  <div class="title">
+    <h2 class="fw-bold text-success">Edit Client</h2>
+  </div>
+  <div class="row">
+    <form [formGroup]="clientForm" class="form">
+
+      <div class="row info">
+        <div class="form-group mt-3 col-6">
+          <label for="name">Client Name</label>
+          <input type="text" class="form-control shadow-none" id="name" formControlName="name" required>
+        </div>
+        <div class="form-group mt-3 col-6">
+          <label for="title">Client Title</label>
+          <input type="text" class="form-control shadow-none" id="title" formControlName="title" required>
+        </div>
+      </div>
+
+      <div class="row clientInfo">
+        <div class="form-group mt-3 col-6">
+          <label for="logo">Client Logo</label>
+          <input type="file" class="form-control shadow-none" id="logo" formControlName="logo" required>
+        </div>
+
+        <div class="form-group mt-3 col-6">
+          <label for="review">Client Review</label>
+          <textarea class="form-control shadow-none" id="review" formControlName="review" required></textarea>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-3">
+        <button type="button" class="btn btn-success shadow-none" [disabled]="clientForm.invalid"
+          (click)="update()">Update Client</button>
+        <button type="button" class="btn btn-danger ms-3 shadow-none" (click)="clientForm.reset()">Reset</button>
+      </div>
+
+    </form>
+  </div>
+</div>

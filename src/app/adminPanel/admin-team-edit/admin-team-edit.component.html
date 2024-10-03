@@ -1,0 +1,33 @@
+<div class="container p-5">
+  <div class="title">
+    <h2 class="fw-bold text-success">Update Member</h2>
+  </div>
+  <div class="row">
+    <form class="form" [formGroup]="teamForm" (ngSubmit)="update()">
+
+      <div class="row info">
+        <div class="form-group mt-3 col-6">
+          <label for="name">Member Name</label>
+          <input type="text" class="form-control shadow-none" name="name" id="name" formControlName="name" required>
+        </div>
+        <div class="form-group mt-3 col-6">
+          <label for="title">Member Title</label>
+          <input type="text" class="form-control shadow-none" name="title" id="title" formControlName="title" required>
+        </div>
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="image">Member Image</label>
+        <input type="file" class="form-control shadow-none" id="image" (change)="onImageChange($event)" required>
+        <img *ngIf="teamForm.get('image')?.value" [src]="teamForm.get('image')?.value" alt="Current Image" class="mt-2"
+          style="width: 100px; height: auto;" />
+      </div>
+
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-success shadow-none">Update Member</button>
+        <button type="button" class="btn btn-danger ms-3 shadow-none" (click)="deleteMember()">Delete</button>
+      </div>
+
+    </form>
+  </div>
+</div>

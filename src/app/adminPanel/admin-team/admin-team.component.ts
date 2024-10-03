@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TeamApiService } from 'src/app/services/team-api.service';
 
 @Component({
   selector: 'app-admin-team',
@@ -6,5 +8,49 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-team.component.css']
 })
 export class AdminTeamComponent {
+  teamForm: FormGroup;
+  team!: any
+  constructor(private api: TeamApiService, private fb: FormBuilder) {
+    this.teamForm = this.fb.group({
+      name: ['', Validators.required],
+      title: ['', Validators.required],
+      image: ['', Validators.required]
+    })
+    this.api.get().subscribe({
+      next: (data) => {
+        this.team = data;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    })
+  }
+  add() {
+    if (this.teamForm.valid) {
+      this.api.post(this.teamForm.value).subscribe({
+        next: () => {
+          this.api.get().subscribe((data) => {
+            this.teamForm.reset();
+            this.team = data;
 
+          })
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      })
+    }
+  }
+  delete(id: any) {
+    this.api.delete(this.team.id).subscribe({
+      next: () => {
+        this.api.get().subscribe((data) => {
+          this.team = data;
+        })
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
 }

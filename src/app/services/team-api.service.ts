@@ -9,6 +9,6 @@ import { HttpClient } from '@angular/common/http';
 export class TeamApiService extends ApiFunctionService<Team> {
 
   constructor(protected override http: HttpClient) {
-    super("", http)
+    super("http://localhost:3000/team", http)
   }
 }

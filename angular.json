@@ -26,7 +26,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/assets/vendors/bootstrap/bootstrap.min.css"
+              "src/assets/vendors/bootstrap/bootstrap.min.css",
+              "node_modules/quill/dist/quill.snow.css"
             ],
             "scripts": [
               "src/assets/vendors/bootstrap/bootstrap.bundle.min.js"

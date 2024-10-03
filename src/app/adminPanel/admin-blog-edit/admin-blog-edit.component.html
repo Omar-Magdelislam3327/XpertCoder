@@ -1,0 +1,45 @@
+<div class="container p-5">
+  <div class="title">
+    <h2 class="fw-bold text-success">Edit Blog</h2>
+  </div>
+  <div class="row">
+    <form [formGroup]="blogForm" class="form">
+
+      <div class="form-group mt-3">
+        <label for="title">Blog Title</label>
+        <input type="text" class="form-control shadow-none" id="title" formControlName="title" required>
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="description">Blog Description</label>
+        <textarea class="form-control shadow-none" id="description" formControlName="description" required></textarea>
+      </div>
+
+      <div class="row">
+        <div class="form-group mt-3 col-6">
+          <label for="image">Blog Image</label>
+          <input type="file" class="form-control shadow-none" id="image" formControlName="image" required>
+        </div>
+        <div class="form-group mt-3 col-6">
+          <label for="type">Blog Type</label>
+          <select class="form-select shadow-none" id="type" formControlName="type">
+            <option value="" disabled>Select Blog Type</option>
+            <option value="all">All</option>
+            <option value="Web Development">Web Development</option>
+            <option value="Mobile Development">Mobile Development</option>
+            <option value="UI/UX">UI/UX</option>
+            <option value="Software Testing">Software Testing</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="text-center mt-3">
+        <button type="button" class="btn btn-success shadow-none" [disabled]="blogForm.invalid"
+          (click)="update()">Update Blog</button>
+        <button type="button" class="btn btn-danger ms-3 shadow-none" (click)="delete()">Delete Blog</button>
+        <button type="button" class="btn btn-secondary ms-3 shadow-none" (click)="blogForm.reset()">Reset</button>
+      </div>
+
+    </form>
+  </div>
+</div>

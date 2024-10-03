@@ -4,35 +4,34 @@
   </div>
 
   <div class="row">
-    <form class="form">
+    <form class="form" [formGroup]="projectForm" (ngSubmit)="add()">
 
       <div class="form-group mt-3">
         <label for="name">Project Name</label>
-        <input type="text" class="form-control shadow-none" id="name" [(ngModel)]="allProjects.projectName"
-          name="projectName" required>
+        <input type="text" class="form-control shadow-none" id="name" formControlName="projectName" required>
       </div>
 
       <div class="form-group mt-3">
         <label for="description">Project Description</label>
-        <input type="text" class="form-control shadow-none" id="description"
-          [(ngModel)]="allProjects.projectDescription" name="projectDescription" required>
+        <input type="text" class="form-control shadow-none" id="description" formControlName="projectDescription"
+          required>
       </div>
 
       <div class="form-group mt-3">
         <label for="type">Project Type</label>
-        <select class="form-select shadow-none" [(ngModel)]="allProjects.projectType" name="projectType" required>
+        <select class="form-select shadow-none" formControlName="projectType" required>
           <option value="" disabled>Select Project Type</option>
-          <option value="web">Web Development</option>
-          <option value="mobile">Mobile Development</option>
-          <option value="uiux">UI/UX Design</option>
-          <option value="software">Software Testing</option>
+          <option value="Web Development">Web Development</option>
+          <option value="Mobile Development">Mobile Development</option>
+          <option value="UI/UX">UI/UX Design</option>
+          <option value="Software Testing">Software Testing</option>
         </select>
       </div>
 
       <div class="row">
         <div class="form-group mt-3 col-6">
           <label for="country">Client Country</label>
-          <select class="form-select shadow-none" [(ngModel)]="allProjects.clientCountry" name="clientCountry" required>
+          <select class="form-select shadow-none" formControlName="clientCountry" required>
             <option value="" disabled>Select Country</option>
             <option value="USA">USA</option>
             <option value="UK">UK</option>
@@ -42,47 +41,41 @@
         </div>
         <div class="form-group mt-3 col-6">
           <label for="industry">Client Industry</label>
-          <input type="text" class="form-control shadow-none" id="industry" [(ngModel)]="allProjects.clientIndustry"
-            name="clientIndustry" required>
+          <input type="text" class="form-control shadow-none" id="industry" formControlName="clientIndustry" required>
         </div>
       </div>
 
       <div class="row">
         <div class="form-group mt-3 col-6">
           <label for="logo">Client Logo</label>
-          <input type="file" class="form-control shadow-none" id="logo" name="clientLogo"
-            [(ngModel)]="allProjects.clientLogo" required>
+          <input type="file" class="form-control shadow-none" id="logo" formControlName="clientLogo" required>
         </div>
         <div class="form-group mt-3 col-6">
           <label for="Cname">Client Name</label>
-          <input type="text" class="form-control shadow-none" id="Cname" name="clientName"
-            [(ngModel)]="allProjects.clientName" required>
+          <input type="text" class="form-control shadow-none" id="Cname" formControlName="clientName" required>
         </div>
       </div>
 
       <div class="row">
         <div class="form-group mt-3 col-4">
           <label for="duration">Project Duration</label>
-          <input type="text" class="form-control shadow-none" id="duration" name="projectDuration"
-            [(ngModel)]="allProjects.projectDuration" required>
+          <input type="number" class="form-control shadow-none" id="duration" formControlName="projectDuration"
+            required>
         </div>
         <div class="form-group mt-3 col-4">
           <label for="members">Team Members</label>
-          <input type="text" class="form-control shadow-none" id="members" name="members"
-            [(ngModel)]="allProjects.members" required>
+          <input type="number" class="form-control shadow-none" id="members" formControlName="members" required>
         </div>
         <div class="form-group mt-3 col-4">
           <label for="rating">Client Rating</label>
-          <input type="text" class="form-control shadow-none" id="rating" name="clientRating"
-            [(ngModel)]="allProjects.clientRating" required>
+          <input type="number" class="form-control shadow-none" id="rating" formControlName="clientRating" required>
         </div>
       </div>
 
-      <div class="row mt-3 align-items-center" *ngFor="let feature of allProjects.features; let i = index">
-        <div class="form-group col-10">
-          <label for="features{{i}}">Feature {{i + 1}}</label>
-          <input type="text" class="form-control shadow-none" id="features{{i}}" name="features{{i}}"
-            [(ngModel)]="allProjects.features[i]" (input)="updateFeature($event, i)" required>
+      <div class="row mt-3 align-items-center" formArrayName="features">
+        <div *ngFor="let feature of features.controls; let i = index" [formGroupName]="i" class="form-group col-10">
+          <label for="feature{{i}}">Feature {{i + 1}}</label>
+          <input type="text" class="form-control shadow-none" formControlName="featureName" required>
         </div>
         <div class="col-2">
           <button type="button" class="btn btn-danger" (click)="removeFeature(i)">Remove</button>
@@ -93,20 +86,36 @@
 
       <div class="form-group mt-3">
         <label for="pImage">Project Image</label>
-        <input type="file" class="form-control shadow-none" id="pImage" name="projectImage"
-          [(ngModel)]="allProjects.projectImage" required>
+        <input type="file" class="form-control shadow-none" id="pImage" formControlName="projectImage" required>
       </div>
 
       <div class="form-group mt-3">
         <label for="review">Client Review</label>
-        <input type="text" class="form-control shadow-none" id="review" name="clientReview"
-          [(ngModel)]="allProjects.clientReview" required>
+        <input type="text" class="form-control shadow-none" id="review" formControlName="clientReview" required>
       </div>
 
       <div class="text-center mt-3">
-        <button type="submit" class="btn btn-success shadow-none" (click)="add()">Submit</button>
+        <button type="submit" class="btn btn-success shadow-none" [disabled]="projectForm.invalid">Submit</button>
         <button type="reset" class="btn btn-danger ms-3 shadow-none">Reset</button>
       </div>
     </form>
   </div>
+  <hr>
+
+  <div class="row mt-2">
+    <div class="col-12">
+      <h3 class="fw-bold text-success">Projects List</h3>
+    </div>
+    <div *ngFor="let project of projects" class="col-md-4 mb-3">
+      <div class="card">
+        <img [src]="project.projectImage" class="card-img-top" alt="{{ project.projectName }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ project.projectName }}</h5>
+          <p class="card-text">Client Name: {{ project.clientName }}</p>
+          <a routerLink="/admin/project-edit/{{project.id}}" class="btn btn-warning">Edit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

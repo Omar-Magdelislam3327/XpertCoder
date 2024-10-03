@@ -3,43 +3,49 @@
     <h2 class="fw-bold text-success">Add New Client</h2>
   </div>
   <div class="row">
-    <form class="form">
+    <form [formGroup]="clientForm" class="form">
 
       <div class="row info">
         <div class="form-group mt-3 col-6">
           <label for="name">Client Name</label>
-          <input type="text" class="form-control shadow-none" id="name" required>
+          <input type="text" class="form-control shadow-none" id="name" formControlName="name" required>
         </div>
         <div class="form-group mt-3 col-6">
           <label for="title">Client Title</label>
-          <input type="text" class="form-control shadow-none" id="title" required>
+          <input type="text" class="form-control shadow-none" id="title" formControlName="title" required>
         </div>
       </div>
 
       <div class="row clientInfo">
-
         <div class="form-group mt-3 col-6">
           <label for="logo">Client Logo</label>
-          <input type="file" class="form-control shadow-none" id="logo" required>
+          <input type="file" class="form-control shadow-none" id="logo" formControlName="logo" required>
         </div>
 
         <div class="form-group mt-3 col-6">
           <label for="review">Client Review</label>
-          <input type="text" class="form-control shadow-none" id="review" required>
+          <textarea class="form-control shadow-none" id="review" formControlName="review" required></textarea>
         </div>
-
       </div>
+
       <div class="text-center mt-3">
-        <button type="submit" class="btn btn-success shadow-none">Add Client</button>
-        <button type="reset" class="btn btn-danger ms-3 shadow-none">Reset</button>
+        <button type="submit" class="btn btn-success shadow-none" [disabled]="clientForm.invalid" (click)="add()">Add
+          Client</button>
+        <button type="button" class="btn btn-danger ms-3 shadow-none" (click)="clientForm.reset()">Reset</button>
       </div>
 
     </form>
   </div>
   <hr>
   <div class="row">
-    <div class="col-12">
-
+    <div class="col-lg-4 mt-4" *ngFor="let client of clients">
+      <div class="card">
+        <div class="card-body">
+          <i class="fa-solid fa-pen-to-square" routerLink="/admin/client-edit/{{client.id}}"></i>
+          <img src="{{client.logo}}" alt="Client Logo" class="img-fluid">
+          <i class="fa-solid fa-trash"></i>
+        </div>
+      </div>
     </div>
   </div>
 </div>

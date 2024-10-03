@@ -13,12 +13,18 @@ import { ContactComponent } from './userPanel/contact/contact.component';
 import { BlogComponent } from './userPanel/blog/blog.component';
 import { AdminComponent } from './adminPanel/admin/admin.component';
 import { AdminProjectsComponent } from './adminPanel/admin-projects/admin-projects.component';
-import { AdminBlogsComponent } from './adminPanel/admin-blogs/admin-blogs.component';
 import { AdminClientsComponent } from './adminPanel/admin-clients/admin-clients.component';
 import { AdminCareersComponent } from './adminPanel/admin-careers/admin-careers.component';
 import { AdminMessagesComponent } from './adminPanel/admin-messages/admin-messages.component';
 import { AdminTeamComponent } from './adminPanel/admin-team/admin-team.component';
 import { BlogDetailsComponent } from './userPanel/blog-details/blog-details.component';
+import { AdminBlogsComponent } from './adminPanel/admin-blogs/admin-blogs.component';
+import { AdminTeamEditComponent } from './adminPanel/admin-team-edit/admin-team-edit.component';
+import { AdminProjectEditComponent } from './adminPanel/admin-project-edit/admin-project-edit.component';
+import { AdminBlogEditComponent } from './adminPanel/admin-blog-edit/admin-blog-edit.component';
+import { AdminClientEditComponent } from './adminPanel/admin-client-edit/admin-client-edit.component';
+import { AdminLoginComponent } from './adminPanel/admin-login/admin-login.component';
+import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -37,14 +43,20 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: [
-      { path: "projects", component: AdminProjectsComponent },
-      { path: "blogs", component: AdminBlogsComponent },
-      { path: "clients", component: AdminClientsComponent },
-      { path: "careers", component: AdminCareersComponent },
-      { path: "messages", component: AdminMessagesComponent },
-      { path: "team", component: AdminTeamComponent }
+      { path: "xc-login", component: AdminLoginComponent },
+      { path: "projects", canActivate: [AuthGuard], component: AdminProjectsComponent },
+      { path: "project-edit/:id", canActivate: [AuthGuard], component: AdminProjectEditComponent },
+      { path: "clients", canActivate: [AuthGuard], component: AdminClientsComponent },
+      { path: "client-edit/:id", canActivate: [AuthGuard], component: AdminClientEditComponent },
+      { path: "careers", canActivate: [AuthGuard], component: AdminCareersComponent },
+      { path: "messages", canActivate: [AuthGuard], component: AdminMessagesComponent },
+      { path: "team", canActivate: [AuthGuard], component: AdminTeamComponent },
+      { path: "team-edit/:id", canActivate: [AuthGuard], component: AdminTeamEditComponent },
+      { path: "blogs", canActivate: [AuthGuard], component: AdminBlogsComponent },
+      { path: "blog-edit/:id", canActivate: [AuthGuard], component: AdminBlogEditComponent }
     ]
   },
+  { path: "**", redirectTo: "home", pathMatch: "full" }
 ];
 
 @NgModule({

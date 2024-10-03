@@ -6,8 +6,8 @@
       <div class="row">
         <div class="col-lg-6 col-12 order-2 order-lg-1">
           <div class="txt">
-            <h2 class="fw-bold fs-1 text-white">Mobile Development</h2>
-            <p class="text-white-50">
+            <h2 class="fw-bold fs-1 text-black">Mobile Development</h2>
+            <p class="text-black-50">
               Mobile development is a revolutionary process that involves creating cross-platform applications
               that can be
               accessed on various devices, such as smartphones, tablets, and computers. Our team of skilled mobile
@@ -31,7 +31,7 @@
   <section class="section2 py-5">
     <div class="container">
       <div class="title">
-        <h2 class="fw-bold text-white">Why choose us</h2>
+        <h2 class="fw-bold text-black">Why choose us</h2>
       </div>
       <div class="row">
         <div class="col-lg-4 col-md-6 col-12 mt-3">
@@ -40,8 +40,8 @@
               <i class="fa-solid fa-chart-column fs-1"></i>
             </div>
             <div class="content">
-              <h3 class="my-3 text-white">Performance</h3>
-              <p class="text-white-50">Ensure fast loading times and seamless interactions with optimized code,
+              <h3 class="my-3 text-black">Performance</h3>
+              <p class="text-black-50">Ensure fast loading times and seamless interactions with optimized code,
                 responsive
                 designs, and performance tuning, enhancing user satisfaction and retention.</p>
             </div>
@@ -53,8 +53,8 @@
               <i class="fa-solid fs-1 fa-lock"></i>
             </div>
             <div class="content">
-              <h3 class="my-3 text-white">Security</h3>
-              <p class="text-white-50">Protect user data integrity through robust security practices such as
+              <h3 class="my-3 text-black">Security</h3>
+              <p class="text-black-50">Protect user data integrity through robust security practices such as
                 SSL encryption, firewalls, and regular vulnerability assessments to prevent cyber threats.</p>
             </div>
           </div>
@@ -65,8 +65,8 @@
               <i class="fas fs-1 fa-user"></i>
             </div>
             <div class="content">
-              <h3 class="my-3 text-white">User-Friendly Interfaces</h3>
-              <p class="text-white-50">Design intuitive and engaging user interfaces that enhance user experience and
+              <h3 class="my-3 text-black">User-Friendly Interfaces</h3>
+              <p class="text-black-50">Design intuitive and engaging user interfaces that enhance user experience and
                 encourage app adoption.</p>
             </div>
           </div>
@@ -77,8 +77,8 @@
               <i class="fas fs-1 fa-sync"></i>
             </div>
             <div class="content">
-              <h3 class="my-3 text-white">Regular Updates</h3>
-              <p class="text-white-50">Ensure your app stays relevant and functional with regular updates and
+              <h3 class="my-3 text-black">Regular Updates</h3>
+              <p class="text-black-50">Ensure your app stays relevant and functional with regular updates and
                 maintenance, incorporating user feedback and new features.
               </p>
             </div>
@@ -90,8 +90,8 @@
               <i class="fa-solid fs-1 fa-medal"></i>
             </div>
             <div class="content">
-              <h3 class="my-3 text-white">Quality</h3>
-              <p class="text-white-50">Our mobile applications are passing through different types of testing:
+              <h3 class="my-3 text-black">Quality</h3>
+              <p class="text-black-50">Our mobile applications are passing through different types of testing:
                 functional
                 testing, integration testing, security testing and load testing.</p>
             </div>
@@ -103,8 +103,8 @@
               <i class="fas fs-1 fa-chart-line"></i>
             </div>
             <div class="content">
-              <h3 class="my-3 text-white">Analytics and Insights</h3>
-              <p class="text-white-50">Implement tools to gather user data and analytics, helping businesses understand
+              <h3 class="my-3 text-black">Analytics and Insights</h3>
+              <p class="text-black-50">Implement tools to gather user data and analytics, helping businesses understand
                 user behavior and make informed decisions for future updates.</p>
             </div>
           </div>
@@ -116,7 +116,7 @@
   <section class="section3 py-5">
     <div class="container">
       <div class="title">
-        <h2 class="fw-bold text-white">We've built various projects using <span>different technologies</span>.</h2>
+        <h2 class="fw-bold text-black">We've built various projects using <span>different technologies</span>.</h2>
       </div>
       <div class="row">
         <div class="col-lg-3 col-6 mt-3">
@@ -141,27 +141,42 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 mt-5">
-          <div class="row box p-3">
-            <div class="col-lg-6">
+        <div class="col-12 mt-4" *ngFor="let project of projects">
+          <div routerLink="/project/{{project.id}}" class="row box">
+            <div class="col-lg-6 p-lg-3 p-0">
               <div class="imag img-wrapper">
-                <img src="../../../assets/vendors/imgs/rouh.jpg" class="img-fluid" alt="">
+                <img [src]="project.projectImage" class="img-fluid" alt="">
               </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-6 p-3">
               <div class="txt">
-                <h3 class="text-white fs-1">Rouh</h3>
-                <p class="text-white-50">
-                  Rouh is a web application built using Angular that allows users to create and share rough sketches.
-                  It's a collaborative platform where users can share their designs, discuss ideas, and receive feedback
-                  from
-                  other users.
+                <h3 class="text-black fs-1">{{project.projectName}}</h3>
+                <p class="text-black-50">
+                  {{project.projectDescription}}
                 </p>
-
+                <div class="d-flex flex-column gap-5 mt-3">
+                  <div class="d-flex flex-wrap gap-3">
+                    <div class="country">
+                      <!-- <img src="../../../assets/vendors/imgs/egypt.webp" width="30" class="img-fluid" alt=""> -->
+                      {{project.clientCountry}}
+                    </div>
+                    <div class="type">
+                      {{project.projectType}}
+                    </div>
+                    <div class="type">
+                      {{project.clientIndustry}}
+                    </div>
+                  </div>
+                </div>
                 <button class="arrow d-lg-block d-none">
-                  <i class="fa-solid fa-arrow-right fs-1 text-white p-1"></i>
+                  <i class="fa-solid fa-arrow-right fs-1 p-1"></i>
                 </button>
+                <div class="text-center mt-3 d-block d-lg-none ">
+                  <button routerLink="/project/{{project.id}}" class="col-12 btn-xpert">
+                    View Project
+                  </button>
+                </div>
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 .box {
   position: relative;
-  background-color: #121624;
+  background-color: whitesmoke;
   border-radius: 24px;
   display: flex;
   overflow: hidden;
@@ -9,7 +9,7 @@
 }
 
 .box:hover {
-  background-color: #191d2e;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .img-wrapper {
@@ -46,7 +46,7 @@
   background-color: transparent;
   width: 80px;
   height: 80px;
-  border: 2px solid #F5F7FA;
+  border: 2px solid black;
   border-radius: 16px;
   display: flex;
   justify-content: center;
@@ -58,13 +58,14 @@
   background-color: var(--primaryColor);
   color: white;
   transform: translateX(10px);
+  border-color: transparent;
 }
 
 .country,
 .type {
   padding: 10px;
-  background-color: #0f121d;
-  color: white;
+  background-color: #F5F7FA;
+  color: black;
   border-radius: 8px;
 }
 

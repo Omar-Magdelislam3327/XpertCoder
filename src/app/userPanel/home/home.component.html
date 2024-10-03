@@ -14,7 +14,7 @@
               Our team of experts has the necessary skills and experience to create high-quality products.
             </p>
             <div class="btnHome">
-              <button class="animated-button">
+              <button class="animated-button" routerLink="/contact">
                 <svg viewBox="0 0 30 22" class="arr-2" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
@@ -50,66 +50,12 @@
         </p>
       </div>
       <div class="row pt-3 text-center">
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
+        <div class="col-lg-3 col-md-6 col-12 mt-3" *ngFor="let client of clients">
           <div class="client">
-            <img src="https://enozom.com/wp-content/uploads/2023/03/vertie-logo.svg" class="img-fluid" alt="">
+            <img [src]="client.logo" class="img-fluid" alt="">
           </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
-          <div class="client">
-            <img src="https://enozom.com/wp-content/uploads/2023/03/pmf-logo.svg" class="img-fluid" alt="">
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
-          <div class="client">
-            <img src="https://enozom.com/wp-content/uploads/2023/03/sanubi-logo.svg" class="img-fluid" alt="">
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
-          <div class="client">
-            <img src="https://enozom.com/wp-content/uploads/2023/03/add-energy-logo.svg" class="img-fluid" alt="">
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
-          <div class="client">
-            <img src="https://enozom.com/wp-content/uploads/2023/03/vertie-logo.svg" class="img-fluid" alt="">
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
-          <div class="client">
-            <img src="https://enozom.com/wp-content/uploads/2023/03/pmf-logo.svg" class="img-fluid" alt="">
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
-          <div class="client">
-            <img src="https://enozom.com/wp-content/uploads/2023/03/sanubi-logo.svg" class="img-fluid" alt="">
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
-          <div class="client">
-            <img src="https://enozom.com/wp-content/uploads/2023/03/add-energy-logo.svg" class="img-fluid" alt="">
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
-          <div class="client">
-            <img src="https://enozom.com/wp-content/uploads/2023/03/vertie-logo.svg" class="img-fluid" alt="">
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
-          <div class="client">
-            <img src="https://enozom.com/wp-content/uploads/2023/03/pmf-logo.svg" class="img-fluid" alt="">
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
-          <div class="client">
-            <img src="https://enozom.com/wp-content/uploads/2023/03/sanubi-logo.svg" class="img-fluid" alt="">
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
-          <div class="client">
-            <img src="https://enozom.com/wp-content/uploads/2023/03/add-energy-logo.svg" class="img-fluid" alt="">
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
@@ -248,34 +194,18 @@
               </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-              <div class="tab-pane fade show active" id="pills-first" role="tabpanel" aria-labelledby="pills-first-tab"
-                tabindex="0">
+              <!-- All Projects Tab -->
+              <div class="tab-pane fade show active" id="pills-first" role="tabpanel" aria-labelledby="pills-first-tab">
                 <div class="row mt-5">
-                  <div class="col-lg-4 mt-2">
-                    <div class="card p-3">
+                  <div class="col-lg-4 mt-2" *ngFor="let project of allProjects">
+                    <div class="card p-3" routerLink="/project/{{project.id}}">
                       <div class="imag">
-                        <img src="../../../assets/vendors/imgs/rouh.jpg" class="img-fluid rounded" alt="">
+                        <img [src]="project.image" class="img-fluid rounded" alt="">
                       </div>
                       <div class="d-flex justify-content-between align-items-end">
                         <div class="title mt-3">
-                          <span class="text-black-50">Web Development</span>
-                          <h4 class=" text-black">Rouh Elsharq</h4>
-                        </div>
-                        <div class="rit">
-                          <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 mt-2">
-                    <div class="card p-3">
-                      <div class="imag">
-                        <img src="../../../assets/vendors/imgs/rouh.jpg" class="img-fluid rounded" alt="">
-                      </div>
-                      <div class="d-flex justify-content-between align-items-end">
-                        <div class="title mt-3">
-                          <span class="text-black-50">Web Development</span>
-                          <h4 class=" text-black">Rouh Elsharq</h4>
+                          <span class="text-black-50">{{ project.projectType }}</span>
+                          <h4 class=" text-black">{{ project.projectName }}</h4>
                         </div>
                         <div class="rit">
                           <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
@@ -285,18 +215,19 @@
                   </div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="pills-second" role="tabpanel" aria-labelledby="pills-second-tab"
-                tabindex="0">
+
+              <!-- Web Projects Tab -->
+              <div class="tab-pane fade" id="pills-second" role="tabpanel" aria-labelledby="pills-second-tab">
                 <div class="row mt-5">
-                  <div class="col-lg-4">
-                    <div class="card p-3">
+                  <div class="col-lg-4 mt-2" *ngFor="let project of webProjects">
+                    <div class="card p-3" routerLink="/project/{{project.id}}">
                       <div class="imag">
-                        <img src="../../../assets/vendors/imgs/rouh.jpg" class="img-fluid rounded" alt="">
+                        <img [src]="project.image" class="img-fluid rounded" alt="">
                       </div>
                       <div class="d-flex justify-content-between align-items-end">
                         <div class="title mt-3">
-                          <span class="text-black-50">Web Development</span>
-                          <h4 class="fw-bold text-black">Rouh Elsharq</h4>
+                          <span class="text-black-50">{{ project.projectType }}</span>
+                          <h4 class=" text-black">{{ project.projectName }}</h4>
                         </div>
                         <div class="rit">
                           <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
@@ -306,18 +237,19 @@
                   </div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="pills-third" role="tabpanel" aria-labelledby="pills-third-tab"
-                tabindex="0">
+
+              <!-- Mobile Projects Tab -->
+              <div class="tab-pane fade" id="pills-third" role="tabpanel" aria-labelledby="pills-third-tab">
                 <div class="row mt-5">
-                  <div class="col-lg-4">
-                    <div class="card p-3">
+                  <div class="col-lg-4 mt-2" *ngFor="let project of mobileProjects">
+                    <div class="card p-3" routerLink="/project/{{project.id}}">
                       <div class="imag">
-                        <img src="../../../assets/vendors/imgs/rouh.jpg" class="img-fluid rounded" alt="">
+                        <img [src]="project.image" class="img-fluid rounded" alt="">
                       </div>
                       <div class="d-flex justify-content-between align-items-end">
                         <div class="title mt-3">
-                          <span class="text-black-50">Mobile Development</span>
-                          <h4 class="fw-bold text-black">Rouh Elsharq</h4>
+                          <span class="text-black-50">{{ project.projectType }}</span>
+                          <h4 class=" text-black">{{ project.projectName }}</h4>
                         </div>
                         <div class="rit">
                           <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
@@ -327,18 +259,19 @@
                   </div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="pills-forth" role="tabpanel" aria-labelledby="pills-forth-tab"
-                tabindex="0">
+
+              <!-- UI/UX Projects Tab -->
+              <div class="tab-pane fade" id="pills-forth" role="tabpanel" aria-labelledby="pills-forth-tab">
                 <div class="row mt-5">
-                  <div class="col-lg-4">
+                  <div class="col-lg-4 mt-2" *ngFor="let project of uiProjects" routerLink="/project/{{project.id}}">
                     <div class="card p-3">
                       <div class="imag">
-                        <img src="../../../assets/vendors/imgs/rouh.jpg" class="img-fluid rounded" alt="">
+                        <img [src]="project.image" class="img-fluid rounded" alt="">
                       </div>
                       <div class="d-flex justify-content-between align-items-end">
                         <div class="title mt-3">
-                          <span class="text-black-50">Web Development</span>
-                          <h4 class="fw-bold text-black">Rouh Elsharq</h4>
+                          <span class="text-black-50">{{ project.projectType }}</span>
+                          <h4 class=" text-black">{{ project.projectName }}</h4>
                         </div>
                         <div class="rit">
                           <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
@@ -348,18 +281,20 @@
                   </div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="pills-fifth" role="tabpanel" aria-labelledby="pills-fifth-tab"
-                tabindex="0">
+
+              <!-- Testing Projects Tab -->
+              <div class="tab-pane fade" id="pills-fifth" role="tabpanel" aria-labelledby="pills-fifth-tab">
                 <div class="row mt-5">
-                  <div class="col-lg-4">
+                  <div class="col-lg-4 mt-2" *ngFor="let project of testingProjects"
+                    routerLink="/project/{{project.id}}">
                     <div class="card p-3">
                       <div class="imag">
-                        <img src="../../../assets/vendors/imgs/rouh.jpg" class="img-fluid rounded" alt="">
+                        <img [src]="project.image" class="img-fluid rounded" alt="">
                       </div>
                       <div class="d-flex justify-content-between align-items-end">
                         <div class="title mt-3">
-                          <span class="text-black-50">Web Development</span>
-                          <h4 class="fw-bold text-black">Rouh Elsharq</h4>
+                          <span class="text-black-50">{{ project.projectType }}</span>
+                          <h4 class=" text-black">{{ project.projectName }}</h4>
                         </div>
                         <div class="rit">
                           <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
@@ -369,12 +304,14 @@
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
 
   <section class="section7 py-5">
     <div class="container">
@@ -385,85 +322,25 @@
         </p>
       </div>
       <div class="row mt-5">
-        <div class="col-lg-3 col-md-6 col-12">
-          <div class="card p-3">
+        <div class="col-lg-4 col-12 mt-3" *ngFor="let blog of blogs">
+          <a [routerLink]="['/blog', blog.id]" class="card text-decoration-none">
             <div class="imag">
-              <img src="../../../assets/vendors/imgs/blog1.jpeg" class="img-fluid rounded" alt="">
+              <img [src]="blog.image" class="img-fluid" alt="">
             </div>
             <div>
-              <div class="title">
-                <h4 class="my-3">What is SPA</h4>
-              </div>
-              <div class="desc">
-                <p>Single Page Application (SPA) is a type of web application that loads a single HTML page and updates
-                  the page's content without reloading the entire page.</p>
-              </div>
-              <div class="date">
-                <small>October 12, 2024</small>
+              <div class="main p-3">
+                <h4 class="my-3 text-black">{{blog.title}}</h4>
+                <p class="text-black-50">{{blog.description | slice : 10 : 100 }}</p>
+                <div class="date">
+                  <small class="text-black-50">{{blog.date}}</small>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12">
-          <div class="card p-3">
-            <div class="imag">
-              <img src="../../../assets/vendors/imgs/blog1.jpeg" class="img-fluid rounded" alt="">
-            </div>
-            <div>
-              <div class="title">
-                <h4 class="my-3">What is SPA</h4>
-              </div>
-              <div class="desc">
-                <p>Single Page Application (SPA) is a type of web application that loads a single HTML page and updates
-                  the page's content without reloading the entire page.</p>
-              </div>
-              <div class="date">
-                <small>October 12, 2024</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12">
-          <div class="card p-3">
-            <div class="imag">
-              <img src="../../../assets/vendors/imgs/blog1.jpeg" class="img-fluid rounded" alt="">
-            </div>
-            <div>
-              <div class="title">
-                <h4 class="my-3">What is SPA</h4>
-              </div>
-              <div class="desc">
-                <p>Single Page Application (SPA) is a type of web application that loads a single HTML page and updates
-                  the page's content without reloading the entire page.</p>
-              </div>
-              <div class="date">
-                <small>October 12, 2024</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12">
-          <div class="card p-3">
-            <div class="imag">
-              <img src="../../../assets/vendors/imgs/blog1.jpeg" class="img-fluid rounded" alt="">
-            </div>
-            <div>
-              <div class="title">
-                <h4 class="my-3">What is SPA</h4>
-              </div>
-              <div class="desc">
-                <p>Single Page Application (SPA) is a type of web application that loads a single HTML page and updates
-                  the page's content without reloading the entire page.</p>
-              </div>
-              <div class="date">
-                <small>October 12, 2024</small>
-              </div>
-            </div>
-          </div>
+          </a>
         </div>
         <div class="col-12 mt-5">
           <div class="text-center">
-            <button href="/" class="btn-xpert">Show More</button>
+            <button routerLink="/blog" class="btn-xpert">Show More</button>
           </div>
         </div>
       </div>

@@ -1,10 +1,9 @@
 {
   "projects": [
     {
-      "id": 1,
-      "projectName": "Employees’ PTO and Leave Tracker Software",
+      "projectName": "Day Off Company",
       "projectDescription": "Day Off is a mobile app targeting small and medium-sized companies to help them manage and track employeesleave and time off. Using a lightweight mobile app and comprehensive web dashboard, employees can request time off and managers will get notified instantly.",
-      "projectType": "Web Application",
+      "projectType": "Web Development",
       "clientCountry": "Egypt",
       "clientIndustry": "Rental Cars",
       "clientLogo": "../../../assets/vendors/imgs/dayof.webp",
@@ -13,51 +12,209 @@
       "members": 4,
       "clientRating": 5,
       "features": [
-        "Mobile App",
-        "Web Dashboard",
-        "Time Off Management",
-        "Employee Request System",
-        "Reporting & Analytics",
-        "Integration with HR Systems"
+        {
+          "featureName": "Manage Days Off"
+        },
+        {
+          "featureName": "Set Working Days"
+        },
+        {
+          "featureName": "Customize leave types"
+        },
+        {
+          "featureName": "Send Requests"
+        },
+        {
+          "featureName": "Create teams"
+        },
+        {
+          "featureName": "Assign leave types"
+        }
       ],
       "projectImage": "../../../assets/vendors/imgs/Group-1000003927-1.webp",
-      "clientReview": "توب التوب يا اكسبرت"
+      "clientReview": "توب التوب يا اكسبرت",
+      "id": 1
     },
     {
-      "features": [
-        "d",
-        "c",
-        "c"
-      ],
-      "projectName": "ddwdwdwd",
-      "projectDescription": "dwdwddwwd",
-      "projectType": "mobile",
+      "projectName": "ddd",
+      "projectDescription": "ddddd",
+      "projectType": "Web Development",
       "clientCountry": "UK",
-      "clientIndustry": "cwcwc",
-      "clientLogo": "C:\\fakepath\\arrow-up-right.svg",
-      "clientName": "fefef",
+      "clientIndustry": "dddddd",
+      "clientLogo": "C:\\fakepath\\angular-logo.svg",
+      "clientName": "ddddd",
       "projectDuration": "7",
       "members": "7",
       "clientRating": "7",
-      "projectImage": "C:\\fakepath\\blog1.jpeg",
-      "clientReview": "fefefefefefrggthth",
+      "features": [
+        {
+          "featureName": "dddffds"
+        },
+        {
+          "featureName": "fssfs"
+        },
+        {
+          "featureName": "sfsfs"
+        },
+        {
+          "featureName": "fff"
+        },
+        {
+          "featureName": "affvb"
+        }
+      ],
+      "projectImage": "C:\\fakepath\\Logo-White.png",
+      "clientReview": "fwffwwf",
       "id": 2
     },
     {
+      "projectName": "Frontend Development",
+      "projectDescription": "Full Stack",
+      "projectType": "Mobile Development",
+      "clientCountry": "USA",
+      "clientIndustry": "n",
+      "clientLogo": "C:\\fakepath\\Connected world-cuate.png",
+      "clientName": "ddddd",
+      "projectDuration": "7",
+      "members": "7",
+      "clientRating": "7",
       "features": [
-        "d"
+        {
+          "featureName": "iwnrb"
+        },
+        {
+          "featureName": "jf kweb"
+        },
+        {
+          "featureName": "nfoqjn"
+        },
+        {
+          "featureName": "niequbfoqnf"
+        }
       ],
+      "projectImage": "C:\\fakepath\\Group-1000003927-1.webp",
+      "clientReview": "787fqgjong",
       "id": 3
+    },
+    {
+      "projectName": "Stewart Fox",
+      "projectDescription": "Voluptate sit qui e",
+      "projectType": "UI/UX",
+      "clientCountry": "Australia",
+      "clientIndustry": "Nulla duis porro et ",
+      "clientLogo": "C:\\fakepath\\blog1.jpeg",
+      "clientName": "Doris Robbins",
+      "projectDuration": "Nemo commodi rerum d",
+      "members": "Et provident aut ad",
+      "clientRating": "Voluptas quasi sapie",
+      "features": [
+        {
+          "featureName": "Sed hic illum ipsam"
+        },
+        {
+          "featureName": "Rerum non dicta temp"
+        },
+        {
+          "featureName": "Eu perspiciatis duc"
+        },
+        {
+          "featureName": "Repudiandae cumque d"
+        },
+        {
+          "featureName": "Velit in tempora aut"
+        },
+        {
+          "featureName": "Quibusdam est natus"
+        }
+      ],
+      "projectImage": "C:\\fakepath\\blog1.jpeg",
+      "clientReview": "Fugit omnis eos om",
+      "id": 4
+    },
+    {
+      "projectName": "Peter Sanchez",
+      "projectDescription": "Error sunt ea optio",
+      "projectType": "Web Development",
+      "clientCountry": "Canada",
+      "clientIndustry": "Voluptatem sapiente",
+      "clientLogo": "C:\\fakepath\\Connected world-cuate.png",
+      "clientName": "September Simpson",
+      "projectDuration": "Vel aliquip aut dolo",
+      "members": "Perspiciatis non ap",
+      "clientRating": "Maxime mollitia dolo",
+      "features": [
+        {
+          "featureName": "Distinctio Aut prov"
+        },
+        {
+          "featureName": "Dolore ut numquam se"
+        }
+      ],
+      "projectImage": "C:\\fakepath\\blog1.jpeg",
+      "clientReview": "Quos iure adipisicin",
+      "id": 5
     }
   ],
-  "blog": [
+  "clients": [
     {
-      "id": 1,
-      "title": "What is SPA",
-      "date": "December 12, 2021",
-      "image": "../../../assets/vendors/imgs/blog1.jpeg",
-      "type": "Web Development",
-      "description": "In the dynamic world of software development, where new technologies and methodologies emerge rapidly, one challenge remains constant: dealing with legacy code. Legacy code, often defined as outdated or inherited code that lacks proper documentation or is difficult to maintain, can be both a burden and a necessity. Whether you’re maintaining an old system or integrating new features into an existing application, understanding how to navigate the complexities of legacy code is essential for developers.challenges of legacy code is a complex but vital part of Enozom’s software development services. By employing strategies such as incremental refactoring, enhancing documentation, and introducing automated testing, Enozom helps clients maintain and improve their legacy systems.What i s Legacy Code? Legacy code refers to any piece of software that is inherited from previous developers or that has been in use for a long time. Typically, this code is written in older programming languages or frameworks and often lacks modern practices like automated testing or clear documentation. While the term “legacy” might carry a negative connotation, it’s important to recognize that this code often powers critical business processes and applications that are still in use today.The Challenges of Legacy Code 1. Lack of Documentation: One of the most significant challenges with legacy code is the lack of documentation. Without clear documentation, understanding the purpose, functionality, and dependencies of the code can be incredibly difficult. This absence often leads to longer onboarding times for new developers and increases the risk of introducing bugs when changes are made."
+      "name": "Day off",
+      "title": "deded",
+      "logo": "assets\\vendors\\imgs\\dayof.webp",
+      "review": "fefefef",
+      "id": 1
     }
+  ],
+  "blogs": [
+    {
+      "title": "What is SPA?",
+      "description": "deededededddddfffffffffffffffffffffff",
+      "image": "assets\\vendors\\imgs\\blog1.jpeg",
+      "type": "Mobile Development",
+      "id": 2
+    }
+  ],
+  "team": [
+    {
+      "name": "Omar Magdelislam",
+      "title": "Backend Developer",
+      "image": "assets\\vendors\\imgs\\team5.png",
+      "id": 1
+    },
+    {
+      "name": "Omar Makram",
+      "title": "Frontend Developer",
+      "image": "assets\\vendors\\imgs\\team1.png",
+      "id": 2
+    },
+    {
+      "name": "Islam Eltayar",
+      "title": "Backend Developer",
+      "image": "assets\\vendors\\imgs\\team1.png",
+      "id": 3
+    },
+    {
+      "name": "Mohamed Ashraf",
+      "title": "Backend Developer",
+      "image": "assets\\vendors\\imgs\\team2.png",
+      "id": 4
+    },
+    {
+      "name": "Mahmoud Elsalakh",
+      "title": "UI UX Designer",
+      "image": "assets\\vendors\\imgs\\team3.png",
+      "id": 5
+    },
+    {
+      "name": "Amr Deraz",
+      "title": "CO & Founder",
+      "image": "assets\\vendors\\imgs\\team4.png",
+      "id": 6
+    }
+  ],
+  "contacts": [
+    {}
+  ],
+  "careers": [
+    {}
   ]
 }

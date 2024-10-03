@@ -20,15 +20,21 @@ import { ContactComponent } from './userPanel/contact/contact.component';
 import { BlogComponent } from './userPanel/blog/blog.component';
 import { AdminComponent } from './adminPanel/admin/admin.component';
 import { AdminProjectsComponent } from './adminPanel/admin-projects/admin-projects.component';
-import { AdminBlogsComponent } from './adminPanel/admin-blogs/admin-blogs.component';
 import { AdminClientsComponent } from './adminPanel/admin-clients/admin-clients.component';
 import { AdminCareersComponent } from './adminPanel/admin-careers/admin-careers.component';
 import { AdminMessagesComponent } from './adminPanel/admin-messages/admin-messages.component';
 import { FormsModule } from '@angular/forms';
 import { AdminTeamComponent } from './adminPanel/admin-team/admin-team.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BlogDetailsComponent } from './userPanel/blog-details/blog-details.component';
+import { AdminBlogsComponent } from './adminPanel/admin-blogs/admin-blogs.component';
+import { AdminTeamEditComponent } from './adminPanel/admin-team-edit/admin-team-edit.component';
+import { AdminProjectEditComponent } from './adminPanel/admin-project-edit/admin-project-edit.component';
+import { AdminBlogEditComponent } from './adminPanel/admin-blog-edit/admin-blog-edit.component';
+import { AdminClientEditComponent } from './adminPanel/admin-client-edit/admin-client-edit.component';
+import { AdminLoginComponent } from './adminPanel/admin-login/admin-login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,12 +54,17 @@ import { BlogDetailsComponent } from './userPanel/blog-details/blog-details.comp
     BlogComponent,
     AdminComponent,
     AdminProjectsComponent,
-    AdminBlogsComponent,
     AdminClientsComponent,
     AdminCareersComponent,
     AdminMessagesComponent,
     AdminTeamComponent,
     BlogDetailsComponent,
+    AdminBlogsComponent,
+    AdminTeamEditComponent,
+    AdminProjectEditComponent,
+    AdminBlogEditComponent,
+    AdminClientEditComponent,
+    AdminLoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +73,7 @@ import { BlogDetailsComponent } from './userPanel/blog-details/blog-details.comp
     DialogModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

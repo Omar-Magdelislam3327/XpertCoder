@@ -9,6 +9,6 @@ import { HttpClient } from '@angular/common/http';
 export class ClientsApiService extends ApiFunctionService<Clients> {
 
   constructor(protected override http: HttpClient) {
-    super("", http)
+    super("http://localhost:3000/clients", http)
   }
 }

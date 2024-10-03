@@ -1,5 +1,5 @@
 <div class="admin-layout">
-  <aside class="aside-bar text-white d-lg-block d-none">
+  <aside *ngIf="showSidebar" class="aside-bar text-white d-lg-block d-none">
     <div class="logo my-3">
       <img routerLink="/home" src="assets/vendors/imgs/Logo-White.png" class="img-fluid" alt="">
     </div>
@@ -30,7 +30,7 @@
       </ul>
     </div>
   </aside>
-  <div class="mob d-lg-none d-block p-2 text-center">
+  <div *ngIf="showSidebar" class="mob d-lg-none d-block p-2 text-center">
     <nav class="navbar navbar-expand-lg ">
       <div class="container">
         <a class="navbar-brand" href="#">

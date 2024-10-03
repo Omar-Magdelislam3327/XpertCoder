@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BlogsApiService } from 'src/app/services/blogs-api.service';
+import { BlogApiService } from 'src/app/services/blog-api.service';
 
 @Component({
   selector: 'app-blog',
@@ -8,7 +8,7 @@ import { BlogsApiService } from 'src/app/services/blogs-api.service';
 })
 export class BlogComponent {
   blogs!: any;
-  constructor(private api: BlogsApiService) {
+  constructor(private api: BlogApiService) {
     this.api.get().subscribe((data: any) => {
       this.blogs = data;
     })

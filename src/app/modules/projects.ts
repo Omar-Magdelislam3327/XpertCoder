@@ -10,7 +10,10 @@ export class Projects {
   projectDuration!: number;
   members!: number;
   clientRating!: number;
-  features: string[] = [];
-  projectImage!: string;
+  features: Feature[] = [];
   clientReview!: string;
+  projectImage!: string;
+}
+export interface Feature {
+  featureName?: string;
 }

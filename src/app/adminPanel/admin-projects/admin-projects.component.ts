@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Projects } from 'src/app/modules/projects';
 import { ProjectsApiService } from 'src/app/services/projects-api.service';
 
@@ -8,42 +8,73 @@ import { ProjectsApiService } from 'src/app/services/projects-api.service';
   templateUrl: './admin-projects.component.html',
   styleUrls: ['./admin-projects.component.css']
 })
-export class AdminProjectsComponent {
-  id: any;
-  allProjects: Projects = new Projects();
+export class AdminProjectsComponent implements OnInit {
+  projectForm: FormGroup;
+  projects: Projects[] = []; // Specify the type here
 
-  constructor(private api: ProjectsApiService, private activ: ActivatedRoute) {
-    this.id = this.activ.snapshot.params['id'];
-    this.allProjects.features = [];
+  i!: number;
+  constructor(private fb: FormBuilder, private api: ProjectsApiService) {
+    this.projectForm = this.fb.group({
+      projectName: ['', Validators.required],
+      projectDescription: ['', Validators.required],
+      projectType: ['', Validators.required],
+      clientCountry: ['', Validators.required],
+      clientIndustry: ['', Validators.required],
+      clientLogo: [null, Validators.required],
+      clientName: ['', Validators.required],
+      projectDuration: ['', Validators.required],
+      members: ['', Validators.required],
+      clientRating: ['', Validators.required],
+      features: this.fb.array([]),
+      projectImage: [null, Validators.required],
+      clientReview: ['', Validators.required]
+    });
   }
 
-  addFeature() {
-    this.allProjects.features.push('');
-    console.log('Features after adding:', this.allProjects.features);
+  ngOnInit(): void {
+    this.addFeature();
+    this.fetchProjects(); // Fetch projects on component init
   }
 
-  updateFeature(event: Event, index: number) {
-    const inputElement = event.target as HTMLInputElement;
-    const value = inputElement.value;
-    if (value.length <= 1) {
-      this.allProjects.features[index] = value;
-    } else {
-      this.allProjects.features[index] = value.charAt(0);
+  get features(): FormArray {
+    return this.projectForm.get('features') as FormArray;
+  }
+
+  addFeature(): void {
+    const featureForm = this.fb.group({
+      featureName: ['', Validators.required]
+    });
+    this.features.push(featureForm);
+  }
+
+  removeFeature(index: number): void {
+    this.features.removeAt(index);
+  }
+
+  add(): void {
+    if (this.projectForm.valid) {
+      const projectData = {
+        ...this.projectForm.value,
+      };
+
+      this.api.post(projectData).subscribe(
+        response => {
+          console.log('Project added successfully:', response);
+          this.projectForm.reset();
+          this.features.clear();
+          this.addFeature();
+          this.fetchProjects(); // Refresh projects after adding a new one
+        },
+        error => {
+          console.error('Error adding project:', error);
+        }
+      );
     }
   }
 
-  removeFeature(index: number) {
-    this.allProjects.features.splice(index, 1);
-    console.log('Features after remove:', this.allProjects.features);
-  }
-
-  add() {
-    this.api.post(this.allProjects).subscribe(
-      (data: any) => {
-        this.allProjects = data;
-        console.log("Project added successfully", this.allProjects);
-        location.reload();
-      }
-    );
+  fetchProjects(): void {
+    this.api.get().subscribe((data: any) => {
+      this.projects = data;
+    })
   }
 }

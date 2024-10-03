@@ -1,11 +1,59 @@
+import { ProjectsApiService } from 'src/app/services/projects-api.service';
 import { Component, HostListener } from '@angular/core';
+import { ClientsApiService } from 'src/app/services/clients-api.service';
+import { BlogApiService } from 'src/app/services/blog-api.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  clients!: any;
+  projects!: any[];
+  webProjects!: any[];
+  mobileProjects!: any[];
+  uiProjects!: any[];
+  testingProjects!: any[];
+  allProjects!: any[];
+  blogs!: any;
+  constructor(private api: ClientsApiService, private projectApi: ProjectsApiService, private blogApi: BlogApiService) {
+    // Fetch clients
+    this.api.get().subscribe((data: any) => {
+      this.clients = data;
+    });
 
+    // Fetch projects and filter them by type
+    this.projectApi.get().subscribe((data: any) => {
+      this.projects = data;
+
+      // Filter projects based on the type
+      this.webProjects = this.projects.filter(project => project.projectType === 'Web Development');
+      this.mobileProjects = this.projects.filter(project => project.projectType === 'Mobile Development');
+      this.uiProjects = this.projects.filter(project => project.projectType === 'ui/ux');
+      this.testingProjects = this.projects.filter(project => project.projectType === 'Software Testing');
+      this.allProjects = this.projects.slice(0, 3);
+    });
+
+    // Fetch blogs
+    this.blogApi.get().subscribe((data: any) => {
+      this.blogs = data;
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // =================================================================
   hoveredCard: string = 'web';
   setHoveredCard(card: string) {
     if (card) {

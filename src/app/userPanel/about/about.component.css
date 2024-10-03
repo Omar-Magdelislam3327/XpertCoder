@@ -133,3 +133,7 @@
     transition: 0.3s;
   }
 }
+
+.card-img-top {
+  height: 400px !important;
+}

@@ -3,47 +3,63 @@
     <h2 class="fw-bold text-success">Add New Blog</h2>
   </div>
   <div class="row">
-    <form class="form">
+    <form [formGroup]="blogForm" class="form">
 
       <div class="form-group mt-3">
         <label for="title">Blog Title</label>
-        <input type="text" class="form-control shadow-none" id="title" #title="ngModel" [(ngModel)]="blog.title"
-          required>
+        <input type="text" class="form-control shadow-none" id="title" formControlName="title" required>
       </div>
 
       <div class="form-group mt-3">
         <label for="description">Blog Description</label>
-        <input type="text" class="form-control shadow-none" id="description" #description="ngModel"
-          [(ngModel)]="blog.description" required>
+        <textarea class="form-control shadow-none" id="description" formControlName="description" required></textarea>
       </div>
 
       <div class="row ">
         <div class="form-group mt-3 col-6">
           <label for="image">Blog Image</label>
-          <input type="file" class="form-control shadow-none" id="image" #image="ngModel" [(ngModel)]="blog.image"
-            required>
+          <input type="file" class="form-control shadow-none" id="image" formControlName="image" required>
         </div>
         <div class="form-group mt-3 col-6">
           <label for="type">Blog Type</label>
-          <select class="form-select shadow-none" name="type" id="type" #type="ngModel" [(ngModel)]="blog.type">
+          <select class="form-select shadow-none" id="type" formControlName="type">
             <option value="" disabled selected>Select Blog Type</option>
             <option value="all">All</option>
-            <option value="web">Web development</option>
-            <option value="mobile">Mobile development</option>
-            <option value="mobile">UI/UX</option>
+            <option value="web">Web Development</option>
+            <option value="mobile">Mobile Development</option>
+            <option value="uiux">UI/UX</option>
             <option value="software">Software Testing</option>
           </select>
         </div>
       </div>
 
-
       <div class="text-center mt-3">
-        <button type="submit" class="btn btn-success shadow-none" (click)="add()">Add Blog</button>
-        <button type="reset" class="btn btn-danger ms-3 shadow-none">Reset</button>
+        <button type="submit" class="btn btn-success shadow-none" [disabled]="blogForm.invalid" (click)="add()">Add
+          Blog</button>
+        <button type="button" class="btn btn-danger ms-3 shadow-none" (click)="blogForm.reset()">Reset</button>
       </div>
 
     </form>
   </div>
   <hr>
-  <div class="row"></div>
+  <div class="row">
+    <div class="title">
+      <h2 class="fw-bold text-success">List Blogs</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let blog of blogs">
+        <div class="card shadow-sm">
+          <i class="fa-solid fa-pen-to-square" routerLink="/admin/blog-edit/{{blog.id}}"></i>
+          <img src="{{ blog.image }}" class="card-img-top" alt="Blog Image" *ngIf="blog.image">
+          <div class="card-body p-2">
+            <h5 class="card-title">{{ blog.title }}</h5>
+            <p class="card-text">{{ blog.description | slice : 20 : 100 }}</p>
+            <p class="card-text">
+              <small class="text-muted">Type: {{ blog.type }}</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

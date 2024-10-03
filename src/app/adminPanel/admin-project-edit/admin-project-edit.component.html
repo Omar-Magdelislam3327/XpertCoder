@@ -1,0 +1,144 @@
+<div class="container p-5">
+  <div class="row">
+    <form [formGroup]="projectForm" (ngSubmit)="updateProject()" class="container mt-4">
+      <h2 class="mb-4">Edit Project</h2>
+
+      <div class="mb-3">
+        <label for="projectName" class="form-label">Project Name:</label>
+        <input id="projectName" formControlName="projectName" class="form-control shadow-none" />
+        <div *ngIf="projectForm.get('projectName')?.invalid && projectForm.get('projectName')?.touched"
+          class="text-danger">
+          Project Name is required.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="projectDescription" class="form-label">Project Description:</label>
+        <textarea id="projectDescription" formControlName="projectDescription" class="form-control shadow-none"
+          rows="4"></textarea>
+        <div *ngIf="projectForm.get('projectDescription')?.invalid && projectForm.get('projectDescription')?.touched"
+          class="text-danger">
+          Project Description is required.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="projectType" class="form-label">Project Type:</label>
+        <input id="projectType" formControlName="projectType" class="form-control shadow-none" />
+        <div *ngIf="projectForm.get('projectType')?.invalid && projectForm.get('projectType')?.touched"
+          class="text-danger">
+          Project Type is required.
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="mb-3">
+            <label for="clientName" class="form-label">Client Name:</label>
+            <input id="clientName" formControlName="clientName" class="form-control shadow-none" />
+            <div *ngIf="projectForm.get('clientName')?.invalid && projectForm.get('clientName')?.touched"
+              class="text-danger">
+              Client Name is required.
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-3">
+          <div class="mb-3">
+            <label for="clientCountry" class="form-label">Client Country:</label>
+            <input id="clientCountry" formControlName="clientCountry" class="form-control shadow-none" />
+            <div *ngIf="projectForm.get('clientCountry')?.invalid && projectForm.get('clientCountry')?.touched"
+              class="text-danger">
+              Client Country is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3 col-lg-3">
+          <label for="clientLogo" class="form-label">Client Logo:</label>
+          <input id="clientLogo" formControlName="clientLogo" class="form-control shadow-none" />
+          <div *ngIf="projectForm.get('clientLogo')?.invalid && projectForm.get('clientLogo')?.touched"
+            class="text-danger">
+            Client Logo is required.
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="mb-3">
+            <label for="clientIndustry" class="form-label">Client Industry:</label>
+            <input id="clientIndustry" formControlName="clientIndustry" class="form-control shadow-none" />
+            <div *ngIf="projectForm.get('clientIndustry')?.invalid && projectForm.get('clientIndustry')?.touched"
+              class="text-danger">
+              Client Industry is required.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="mb-3">
+            <label for="projectDuration" class="form-label">Project Duration (in months):</label>
+            <input type="number" id="projectDuration" formControlName="projectDuration"
+              class="form-control shadow-none" />
+            <div *ngIf="projectForm.get('projectDuration')?.invalid && projectForm.get('projectDuration')?.touched"
+              class="text-danger">
+              Project Duration is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="mb-3">
+            <label for="members" class="form-label">Number of Members:</label>
+            <input type="number" id="members" formControlName="members" class="form-control shadow-none" />
+            <div *ngIf="projectForm.get('members')?.invalid && projectForm.get('members')?.touched" class="text-danger">
+              Members count is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="mb-3">
+            <label for="clientRating" class="form-label">Client Rating:</label>
+            <input type="number" id="clientRating" formControlName="clientRating" class="form-control shadow-none" />
+            <div *ngIf="projectForm.get('clientRating')?.invalid && projectForm.get('clientRating')?.touched"
+              class="text-danger">
+              Client Rating is required.
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div formArrayName="features" class="mb-3">
+        <label class="form-label">Features:</label>
+        <div *ngFor="let feature of features.controls; let i = index" [formGroupName]="i" class="mb-2">
+          <input formControlName="featureName" class="form-control shadow-none" placeholder="Feature Name" />
+          <button type="button" (click)="removeFeature(i)" class="btn btn-danger btn-sm mt-1">Remove</button>
+        </div>
+        <button type="button" (click)="addFeature()" class="btn btn-primary">Add Feature</button>
+      </div>
+
+      <div class="mb-3">
+        <label for="projectImage" class="form-label">Project Image:</label>
+        <input id="projectImage" formControlName="projectImage" class="form-control shadow-none" />
+        <div *ngIf="projectForm.get('projectImage')?.invalid && projectForm.get('projectImage')?.touched"
+          class="text-danger">
+          Project Image is required.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="clientReview" class="form-label">Client Review:</label>
+        <textarea id="clientReview" formControlName="clientReview" class="form-control shadow-none" rows="4"></textarea>
+        <div *ngIf="projectForm.get('clientReview')?.invalid && projectForm.get('clientReview')?.touched"
+          class="text-danger">
+          Client Review is required.
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="projectForm.invalid" class="btn btn-success"
+        [disabled]="projectForm.invalid">Update Project</button>
+    </form>
+  </div>
+</div>

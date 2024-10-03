@@ -3,27 +3,27 @@
     <h2 class="fw-bold text-success">Add New Member</h2>
   </div>
   <div class="row">
-    <form class="form">
+    <form class="form" [formGroup]="teamForm">
 
       <div class="row info">
         <div class="form-group mt-3 col-6">
           <label for="name">Member Name</label>
-          <input type="text" class="form-control shadow-none" id="name" required>
+          <input type="text" class="form-control shadow-none" name="name" id="name" formControlName="name" required>
         </div>
         <div class="form-group mt-3 col-6">
           <label for="title">Member Title</label>
-          <input type="text" class="form-control shadow-none" id="title" required>
+          <input type="text" class="form-control shadow-none" name="title" id="title" formControlName="title" required>
         </div>
       </div>
 
 
       <div class="form-group mt-3">
         <label for="image">Member Image</label>
-        <input type="file" class="form-control shadow-none" id="image" required>
+        <input type="file" class="form-control shadow-none" id="image" formControlName="image" required>
       </div>
 
       <div class="text-center mt-3">
-        <button type="submit" class="btn btn-success shadow-none">Add Member</button>
+        <button type="submit" class="btn btn-success shadow-none" (click)="add()">Add Member</button>
         <button type="reset" class="btn btn-danger ms-3 shadow-none">Reset</button>
       </div>
 
@@ -31,8 +31,13 @@
   </div>
   <hr>
   <div class="row">
-    <div class="col-12">
-
+    <div class="col-lg-3 col-12 mt-3" *ngFor="let member of team">
+      <div class="card p-2">
+        <img src="{{member.image}}" alt="">
+        <h5>{{member.name}}</h5>
+        <p>{{member.title}}</p>
+        <a routerLink="/admin/team-edit/{{member.id}}" class="btn btn-warning">Edit</a>
+      </div>
     </div>
   </div>
 </div>
