@@ -26,6 +26,52 @@
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
 }
 
+.btn-xpert-success {
+  background-color: var(--primaryColor);
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 7px;
+  transition: 0.3s;
+}
+
+.btn-xpert-success:hover {
+  background-color: #135f55;
+}
+
+.btn-xpert-success:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.btn-xpert-success:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-xpert-danger {
+  background-color: #c4002b;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 7px;
+  transition: 0.3s;
+}
+
+.btn-xpert-danger:hover {
+  background-color: #de002d;
+}
+
+.btn-xpert-danger:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.btn-xpert-danger:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+}
+
 h1::selection,
 h2::selection,
 h3::selection,

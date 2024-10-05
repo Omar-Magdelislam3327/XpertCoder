@@ -158,58 +158,15 @@
   ],
   "careers": [
     {
-      "id": 1,
-      "name": "Omar Magdelislam",
-      "email": "omar.magdelislam@gmail.com",
-      "title": "Frontend Developer",
-      "phone": " 01501883344",
-      "salary": "10000",
-      "experience": "5",
-      "cv": "assets\\vendors\\imgs\\Connected world-cuate.png"
-    },
-    {
       "isDisabled": false,
-      "title": "Backend Developer",
-      "name": "Lewis Miles",
-      "email": "jimix@mailinator.com",
-      "phone": "+1 (129) 416-5442",
-      "salary": 76,
-      "experience": 4,
-      "cv": "images.png",
-      "id": 2
-    },
-    {
-      "isDisabled": false,
-      "title": "UI/UX Designer",
-      "name": "Lee Carver",
-      "email": "teve@mailinator.com",
-      "phone": "+1 (215) 395-2022",
-      "salary": 62,
-      "experience": 17,
-      "cv": "Omar-Magdelislam-Frontend.pdf",
-      "id": 3
-    },
-    {
-      "isDisabled": false,
-      "title": "Sales",
-      "name": "Lee Carver",
-      "email": "teve@mailinator.com",
-      "phone": "+1 (215) 395-2022",
-      "salary": 62,
-      "experience": 17,
-      "cv": "Omar-Magdelislam-Frontend.pdf",
-      "id": 4
-    },
-    {
-      "isDisabled": false,
-      "title": "e-marketer",
-      "name": "Kadeem Sheppard",
-      "email": "musihojy@mailinator.com",
-      "phone": "+1 (612) 537-5236",
-      "salary": 5,
-      "experience": 87,
+      "name": "Amr Deraz",
+      "email": "amr@gmail.com",
+      "phone": "010101010101",
+      "salary": 500000,
+      "experience": 8,
       "cv": "new1-1.pdf",
-      "id": 5
+      "title": "Flutter Developer",
+      "id": 6
     }
   ]
 }
