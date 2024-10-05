@@ -5,7 +5,7 @@ export class Messages {
   email!: string;
   phone!: string;
   description!: string;
-  budget!: number;
+  budget!: string;
   type!: string;
   attachment!: string;
 }

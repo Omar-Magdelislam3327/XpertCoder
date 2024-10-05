@@ -1,23 +1,39 @@
-<div class="container p-5">
+<div class="container p-5" @fadeInOut>
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-12">
+      <h3>Select Category to Filter</h3>
+      <div class="job-categories">
+        <div class="row m-0">
+          <div class="col-lg-3 col-md-6 col-6 mt-3" *ngFor="let job of jobCategories">
+            <div class="form-check d-flex justify-content-between align-items-center p-0">
+              <input class="form-check-input" type="radio" name="job-category" [value]="job.value"
+                [(ngModel)]="selectedJobCategory" required />
+              <label class="job-option">{{ job.label }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <button class="btn btn-primary" (click)="filterCareersByCategory()">Filter</button>
+        <button class="btn btn-danger ms-2" (click)="resetSelection()">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-lg-4 mt-4" *ngFor="let career of careers">
       <div class="box p-4">
         <div class="upper d-flex justify-content-between gap-3 align-items-center flex-wrap">
-          <h5>Omar Magd</h5>
-          <i class="fa-solid fa-square-xmark fs-4"></i>
+          <h5>{{ career.name }}</h5>
+          <i class="fa-solid fa-square-xmark fs-4" (click)="remove(career.id)"></i>
         </div>
         <div class="rest mt-4">
-          <p>Email : <span class="fw-bold"> omarmagd&#64;gmail.com</span></p>
-          <hr>
-          <p>Title : <span class="fw-bold"> Frontend Developer</span></p>
-          <hr>
-          <p>Phone : <span class="fw-bold"> 01501883344</span></p>
-          <hr>
-          <p>Expected Salary : <span class="fw-bold"> 10000 $ </span></p>
-          <hr>
-          <p>EXP : <span class="fw-bold"> 3 Years</span></p>
-          <hr>
-          <p>CV : <span class="fw-bold"> <a [href]="uploadedCVUrl" target="_blank">Download CV</a> </span></p>
+          <p>Email : <span class="fw-bold">{{ career.email }}</span></p>
+          <p>Title : <span class="fw-bold">{{ career.title }}</span></p>
+          <p>Phone : <span class="fw-bold">{{ career.phone }}</span></p>
+          <p>Expected Salary : <span class="fw-bold">{{ career.salary }} $</span></p>
+          <p>EXP : <span class="fw-bold">{{ career.experience }} Years</span></p>
+          <p>CV : <span class="fw-bold"><a [href]="uploadedCVUrl" target="_blank">Download CV</a></span></p>
         </div>
       </div>
     </div>

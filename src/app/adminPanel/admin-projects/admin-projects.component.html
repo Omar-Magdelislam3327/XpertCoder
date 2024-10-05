@@ -1,4 +1,4 @@
-<div class="container p-5">
+<div class="container p-5" @fadeInOut>
   <div class="title">
     <h2 class="fw-bold text-success">Add New Project</h2>
   </div>
@@ -29,7 +29,7 @@
       </div>
 
       <div class="row">
-        <div class="form-group mt-3 col-6">
+        <div class="form-group mt-3 col-lg-6">
           <label for="country">Client Country</label>
           <select class="form-select shadow-none" formControlName="clientCountry" required>
             <option value="" disabled>Select Country</option>
@@ -39,18 +39,18 @@
             <option value="Australia">Australia</option>
           </select>
         </div>
-        <div class="form-group mt-3 col-6">
+        <div class="form-group mt-3 col-lg-6">
           <label for="industry">Client Industry</label>
           <input type="text" class="form-control shadow-none" id="industry" formControlName="clientIndustry" required>
         </div>
       </div>
 
       <div class="row">
-        <div class="form-group mt-3 col-6">
+        <div class="form-group mt-3 col-lg-6">
           <label for="logo">Client Logo</label>
           <input type="file" class="form-control shadow-none" id="logo" formControlName="clientLogo" required>
         </div>
-        <div class="form-group mt-3 col-6">
+        <div class="form-group mt-3 col-lg-6">
           <label for="Cname">Client Name</label>
           <input type="text" class="form-control shadow-none" id="Cname" formControlName="clientName" required>
         </div>
@@ -110,9 +110,10 @@
       <div class="card">
         <img [src]="project.projectImage" class="card-img-top" alt="{{ project.projectName }}">
         <div class="card-body">
+          <i class="fa-solid fa-trash" (click)="remove(project.id)"></i>
           <h5 class="card-title">{{ project.projectName }}</h5>
           <p class="card-text">Client Name: {{ project.clientName }}</p>
-          <a routerLink="/admin/project-edit/{{project.id}}" class="btn btn-warning">Edit</a>
+          <i class="fa-solid fa-pen-to-square" routerLink="/admin/project-edit/{{project.id}}"></i>
         </div>
       </div>
     </div>

@@ -1,13 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectsApiService } from 'src/app/services/projects-api.service'; // Import your service here
-import { Projects, Feature } from 'src/app/modules/projects'; // Adjust the import path accordingly
+import { ProjectsApiService } from 'src/app/services/projects-api.service';
+import { Projects, Feature } from 'src/app/modules/projects';
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+
 
 @Component({
   selector: 'app-admin-project-edit',
   templateUrl: './admin-project-edit.component.html',
-  styleUrls: ['./admin-project-edit.component.css']
+  styleUrls: ['./admin-project-edit.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class AdminProjectEditComponent implements OnInit {
   projectForm: FormGroup;

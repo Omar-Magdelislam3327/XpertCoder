@@ -1,12 +1,12 @@
 {
   "projects": [
     {
-      "projectName": "Day Off Company",
+      "projectName": "Employees’ PTO and Leave Tracker Software",
       "projectDescription": "Day Off is a mobile app targeting small and medium-sized companies to help them manage and track employeesleave and time off. Using a lightweight mobile app and comprehensive web dashboard, employees can request time off and managers will get notified instantly.",
       "projectType": "Web Development",
       "clientCountry": "Egypt",
       "clientIndustry": "Rental Cars",
-      "clientLogo": "../../../assets/vendors/imgs/dayof.webp",
+      "clientLogo": "..\\..\\..\\assets\\vendors\\imgs\\dayof.webp",
       "clientName": "Day off",
       "projectDuration": 2,
       "members": 4,
@@ -31,110 +31,14 @@
           "featureName": "Assign leave types"
         }
       ],
-      "projectImage": "../../../assets/vendors/imgs/Group-1000003927-1.webp",
+      "projectImage": "..\\..\\..\\assets\\vendors\\imgs\\Group-1000003927-1.webp",
       "clientReview": "توب التوب يا اكسبرت",
       "id": 1
     },
     {
-      "projectName": "ddd",
-      "projectDescription": "ddddd",
-      "projectType": "Web Development",
-      "clientCountry": "UK",
-      "clientIndustry": "dddddd",
-      "clientLogo": "C:\\fakepath\\angular-logo.svg",
-      "clientName": "ddddd",
-      "projectDuration": "7",
-      "members": "7",
-      "clientRating": "7",
-      "features": [
-        {
-          "featureName": "dddffds"
-        },
-        {
-          "featureName": "fssfs"
-        },
-        {
-          "featureName": "sfsfs"
-        },
-        {
-          "featureName": "fff"
-        },
-        {
-          "featureName": "affvb"
-        }
-      ],
-      "projectImage": "C:\\fakepath\\Logo-White.png",
-      "clientReview": "fwffwwf",
-      "id": 2
-    },
-    {
-      "projectName": "Frontend Development",
-      "projectDescription": "Full Stack",
-      "projectType": "Mobile Development",
-      "clientCountry": "USA",
-      "clientIndustry": "n",
-      "clientLogo": "C:\\fakepath\\Connected world-cuate.png",
-      "clientName": "ddddd",
-      "projectDuration": "7",
-      "members": "7",
-      "clientRating": "7",
-      "features": [
-        {
-          "featureName": "iwnrb"
-        },
-        {
-          "featureName": "jf kweb"
-        },
-        {
-          "featureName": "nfoqjn"
-        },
-        {
-          "featureName": "niequbfoqnf"
-        }
-      ],
-      "projectImage": "C:\\fakepath\\Group-1000003927-1.webp",
-      "clientReview": "787fqgjong",
-      "id": 3
-    },
-    {
-      "projectName": "Stewart Fox",
-      "projectDescription": "Voluptate sit qui e",
-      "projectType": "UI/UX",
-      "clientCountry": "Australia",
-      "clientIndustry": "Nulla duis porro et ",
-      "clientLogo": "C:\\fakepath\\blog1.jpeg",
-      "clientName": "Doris Robbins",
-      "projectDuration": "Nemo commodi rerum d",
-      "members": "Et provident aut ad",
-      "clientRating": "Voluptas quasi sapie",
-      "features": [
-        {
-          "featureName": "Sed hic illum ipsam"
-        },
-        {
-          "featureName": "Rerum non dicta temp"
-        },
-        {
-          "featureName": "Eu perspiciatis duc"
-        },
-        {
-          "featureName": "Repudiandae cumque d"
-        },
-        {
-          "featureName": "Velit in tempora aut"
-        },
-        {
-          "featureName": "Quibusdam est natus"
-        }
-      ],
-      "projectImage": "C:\\fakepath\\blog1.jpeg",
-      "clientReview": "Fugit omnis eos om",
-      "id": 4
-    },
-    {
       "projectName": "Peter Sanchez",
       "projectDescription": "Error sunt ea optio",
-      "projectType": "Web Development",
+      "projectType": "Software Testing",
       "clientCountry": "Canada",
       "clientIndustry": "Voluptatem sapiente",
       "clientLogo": "C:\\fakepath\\Connected world-cuate.png",
@@ -153,6 +57,38 @@
       "projectImage": "C:\\fakepath\\blog1.jpeg",
       "clientReview": "Quos iure adipisicin",
       "id": 5
+    },
+    {
+      "projectName": "Uma Gibbs",
+      "projectDescription": "Culpa irure fugit ",
+      "projectType": "Web Development",
+      "clientCountry": "UK",
+      "clientIndustry": "Odio occaecat est it",
+      "clientLogo": "C:\\fakepath\\blog2.jpg",
+      "clientName": "Martin Alston",
+      "projectDuration": 96,
+      "members": 80,
+      "clientRating": 5,
+      "features": [
+        {
+          "featureName": "Sint ad vel veniam "
+        },
+        {
+          "featureName": "Sunt quo dolores quo"
+        },
+        {
+          "featureName": "Laboriosam aut quis"
+        },
+        {
+          "featureName": "Qui voluptas eius qu"
+        },
+        {
+          "featureName": "Dolor neque sed moll"
+        }
+      ],
+      "projectImage": "C:\\fakepath\\Connected world-cuate.png",
+      "clientReview": "Tenetur sit consequ",
+      "id": 6
     }
   ],
   "clients": [
@@ -167,10 +103,24 @@
   "blogs": [
     {
       "title": "What is SPA?",
-      "description": "deededededddddfffffffffffffffffffffff",
+      "description": "AngularJS is a JavaScript-based front-end web framework based on bidirectional UI data binding and is used to design Single Page Applications. Single Page Applications are web applications that load a single HTML page and only a part of the page instead of the entire page gets updated with every click of the mouse.",
       "image": "assets\\vendors\\imgs\\blog1.jpeg",
-      "type": "Mobile Development",
+      "type": "Web Development",
       "id": 2
+    },
+    {
+      "title": "What is SSR?",
+      "description": "Improved performance: SSR can improve the performance of web applications by delivering fully rendered HTML to the client, which the browser can parse and display even before it downloads the application JavaScript. This can be especially beneficial for users on low-bandwidth connections or mobile devices.",
+      "image": "assets\\vendors\\imgs\\blog2.jpg",
+      "type": "Web Development",
+      "id": 3
+    },
+    {
+      "title": "Mobile",
+      "description": "beiwobvhb",
+      "image": "C:\\fakepath\\blog1.jpeg",
+      "type": "Mobile Development",
+      "id": 4
     }
   ],
   "team": [
@@ -181,40 +131,85 @@
       "id": 1
     },
     {
-      "name": "Omar Makram",
-      "title": "Frontend Developer",
-      "image": "assets\\vendors\\imgs\\team1.png",
-      "id": 2
-    },
-    {
       "name": "Islam Eltayar",
       "title": "Backend Developer",
       "image": "assets\\vendors\\imgs\\team1.png",
       "id": 3
     },
     {
-      "name": "Mohamed Ashraf",
-      "title": "Backend Developer",
-      "image": "assets\\vendors\\imgs\\team2.png",
-      "id": 4
-    },
-    {
       "name": "Mahmoud Elsalakh",
       "title": "UI UX Designer",
       "image": "assets\\vendors\\imgs\\team3.png",
       "id": 5
-    },
-    {
-      "name": "Amr Deraz",
-      "title": "CO & Founder",
-      "image": "assets\\vendors\\imgs\\team4.png",
-      "id": 6
     }
   ],
   "contacts": [
-    {}
+    {
+      "id": 1,
+      "name": "Omar Magdelislam",
+      "companyName": "XYZ Tech",
+      "email": "omar.magdelislam@gmail.com",
+      "phone": " 01501883344",
+      "description": "deededededddddfffffffffffffffffffffff",
+      "type": "Mobile Development",
+      "budget": "5000",
+      "attachment": "assets\\vendors\\imgs\\angular-logo.png"
+    }
   ],
   "careers": [
-    {}
+    {
+      "id": 1,
+      "name": "Omar Magdelislam",
+      "email": "omar.magdelislam@gmail.com",
+      "title": "Frontend Developer",
+      "phone": " 01501883344",
+      "salary": "10000",
+      "experience": "5",
+      "cv": "assets\\vendors\\imgs\\Connected world-cuate.png"
+    },
+    {
+      "isDisabled": false,
+      "title": "Backend Developer",
+      "name": "Lewis Miles",
+      "email": "jimix@mailinator.com",
+      "phone": "+1 (129) 416-5442",
+      "salary": 76,
+      "experience": 4,
+      "cv": "images.png",
+      "id": 2
+    },
+    {
+      "isDisabled": false,
+      "title": "UI/UX Designer",
+      "name": "Lee Carver",
+      "email": "teve@mailinator.com",
+      "phone": "+1 (215) 395-2022",
+      "salary": 62,
+      "experience": 17,
+      "cv": "Omar-Magdelislam-Frontend.pdf",
+      "id": 3
+    },
+    {
+      "isDisabled": false,
+      "title": "Sales",
+      "name": "Lee Carver",
+      "email": "teve@mailinator.com",
+      "phone": "+1 (215) 395-2022",
+      "salary": 62,
+      "experience": 17,
+      "cv": "Omar-Magdelislam-Frontend.pdf",
+      "id": 4
+    },
+    {
+      "isDisabled": false,
+      "title": "e-marketer",
+      "name": "Kadeem Sheppard",
+      "email": "musihojy@mailinator.com",
+      "phone": "+1 (612) 537-5236",
+      "salary": 5,
+      "experience": 87,
+      "cv": "new1-1.pdf",
+      "id": 5
+    }
   ]
 }

@@ -15,11 +15,11 @@ import { AdminLoginComponent } from '../admin-login/admin-login.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
+  { path: "xc-login", component: AdminLoginComponent },
   {
-    path: '',
+    path: 'admin',
     component: AdminComponent,
     children: [
-      { path: "xc-login", component: AdminLoginComponent },
       { path: "projects", canActivate: [AuthGuard], component: AdminProjectsComponent },
       { path: "project-edit/:id", canActivate: [AuthGuard], component: AdminProjectEditComponent },
       { path: "clients", canActivate: [AuthGuard], component: AdminClientsComponent },

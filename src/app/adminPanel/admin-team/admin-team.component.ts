@@ -1,11 +1,23 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TeamApiService } from 'src/app/services/team-api.service';
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 @Component({
   selector: 'app-admin-team',
   templateUrl: './admin-team.component.html',
-  styleUrls: ['./admin-team.component.css']
+  styleUrls: ['./admin-team.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class AdminTeamComponent {
   teamForm: FormGroup;
@@ -41,8 +53,8 @@ export class AdminTeamComponent {
       })
     }
   }
-  delete(id: any) {
-    this.api.delete(this.team.id).subscribe({
+  remove(id: any) {
+    this.api.delete(id).subscribe({
       next: () => {
         this.api.get().subscribe((data) => {
           this.team = data;

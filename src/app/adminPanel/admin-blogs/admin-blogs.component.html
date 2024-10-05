@@ -1,4 +1,4 @@
-<div class="container p-5">
+<div class="container p-5" @fadeInOut>
   <div class="title">
     <h2 class="fw-bold text-success">Add New Blog</h2>
   </div>
@@ -16,11 +16,11 @@
       </div>
 
       <div class="row ">
-        <div class="form-group mt-3 col-6">
+        <div class="form-group mt-3 col-lg-6 col-12">
           <label for="image">Blog Image</label>
           <input type="file" class="form-control shadow-none" id="image" formControlName="image" required>
         </div>
-        <div class="form-group mt-3 col-6">
+        <div class="form-group mt-3 col-lg-6 col-12">
           <label for="type">Blog Type</label>
           <select class="form-select shadow-none" id="type" formControlName="type">
             <option value="" disabled selected>Select Blog Type</option>
@@ -50,7 +50,8 @@
       <div class="col-md-4 mb-4" *ngFor="let blog of blogs">
         <div class="card shadow-sm">
           <i class="fa-solid fa-pen-to-square" routerLink="/admin/blog-edit/{{blog.id}}"></i>
-          <img src="{{ blog.image }}" class="card-img-top" alt="Blog Image" *ngIf="blog.image">
+          <i class="fa-solid fa-trash" (click)="remove(blog.id)"></i>
+          <img src="{{ blog.image }}" class="card-img-top" alt="Blog Image" width="300" height="170" *ngIf="blog.image">
           <div class="card-body p-2">
             <h5 class="card-title">{{ blog.title }}</h5>
             <p class="card-text">{{ blog.description | slice : 20 : 100 }}</p>

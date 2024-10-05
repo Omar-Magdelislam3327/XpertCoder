@@ -2,17 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Blogs } from 'src/app/modules/blogs';
 import { BlogApiService } from 'src/app/services/blog-api.service';
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 @Component({
   selector: 'app-admin-blogs',
   templateUrl: './admin-blogs.component.html',
-  styleUrls: ['./admin-blogs.component.css']
+  styleUrls: ['./admin-blogs.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class AdminBlogsComponent implements OnInit {
   blogForm: FormGroup;
-  blogs: Blogs[] = []; // Array to hold the list of blogs
-  isEditMode: boolean = false; // Flag to track edit mode
-  currentBlogId: number | null = null; // ID of the blog currently being edited
+  blogs: Blogs[] = [];
+  isEditMode: boolean = false;
+  currentBlogId: number | null = null;
 
   constructor(private api: BlogApiService, private fb: FormBuilder) {
     this.blogForm = this.fb.group({
@@ -24,42 +36,45 @@ export class AdminBlogsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadBlogs(); // Load blogs on component initialization
+    this.loadBlogs();
   }
 
   loadBlogs(): void {
     this.api.get().subscribe((data: any) => {
-      this.blogs = data; // Populate the blogs array
+      this.blogs = data;
     });
   }
 
   add(): void {
     if (this.blogForm.valid) {
       if (this.isEditMode && this.currentBlogId !== null) {
-        // If in edit mode, update the existing blog
         this.api.put(this.currentBlogId, this.blogForm.value).subscribe(() => {
           this.resetForm();
-          this.loadBlogs(); // Reload blogs after update
+          this.loadBlogs();
         });
       } else {
-        // Otherwise, add a new blog
         this.api.post(this.blogForm.value).subscribe(() => {
           this.resetForm();
-          this.loadBlogs(); // Reload blogs after adding
+          this.loadBlogs();
         });
       }
     }
   }
 
+  remove(id: any) {
+    this.api.delete(id).subscribe(() => {
+      this.loadBlogs();
+    });
+  }
   edit(blog: Blogs): void {
-    this.isEditMode = true; // Set edit mode to true
-    this.currentBlogId = blog.id; // Store the ID of the blog to edit
-    this.blogForm.patchValue(blog); // Populate the form with blog data
+    this.isEditMode = true;
+    this.currentBlogId = blog.id;
+    this.blogForm.patchValue(blog);
   }
 
   resetForm(): void {
     this.blogForm.reset();
-    this.isEditMode = false; // Reset edit mode flag
-    this.currentBlogId = null; // Clear the current blog ID
+    this.isEditMode = false;
+    this.currentBlogId = null;
   }
 }

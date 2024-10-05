@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<main id="project">
+<main id="project" @fadeInOut>
   <section class="section1 px-3 py-5">
     <div class="container">
       <div class="row">
@@ -129,32 +129,32 @@
         <h3 class="text-black fw-bold fs-1">See More</h3>
       </div>
       <div class="row">
-        <div class="col-12 mt-2">
+        <div *ngFor="let project of relatedProjects" class="col-12 mt-2">
           <div class="row box">
             <div class="col-lg-6 p-lg-3 p-0">
               <div class="imag img-wrapper">
-                <img src="../../../assets/vendors/imgs/rouh.jpg" class="img-fluid" alt="">
+                <img [src]="project.projectImage" class="img-fluid" alt="">
               </div>
             </div>
 
             <div class="col-lg-6 p-3">
               <div class="txt">
-                <h3 class="text-black fs-1">Rouh</h3>
-                <p class="text-black-50">Rouh is a web application built using Angular that allows users to create and
-                  share rough sketches...</p>
+                <h3 class="text-black fs-1">{{ project.projectName }}</h3>
+                <p class="text-black-50">{{ project.projectDescription }}</p>
                 <div class="d-flex flex-column gap-5 mt-3">
                   <div class="d-flex flex-wrap gap-3">
                     <div class="country">
-                      <img src="../../../assets/vendors/imgs/egypt.webp" width="30" class="img-fluid" alt=""> Egypt
+                      <img src="../../../assets/vendors/imgs/egypt.webp" width="30" class="img-fluid" alt=""> {{
+                      project.clientCountry }}
                     </div>
-                    <div class="type">Web Development</div>
-                    <div class="type">HR management</div>
+                    <div class="type">{{ project.clientIndustry }}</div>
+                    <div class="type">{{ project.projectType }}</div>
                   </div>
                 </div>
                 <button class="arrow d-lg-block d-none">
-                  <i class="fa-solid fa-arrow-right fs-1 text-black p-1"></i>
+                  <i class="fa-solid fa-arrow-right fs-1 p-1"></i>
                 </button>
-                <div class="text-center mt-3 d-block d-lg-none ">
+                <div class="text-center mt-3 d-block d-lg-none">
                   <button class="col-12 btn-xpert">View Project</button>
                 </div>
               </div>
@@ -164,5 +164,6 @@
       </div>
     </div>
   </section>
+
 </main>
 <app-footer></app-footer>

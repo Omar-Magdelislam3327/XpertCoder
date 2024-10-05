@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<main id="blog">
+<main id="blog" @fadeInOut>
   <section class="section1 p-5">
     <div class="container">
       <div class="row">
@@ -10,9 +10,34 @@
           <p class="text-black-50 text-center">
             Published on: {{ blog.date | date: 'yyyy-MM-dd' }}
           </p>
-          <img [src]="blog.image" class="img-fluid" alt="">
+          <div class="text-center">
+            <img [src]="blog.image" class="img-fluid" alt="">
+          </div>
           <div class="mt-3">
             <p class="text-black-50">{{ blog.description }}</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="title">
+            <h3 class="fs-2 fw-bold text-black">Related Posts</h3>
+            <div class="row">
+              <div class="col-lg-4 col-12 mt-3" *ngFor="let bloge of relatedBlogs">
+                <a [routerLink]="['/blog', bloge.id]" class="card text-decoration-none">
+                  <div class="imag">
+                    <img [src]="bloge.image" class="img-fluid" alt="">
+                  </div>
+                  <div>
+                    <div class="main p-3">
+                      <h4 class="my-3 text-black">{{bloge.title}}</h4>
+                      <p class="text-black-50">{{bloge.description | slice : 10 : 100 }}</p>
+                      <div class="date">
+                        <small class="text-black-50">{{bloge.date}}</small>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

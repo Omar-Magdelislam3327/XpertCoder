@@ -2,16 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Projects } from 'src/app/modules/projects';
 import { ProjectsApiService } from 'src/app/services/projects-api.service';
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 @Component({
   selector: 'app-admin-projects',
   templateUrl: './admin-projects.component.html',
-  styleUrls: ['./admin-projects.component.css']
+  styleUrls: ['./admin-projects.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class AdminProjectsComponent implements OnInit {
   projectForm: FormGroup;
-  projects: Projects[] = []; // Specify the type here
-
+  projects: Projects[] = [];
   i!: number;
   constructor(private fb: FormBuilder, private api: ProjectsApiService) {
     this.projectForm = this.fb.group({
@@ -33,7 +44,7 @@ export class AdminProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.addFeature();
-    this.fetchProjects(); // Fetch projects on component init
+    this.fetchProjects();
   }
 
   get features(): FormArray {
@@ -59,11 +70,10 @@ export class AdminProjectsComponent implements OnInit {
 
       this.api.post(projectData).subscribe(
         response => {
-          console.log('Project added successfully:', response);
           this.projectForm.reset();
           this.features.clear();
           this.addFeature();
-          this.fetchProjects(); // Refresh projects after adding a new one
+          this.fetchProjects();
         },
         error => {
           console.error('Error adding project:', error);
@@ -75,6 +85,16 @@ export class AdminProjectsComponent implements OnInit {
   fetchProjects(): void {
     this.api.get().subscribe((data: any) => {
       this.projects = data;
+    })
+  }
+  remove(id: any) {
+    this.api.delete(id).subscribe({
+      next: () => {
+        this.fetchProjects();
+      },
+      error: (error) => {
+        console.log(error);
+      }
     })
   }
 }

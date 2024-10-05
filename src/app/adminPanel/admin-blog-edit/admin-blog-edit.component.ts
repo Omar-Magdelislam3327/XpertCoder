@@ -3,11 +3,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BlogApiService } from 'src/app/services/blog-api.service';
 import { Blogs } from 'src/app/modules/blogs';
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 @Component({
   selector: 'app-admin-blog-edit',
   templateUrl: './admin-blog-edit.component.html',
-  styleUrls: ['./admin-blog-edit.component.css']
+  styleUrls: ['./admin-blog-edit.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class AdminBlogEditComponent implements OnInit {
   blogForm: FormGroup;

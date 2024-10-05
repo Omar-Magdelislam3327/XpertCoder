@@ -34,6 +34,7 @@ import { AdminProjectEditComponent } from './adminPanel/admin-project-edit/admin
 import { AdminBlogEditComponent } from './adminPanel/admin-blog-edit/admin-blog-edit.component';
 import { AdminClientEditComponent } from './adminPanel/admin-client-edit/admin-client-edit.component';
 import { AdminLoginComponent } from './adminPanel/admin-login/admin-login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { AdminLoginComponent } from './adminPanel/admin-login/admin-login.compon
     AdminBlogEditComponent,
     AdminClientEditComponent,
     AdminLoginComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -74,6 +76,7 @@ import { AdminLoginComponent } from './adminPanel/admin-login/admin-login.compon
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

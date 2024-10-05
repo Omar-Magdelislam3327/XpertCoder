@@ -2,10 +2,23 @@ import { ProjectsApiService } from 'src/app/services/projects-api.service';
 import { Component, HostListener } from '@angular/core';
 import { ClientsApiService } from 'src/app/services/clients-api.service';
 import { BlogApiService } from 'src/app/services/blog-api.service';
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class HomeComponent {
   clients!: any;
@@ -17,16 +30,12 @@ export class HomeComponent {
   allProjects!: any[];
   blogs!: any;
   constructor(private api: ClientsApiService, private projectApi: ProjectsApiService, private blogApi: BlogApiService) {
-    // Fetch clients
     this.api.get().subscribe((data: any) => {
       this.clients = data;
     });
 
-    // Fetch projects and filter them by type
     this.projectApi.get().subscribe((data: any) => {
       this.projects = data;
-
-      // Filter projects based on the type
       this.webProjects = this.projects.filter(project => project.projectType === 'Web Development');
       this.mobileProjects = this.projects.filter(project => project.projectType === 'Mobile Development');
       this.uiProjects = this.projects.filter(project => project.projectType === 'ui/ux');
@@ -34,7 +43,6 @@ export class HomeComponent {
       this.allProjects = this.projects.slice(0, 3);
     });
 
-    // Fetch blogs
     this.blogApi.get().subscribe((data: any) => {
       this.blogs = data;
     });

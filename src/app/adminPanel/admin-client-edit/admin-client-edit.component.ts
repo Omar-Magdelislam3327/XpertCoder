@@ -3,10 +3,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientsApiService } from 'src/app/services/clients-api.service';
 import { Clients } from 'src/app/modules/clients';
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+
 @Component({
   selector: 'app-admin-client-edit',
   templateUrl: './admin-client-edit.component.html',
-  styleUrls: ['./admin-client-edit.component.css']
+  styleUrls: ['./admin-client-edit.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class AdminClientEditComponent implements OnInit {
   clientForm: FormGroup;
@@ -18,7 +31,6 @@ export class AdminClientEditComponent implements OnInit {
     private router: Router,
     private clientApi: ClientsApiService
   ) {
-    // Initialize form
     this.clientForm = this.fb.group({
       name: ['', Validators.required],
       title: ['', Validators.required],

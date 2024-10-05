@@ -39,3 +39,51 @@
     cursor: pointer;
   }
 }
+
+.job-option {
+  position: relative;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: black;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  font-size: 14px;
+  transition: all 0.3s;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;
+}
+
+input[type="radio"]:disabled {
+  cursor: not-allowed;
+}
+
+input[type="radio"]:checked+.job-option {
+  background-color: #109482;
+  /* Change background color on selection */
+  color: white;
+  /* Change text color on selection */
+  border-color: transparent;
+  /* Hide border when selected */
+  font-weight: bold;
+  /* Bold text on selection */
+}
+
+.col-lg-3 {
+  position: relative;
+  z-index: 1;
+}

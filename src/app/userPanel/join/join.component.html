@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<main id="join">
+<main id="join" @fadeInOut>
   <section class="section1 py-5 px-3">
     <div class="container">
       <div class="row">
@@ -10,86 +10,52 @@
             </h2>
             <p class="text-black-50">
               Ready to revolutionize your business with expertise in web and mobile development? Let's work together to
-              create
-              secure, scalable digital solutions that work across all devices.
+              create secure, scalable digital solutions that work across all devices.
             </p>
           </div>
         </div>
-        <form>
+        <!-- Job application form -->
+        <form (ngSubmit)="submitApplication()">
           <h3>Get your job now in XpertCoder</h3>
           <div class="row mb-5 job-categories">
-            <div class="col-md-3 mt-3">
-              <input type="radio" name="job-category" disabled value="Front-end Developer">
-              <label class="job-option">
-                Front-end Developer
-              </label>
-            </div>
-            <div class="col-md-3 mt-3">
-              <input type="radio" name="job-category" disabled value="Back-end Developer">
-              <label class="job-option">
-                Back-end Developer
-              </label>
-            </div>
-            <div class="col-md-3 mt-3">
-              <input type="radio" name="job-category" disabled value="UI & UX Design">
-              <label class="job-option">
-                UI & UX Design
-              </label>
-            </div>
-            <div class="col-md-3 mt-3">
-              <input type="radio" name="job-category" disabled value="Flutter Developer">
-              <label class="job-option">
-                Flutter Developer
-              </label>
-            </div>
-            <div class="col-md-3 mt-3">
-              <input type="radio" name="job-category" value="E-Marketer">
-              <label class="job-option">
-                E-Marketer
-              </label>
-            </div>
-            <div class="col-md-3 mt-3">
-              <input type="radio" name="job-category" value="Sales">
-              <label class="job-option">
-                Sales
-              </label>
-            </div>
-            <div class="col-md-3 mt-3">
-              <input type="radio" name="job-category" value="Video Editor">
-              <label class="job-option">
-                Video Editor
-              </label>
-            </div>
-            <div class="col-md-3 mt-3">
-              <input type="radio" name="job-category" value="Graphic Designer">
-              <label class="job-option">
-                Graphic Designer
-              </label>
+            <!-- Job category selection -->
+            <div class="col-md-3 mt-3" *ngFor="let job of jobCategories">
+              <input type="radio" name="job-category" [(ngModel)]="career.title" [value]="job.value" required>
+              <label class="job-option">{{ job.label }}</label>
             </div>
           </div>
 
+          <!-- Form inputs for user data -->
           <div class="mb-5">
-            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+            <input type="text" class="form-control" id="name" placeholder="Your Name" [(ngModel)]="career.name"
+              name="name" required>
           </div>
           <div class="mb-5">
-            <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+            <input type="email" class="form-control" id="email" placeholder="Your Email" [(ngModel)]="career.email"
+              name="email" required>
           </div>
           <div class="mb-5">
-            <input type="tel" class="form-control" id="phone" placeholder="Your Phone" required>
+            <input type="tel" class="form-control" id="phone" placeholder="Your Phone" [(ngModel)]="career.phone"
+              name="phone" required>
           </div>
           <div class="mb-5">
-            <input type="number" class="form-control" id="salary" placeholder="Expected Salary" required>
+            <input type="number" class="form-control" id="salary" placeholder="Expected Salary"
+              [(ngModel)]="career.salary" name="salary" required>
           </div>
           <div class="mb-5">
-            <input type="number" class="form-control" id="exp" placeholder="Years Of Experience" required>
+            <input type="number" class="form-control" id="exp" placeholder="Years Of Experience"
+              [(ngModel)]="career.experience" name="experience" required>
           </div>
           <div class="mb-5 custom-file-upload">
             <label for="resume" class="upload-label">
               <i class="fa fa-paperclip"></i> Upload your CV
             </label>
-            <input type="file" id="resume" class="form-control-file" required>
+            <input type="file" id="resume" class="form-control-file" (change)="handleFileInput($event)" accept=".pdf"
+              required>
           </div>
-          <button type="submit" class="btn-xpert">Submit Application</button>
+
+          <!-- Submit button -->
+          <button type="submit" class="btn-xpert" [disabled]="!isSubmitEnabled()">Submit Application</button>
         </form>
       </div>
     </div>

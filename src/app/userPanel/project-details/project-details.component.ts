@@ -1,17 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Projects } from 'src/app/modules/projects';
+import { Projects, Feature } from 'src/app/modules/projects';
 import { ProjectsApiService } from 'src/app/services/projects-api.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-project-details',
   templateUrl: './project-details.component.html',
-  styleUrls: ['./project-details.component.css']
+  styleUrls: ['./project-details.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class ProjectDetailsComponent implements OnInit {
   id: any;
   allProjects = new Projects();
+  relatedProjects: Projects[] = [];
   projectForm: FormGroup;
 
   constructor(
@@ -23,7 +36,6 @@ export class ProjectDetailsComponent implements OnInit {
       projectName: [''],
       projectDescription: [''],
       clientName: [''],
-      // Add other necessary form controls here
     });
   }
 
@@ -35,24 +47,26 @@ export class ProjectDetailsComponent implements OnInit {
   getProjectDetails(id: string) {
     this.projectsService.getById(id).subscribe(data => {
       this.allProjects = data;
-      // Set form values after fetching project details
       this.projectForm.patchValue({
         projectName: data.projectName,
         projectDescription: data.projectDescription,
         clientName: data.clientName,
-        // Add other fields here
       });
+      this.getRelatedProjects(data.projectType);
+    });
+  }
+
+  getRelatedProjects(type: string) {
+    this.projectsService.get().subscribe(data => {
+      this.relatedProjects = data.filter(project => project.projectType === type && project.id !== this.allProjects.id);
     });
   }
 
   submitForm() {
     if (this.projectForm.valid) {
       console.log(this.projectForm.value);
-      // Process form submission
     }
   }
-
-
 
   onMouseMove(event: MouseEvent) {
     const card = event.currentTarget as HTMLElement;
@@ -71,5 +85,4 @@ export class ProjectDetailsComponent implements OnInit {
       element.style.transform = `rotateX(0deg) rotateY(0deg)`;
     });
   }
-
 }

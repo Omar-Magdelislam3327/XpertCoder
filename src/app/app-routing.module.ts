@@ -39,11 +39,12 @@ const routes: Routes = [
   { path: "contact", component: ContactComponent },
   { path: "blog", component: BlogComponent },
   { path: "blog/:id", component: BlogDetailsComponent },
+  { path: "xc-login", component: AdminLoginComponent },
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AuthGuard],
     children: [
-      { path: "xc-login", component: AdminLoginComponent },
       { path: "projects", canActivate: [AuthGuard], component: AdminProjectsComponent },
       { path: "project-edit/:id", canActivate: [AuthGuard], component: AdminProjectEditComponent },
       { path: "clients", canActivate: [AuthGuard], component: AdminClientsComponent },

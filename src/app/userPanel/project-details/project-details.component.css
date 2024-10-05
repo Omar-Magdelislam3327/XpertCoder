@@ -106,6 +106,8 @@
     background-color: var(--primaryColor);
     color: white;
     transform: translateX(10px);
+    border: transparent 1px solid;
+    ;
   }
 
   .country,
