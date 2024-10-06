@@ -1,5 +1,6 @@
+import { AboutModule } from './userPanel/about/about.module';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './userPanel/home/home.component';
 import { AboutComponent } from './userPanel/about/about.component';
 import { WebComponent } from './userPanel/services/web/web.component';
@@ -26,20 +27,20 @@ import { AdminClientEditComponent } from './adminPanel/admin-client-edit/admin-c
 import { AdminLoginComponent } from './adminPanel/admin-login/admin-login.component';
 import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
-  { path: "home", component: HomeComponent },
+  { path: "home", loadChildren: () => import('./userPanel/home/home.module').then(m => m.HomeModule), title: "XpertCoder |  Leading Web & Mobile Development" },
   { path: "", redirectTo: "home", pathMatch: "full" },
-  { path: "about", component: AboutComponent },
-  { path: "services/web", component: WebComponent },
-  { path: "services/mobile", component: MobileComponent },
-  { path: "services/ui", component: UiuxComponent },
-  { path: "services/testing", component: SoftTestingComponent },
-  { path: "portfolio", component: PortfolioComponent },
-  { path: "project/:id", component: ProjectDetailsComponent },
-  { path: "join", component: JoinComponent },
-  { path: "contact", component: ContactComponent },
-  { path: "blog", component: BlogComponent },
-  { path: "blog/:id", component: BlogDetailsComponent },
-  { path: "xc-login", component: AdminLoginComponent },
+  { path: "about", title: "XpertCoder | About", loadChildren: () => import('./userPanel/about/about.module').then(m => m.AboutModule) },
+  { path: "services/web", title: "XpertCoder | Professional  Web Development Solutions", loadChildren: () => import("./userPanel/services/web/web.module").then(m => m.WebModule) },
+  { path: "services/mobile", title: "XpertCoder | Tailored Mobile App Development Services", loadChildren: () => import("./userPanel/services/mobile/mobile.module").then(m => m.MobileModule) },
+  { path: "services/ui", title: "XpertCoder | Expert UI/UX Design Services", loadChildren: () => import("./userPanel/services/uiux/uiux.module").then(m => m.UiuxModule) },
+  { path: "services/testing", title: "XpertCoder | Comprehensive Software Testing", loadChildren: () => import("./userPanel/services/soft-testing/soft-testing.module").then(m => m.SoftTestingModule) },
+  { path: "portfolio", title: "XpertCoder | Web & Mobile Development Portfolio", loadChildren: () => import("./userPanel/portfolio/portfolio.module").then(m => m.PortfolioModule) },
+  { path: "project/:id", title: "XpertCoder | Portfolio", loadChildren: () => import("./userPanel/project-details/project-details.module").then(m => m.ProjectDetailsModule) },
+  { path: "join", title: "XpertCoder | Join Us", loadChildren: () => import("./userPanel/join/join.module").then(m => m.JoinModule) },
+  { path: "contact", title: "XpertCoder | Contact Us", loadChildren: () => import("./userPanel/contact/contact.module").then(m => m.ContactModule) },
+  { path: "blog", title: "XpertCoder | Blog", loadChildren: () => import("./userPanel/blog/blog.module").then(m => m.BlogModule) },
+  { path: "blog/:id", title: "XpertCoder | Blog", loadChildren: () => import("./userPanel/blog-details/blog-details.module").then(m => m.BlogDetailsModule) },
+  { path: "xc-login", component: AdminLoginComponent, title: "XpertCoder | Login" },
   {
     path: 'admin',
     component: AdminComponent,
@@ -59,6 +60,10 @@ const routes: Routes = [
   },
   { path: "**", redirectTo: "home", pathMatch: "full" }
 ];
+const routerOptions: ExtraOptions = {
+  scrollPositionRestoration: 'enabled',
+  anchorScrolling: 'enabled',
+};
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

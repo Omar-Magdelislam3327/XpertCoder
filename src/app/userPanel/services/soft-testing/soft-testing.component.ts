@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Projects } from 'src/app/modules/projects';
 import { ProjectsApiService } from 'src/app/services/projects-api.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-soft-testing',
@@ -22,11 +23,18 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
 export class SoftTestingComponent {
   projects: any[] = [];
 
-  constructor(private api: ProjectsApiService) {
+  constructor(private api: ProjectsApiService, private meta: Meta) {
     this.api.get().subscribe((data: any) => {
       this.projects = data.filter((project: Projects) => project.projectType === 'Software Testing');
     }, error => {
       console.error('Error fetching projects', error);
     });
+  }
+  ngOnInit(): void {
+    this.meta.addTags([
+      { name: 'description', content: 'XpertCoder specializes in crafting intuitive and beautiful UI/UX designs that enhance user experience and engagement.' },
+      { name: 'keywords', content: 'UI/UX design services, user interface design, user experience, XpertCoder design' },
+      { name: 'robots', content: 'index, follow' }
+    ]);
   }
 }

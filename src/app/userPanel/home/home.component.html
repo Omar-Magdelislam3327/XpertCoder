@@ -52,7 +52,7 @@
       <div class="row pt-3 text-center">
         <div class="col-lg-3 col-md-6 col-12 mt-3" *ngFor="let client of clients">
           <div class="client">
-            <img [src]="client.logo" class="img-fluid" alt="">
+            <img loading="lazy" [src]="client.logo" class="img-fluid" alt="">
           </div>
         </div>
 
@@ -65,13 +65,13 @@
       <div class="row">
         <div class="col-lg-6 d-none d-lg-block">
           <div class="imag">
-            <img [class.visible]="hoveredCard === 'web'" src="../../../assets/vendors/imgs/web.jpg"
+            <img loading="lazy" [class.visible]="hoveredCard === 'web'" src="../../../assets/vendors/imgs/web.jpg"
               class="img-fluid rounded" alt="">
-            <img [class.visible]="hoveredCard === 'mobile'" src="../../../assets/vendors/imgs/mobile.jpg"
+            <img loading="lazy" [class.visible]="hoveredCard === 'mobile'" src="../../../assets/vendors/imgs/mobile.jpg"
               class="img-fluid rounded" alt="">
-            <img [class.visible]="hoveredCard === 'ui'"
+            <img loading="lazy" [class.visible]="hoveredCard === 'ui'"
               src="../../../assets/vendors/imgs/ui-ux-design-web-design-1600.jpg" class="img-fluid rounded" alt="">
-            <img [class.visible]="hoveredCard === 'testing'" src="../../../assets/vendors/imgs/ui.jpg"
+            <img loading="lazy" [class.visible]="hoveredCard === 'testing'" src="../../../assets/vendors/imgs/ui.jpg"
               class="img-fluid rounded" alt="">
           </div>
         </div>
@@ -178,19 +178,19 @@
               </li>
               <li class="nav-item ms-lg-5" role="presentation">
                 <button class="nav-link" id="pills-second-tab" data-bs-toggle="pill" data-bs-target="#pills-second"
-                  type="button" role="tab" aria-controls="pills-second" aria-selected="false">Web</button>
+                  type="button" role="tab" aria-controls="pills-second" aria-selected="false">Web Development</button>
               </li>
               <li class="nav-item ms-lg-5" role="presentation">
                 <button class="nav-link" id="pills-third-tab" data-bs-toggle="pill" data-bs-target="#pills-third"
-                  type="button" role="tab" aria-controls="pills-third" aria-selected="false">Mobile</button>
+                  type="button" role="tab" aria-controls="pills-third" aria-selected="false">Mobile Development</button>
               </li>
               <li class="nav-item ms-lg-5" role="presentation">
                 <button class="nav-link" id="pills-forth-tab" data-bs-toggle="pill" data-bs-target="#pills-forth"
-                  type="button" role="tab" aria-controls="pills-forth" aria-selected="false">UI/UX</button>
+                  type="button" role="tab" aria-controls="pills-forth" aria-selected="false">UI/UX Design</button>
               </li>
               <li class="nav-item ms-lg-5" role="presentation">
                 <button class="nav-link" id="pills-fifth-tab" data-bs-toggle="pill" data-bs-target="#pills-fifth"
-                  type="button" role="tab" aria-controls="pills-fifth" aria-selected="false">Testing</button>
+                  type="button" role="tab" aria-controls="pills-fifth" aria-selected="false">Software Testing</button>
               </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
@@ -200,7 +200,7 @@
                   <div class="col-lg-4 mt-2" *ngFor="let project of allProjects">
                     <div class="card p-3" routerLink="/project/{{project.id}}">
                       <div class="imag">
-                        <img [src]="project.image" class="img-fluid rounded" alt="">
+                        <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
                       </div>
                       <div class="d-flex justify-content-between align-items-end">
                         <div class="title mt-3">
@@ -222,7 +222,7 @@
                   <div class="col-lg-4 mt-2" *ngFor="let project of webProjects">
                     <div class="card p-3" routerLink="/project/{{project.id}}">
                       <div class="imag">
-                        <img [src]="project.image" class="img-fluid rounded" alt="">
+                        <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
                       </div>
                       <div class="d-flex justify-content-between align-items-end">
                         <div class="title mt-3">
@@ -244,7 +244,7 @@
                   <div class="col-lg-4 mt-2" *ngFor="let project of mobileProjects">
                     <div class="card p-3" routerLink="/project/{{project.id}}">
                       <div class="imag">
-                        <img [src]="project.image" class="img-fluid rounded" alt="">
+                        <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
                       </div>
                       <div class="d-flex justify-content-between align-items-end">
                         <div class="title mt-3">
@@ -266,7 +266,7 @@
                   <div class="col-lg-4 mt-2" *ngFor="let project of uiProjects" routerLink="/project/{{project.id}}">
                     <div class="card p-3">
                       <div class="imag">
-                        <img [src]="project.image" class="img-fluid rounded" alt="">
+                        <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
                       </div>
                       <div class="d-flex justify-content-between align-items-end">
                         <div class="title mt-3">
@@ -289,7 +289,7 @@
                     routerLink="/project/{{project.id}}">
                     <div class="card p-3">
                       <div class="imag">
-                        <img [src]="project.image" class="img-fluid rounded" alt="">
+                        <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
                       </div>
                       <div class="d-flex justify-content-between align-items-end">
                         <div class="title mt-3">
@@ -325,7 +325,7 @@
         <div class="col-lg-4 col-12 mt-3" *ngFor="let blog of blogs">
           <a [routerLink]="['/blog', blog.id]" class="card text-decoration-none">
             <div class="imag">
-              <img [src]="blog.image" class="img-fluid" alt="">
+              <img loading="lazy" [src]="blog.image" class="img-fluid" alt="">
             </div>
             <div>
               <div class="main p-3">
@@ -358,13 +358,13 @@
           <div class="carde p-3 m-2">
             <div class="tope d-flex justify-content-between align-items-center flex-wrap pb-3">
               <div class="imag">
-                <img [src]="review.img" class="rounded" width="90" alt="">
+                <img loading="lazy" [src]="review.img" class="rounded" width="90" alt="">
               </div>
               <div class="txt">
                 <h6 class="p-0 m-0 text-black">{{ review.name }}</h6>
                 <p class="p-0 m-0 text-black-50">{{ review.job }}</p>
               </div>
-              <img src="assets/vendors/imgs/quote.svg" alt="">
+              <img loading="lazy" src="assets/vendors/imgs/quote.svg" alt="">
             </div>
             <p class="text-black-50">{{ review.text }}</p>
             <div class="btm d-flex justify-content-start align-items-center flex-wrap">

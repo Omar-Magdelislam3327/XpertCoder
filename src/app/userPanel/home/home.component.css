@@ -196,9 +196,11 @@
     background-color: whitesmoke;
     border-radius: 20px;
     cursor: pointer;
+    height: 300px;
 
     img {
-      padding-bottom: 60px;
+      max-height: 200px;
+      width: 100%;
       transition: 0.4s;
     }
 
@@ -220,6 +222,7 @@
 
 .section7 {
   .card {
+    height: 380px;
     background-color: whitesmoke;
     border: none;
     border-radius: 10px;
@@ -227,6 +230,7 @@
     transition: 0.3s;
 
     img {
+      height: 200px;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
       transition: 0.3s;

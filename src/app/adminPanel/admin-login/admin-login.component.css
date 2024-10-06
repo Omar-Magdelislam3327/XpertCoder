@@ -16,16 +16,16 @@
   margin-bottom: 15px;
 }
 
-/* .form-control {
+.form-control {
   background-color: transparent;
-  color: #C1C1C1;
+  color: white;
   font-size: 18px;
   border: none;
   border-radius: 0;
   border-bottom: 1px solid #C1C1C1;
   box-shadow: none;
   transition: 0.3s;
-} */
+}
 
 .form-control::placeholder {
   color: rgb(192, 192, 192);

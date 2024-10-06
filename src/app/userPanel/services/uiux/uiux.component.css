@@ -99,3 +99,69 @@
     border-radius: 10px;
   }
 }
+
+.btn-conteiner {
+  display: flex;
+  justify-content: end;
+
+  .btn-content {
+    display: flex;
+    align-items: center;
+    padding: 5px 30px;
+    font-weight: 600;
+    font-size: 30px;
+    color: black;
+    background: transparent;
+    transition: 1s;
+
+    .icon-arrow {
+      width: 20px;
+      margin-left: 15px;
+      position: relative;
+      top: 6%;
+      transition: 0.5s;
+      margin-right: 0px;
+      transform: scale(0.6);
+    }
+  }
+}
+
+/* SVG */
+#arrow-icon-one {
+  transition: 0.4s;
+  transform: translateX(-60%);
+}
+
+#arrow-icon-two {
+  transition: 0.5s;
+  transform: translateX(-30%);
+}
+
+.box:hover #arrow-icon-three {
+  animation: color_anim 1s infinite 0.2s;
+}
+
+.box:hover #arrow-icon-one {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.6s;
+}
+
+.box:hover #arrow-icon-two {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+@keyframes color_anim {
+  0% {
+    fill: white;
+  }
+
+  50% {
+    fill: var(--primaryColor);
+  }
+
+  100% {
+    fill: white;
+  }
+}

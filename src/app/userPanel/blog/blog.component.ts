@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BlogApiService } from 'src/app/services/blog-api.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog',
@@ -20,9 +21,16 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
 })
 export class BlogComponent {
   blogs!: any;
-  constructor(private api: BlogApiService) {
+  constructor(private api: BlogApiService, private meta: Meta) {
     this.api.get().subscribe((data: any) => {
       this.blogs = data;
     })
+  }
+  ngOnInit(): void {
+    this.meta.addTags([
+      { name: 'description', content: 'Explore expert insights and articles on the latest trends in web and mobile development at XpertCoder.' },
+      { name: 'keywords', content: 'XpertCoder blog, web development blog, mobile development articles, technology insights ,' },
+      { name: 'robots', content: 'index, follow' }
+    ]);
   }
 }

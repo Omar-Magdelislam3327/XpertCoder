@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 import { Messages } from 'src/app/modules/message';
 import { MessagesApiService } from 'src/app/services/messages-api.service';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact',
@@ -22,7 +23,7 @@ import { MessagesApiService } from 'src/app/services/messages-api.service';
 export class ContactComponent {
   message: Messages = new Messages();
 
-  constructor(private api: MessagesApiService) { }
+  constructor(private api: MessagesApiService, private meta: Meta) { }
 
   onSubmit() {
     this.api.post(this.message).subscribe((response) => {
@@ -35,5 +36,12 @@ export class ContactComponent {
     if (file) {
       this.message.attachment = file.name;
     }
+  }
+  ngOnInit(): void {
+    this.meta.addTags([
+      { name: 'description', content: 'Reach out to XpertCoder for inquiries on web and mobile development services, or any other technology needs.' },
+      { name: 'keywords', content: 'contact XpertCoder, get in touch, web development inquiries, mobile development support' },
+      { name: 'robots', content: 'index, follow' }
+    ]);
   }
 }

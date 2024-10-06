@@ -3,6 +3,9 @@ import { Component, HostListener } from '@angular/core';
 import { ClientsApiService } from 'src/app/services/clients-api.service';
 import { BlogApiService } from 'src/app/services/blog-api.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import { Title, Meta } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-home',
@@ -29,17 +32,17 @@ export class HomeComponent {
   testingProjects!: any[];
   allProjects!: any[];
   blogs!: any;
-  constructor(private api: ClientsApiService, private projectApi: ProjectsApiService, private blogApi: BlogApiService) {
+  constructor(private api: ClientsApiService, private projectApi: ProjectsApiService, private blogApi: BlogApiService, private meta: Meta, private router: Router) {
     this.api.get().subscribe((data: any) => {
       this.clients = data;
     });
 
     this.projectApi.get().subscribe((data: any) => {
       this.projects = data;
-      this.webProjects = this.projects.filter(project => project.projectType === 'Web Development');
-      this.mobileProjects = this.projects.filter(project => project.projectType === 'Mobile Development');
-      this.uiProjects = this.projects.filter(project => project.projectType === 'ui/ux');
-      this.testingProjects = this.projects.filter(project => project.projectType === 'Software Testing');
+      this.webProjects = this.projects.filter(project => project.projectType === 'Web Development').slice(0, 3);
+      this.mobileProjects = this.projects.filter(project => project.projectType === 'Mobile Development').slice(0, 3);
+      this.uiProjects = this.projects.filter(project => project.projectType === 'ui/ux').slice(0, 3);
+      this.testingProjects = this.projects.filter(project => project.projectType === 'Software Testing').slice(0, 3);
       this.allProjects = this.projects.slice(0, 3);
     });
 
@@ -47,18 +50,6 @@ export class HomeComponent {
       this.blogs = data;
     });
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   // =================================================================
@@ -98,7 +89,20 @@ export class HomeComponent {
 
   ngOnInit() {
     this.adjustCarousel();
-    window.scrollTo(0, 0);
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+      AOS.init({
+      });
+    });
+    this.meta.addTags([
+      { name: 'description', content: 'XperTCoder offers top-notch web and mobile development solutions.' },
+      { name: 'keywords', content: 'XperTCoder, Integrated Solutions, Web Development, Mobile Development, UI/UX Design , Software Testing' },
+      { name: 'robots', content: 'index, follow' }
+    ]);
+
   }
 
   adjustCarousel() {

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Blogs } from 'src/app/modules/blogs';
 import { BlogApiService } from 'src/app/services/blog-api.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog-details',
@@ -25,13 +26,18 @@ export class BlogDetailsComponent implements OnInit {
   blog!: Blogs;
   relatedBlogs: Blogs[] = [];
 
-  constructor(private api: BlogApiService, private activ: ActivatedRoute) { }
+  constructor(private api: BlogApiService, private activ: ActivatedRoute, private meta: Meta) { }
 
   ngOnInit() {
     this.activ.params.subscribe((params) => {
       this.id = params['id'];
       this.fetchBlogDetails(this.id);
     });
+    this.meta.addTags([
+      { name: 'description', content: 'Explore expert insights and articles on the latest trends in web and mobile development at XpertCoder.' },
+      { name: 'keywords', content: 'XpertCoder blog, web development blog, mobile development articles, technology insights , software testing' },
+      { name: 'robots', content: 'index, follow' }
+    ]);
   }
 
   fetchBlogDetails(id: string) {

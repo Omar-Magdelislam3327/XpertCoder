@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Projects, Feature } from 'src/app/modules/projects';
 import { ProjectsApiService } from 'src/app/services/projects-api.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-project-details',
@@ -30,7 +31,8 @@ export class ProjectDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private projectsService: ProjectsApiService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private meta: Meta
   ) {
     this.projectForm = this.fb.group({
       projectName: [''],
@@ -42,6 +44,11 @@ export class ProjectDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getProjectDetails(this.id);
+    this.meta.addTags([
+      { name: 'description', content: 'Check out XpertCoder\'s portfolio showcasing successful web and mobile development projects across various industries.' },
+      { name: 'keywords', content: 'XpertCoder portfolio, web development projects, mobile app development examples, case studies , ui/ux design , software testing' },
+      { name: 'robots', content: 'index, follow' }
+    ]);
   }
 
   getProjectDetails(id: string) {

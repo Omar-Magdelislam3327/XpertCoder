@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Projects } from 'src/app/modules/projects';
 import { ProjectsApiService } from 'src/app/services/projects-api.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-mobile',
@@ -22,11 +23,18 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
 export class MobileComponent {
   projects: any[] = [];
 
-  constructor(private api: ProjectsApiService) {
+  constructor(private api: ProjectsApiService, private meta: Meta) {
     this.api.get().subscribe((data: any) => {
       this.projects = data.filter((project: Projects) => project.projectType === 'Mobile Development');
     }, error => {
       console.error('Error fetching projects', error);
     });
+  }
+  ngOnInit(): void {
+    this.meta.addTags([
+      { name: 'description', content: 'XpertCoder provides top-notch mobile app development services, creating engaging apps for iOS and Android platforms.' },
+      { name: 'keywords', content: 'mobile app development, iOS app development, Android app development, XpertCoder' },
+      { name: 'robots', content: 'index, follow' }
+    ]);
   }
 }

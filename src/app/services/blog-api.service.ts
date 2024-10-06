@@ -11,4 +11,5 @@ export class BlogApiService extends ApiFunctionService<Blogs> {
   constructor(protected override http: HttpClient) {
     super("http://localhost:3000/blogs", http);
   }
+
 }

@@ -31,7 +31,7 @@
           "featureName": "Assign leave types"
         }
       ],
-      "projectImage": "..\\..\\..\\assets\\vendors\\imgs\\Group-1000003927-1.webp",
+      "projectImage": "assets\\vendors\\imgs\\Group-1000003927-1.webp",
       "clientReview": "توب التوب يا اكسبرت",
       "id": 1
     },
@@ -54,7 +54,7 @@
           "featureName": "Dolore ut numquam se"
         }
       ],
-      "projectImage": "C:\\fakepath\\blog1.jpeg",
+      "projectImage": "assets\\vendors\\imgs\\rouh.jpg",
       "clientReview": "Quos iure adipisicin",
       "id": 5
     },
@@ -86,9 +86,69 @@
           "featureName": "Dolor neque sed moll"
         }
       ],
-      "projectImage": "C:\\fakepath\\Connected world-cuate.png",
+      "projectImage": "assets\\vendors\\imgs\\work.webp",
       "clientReview": "Tenetur sit consequ",
       "id": 6
+    },
+    {
+      "projectName": "Dane Scott",
+      "projectDescription": "Natus dolore do cons",
+      "projectType": "Software Testing",
+      "clientCountry": "UK",
+      "clientIndustry": "Voluptatum placeat ",
+      "clientLogo": "C:\\fakepath\\f7072b_f0b1d8bf846f442faaaab1ef64dc95fc~mv2.jpg",
+      "clientName": "Jemima Mills",
+      "projectDuration": 59,
+      "members": 34,
+      "clientRating": 97,
+      "features": [
+        {
+          "featureName": "Doloremque iusto eni"
+        }
+      ],
+      "projectImage": "C:\\fakepath\\images.png",
+      "clientReview": "Deserunt nobis deser",
+      "id": 7
+    },
+    {
+      "projectName": "Kellie Cox",
+      "projectDescription": "Sunt voluptate qui i",
+      "projectType": "Web Development",
+      "clientCountry": "USA",
+      "clientIndustry": "Consequuntur quisqua",
+      "clientLogo": "C:\\fakepath\\images.png",
+      "clientName": "Marny Whitley",
+      "projectDuration": 97,
+      "members": 98,
+      "clientRating": 19,
+      "features": [
+        {
+          "featureName": "Consequat Non incid"
+        }
+      ],
+      "projectImage": "C:\\fakepath\\images.png",
+      "clientReview": "Id culpa architecto",
+      "id": 8
+    },
+    {
+      "projectName": "Aidan Ewing",
+      "projectDescription": "Assumenda labore pro",
+      "projectType": "Web Development",
+      "clientCountry": "UK",
+      "clientIndustry": "Sit tempore dolore",
+      "clientLogo": "C:\\fakepath\\images.png",
+      "clientName": "Oscar Logan",
+      "projectDuration": 13,
+      "members": 13,
+      "clientRating": 36,
+      "features": [
+        {
+          "featureName": "Fuga Lorem enim tem"
+        }
+      ],
+      "projectImage": "C:\\fakepath\\images.png",
+      "clientReview": "Distinctio Necessit",
+      "id": 9
     }
   ],
   "clients": [

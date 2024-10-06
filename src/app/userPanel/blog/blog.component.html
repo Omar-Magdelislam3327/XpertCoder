@@ -16,7 +16,7 @@
         <div class="col-lg-4 col-12 mt-3" *ngFor="let blog of blogs">
           <a [routerLink]="['/blog', blog.id]" class="card text-decoration-none">
             <div class="imag">
-              <img [src]="blog.image" height="170" class="img-fluid" alt="">
+              <img [src]="blog.image" class="img-fluid" alt="">
             </div>
             <div>
               <div class="main p-3">

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProjectsApiService } from 'src/app/services/projects-api.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-portfolio',
@@ -20,9 +21,16 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
 })
 export class PortfolioComponent {
   projects!: any;
-  constructor(private api: ProjectsApiService) {
+  constructor(private api: ProjectsApiService, private meta: Meta) {
     this.api.get().subscribe((data: any) => {
       this.projects = data;
     });
+  }
+  ngOnInit(): void {
+    this.meta.addTags([
+      { name: 'description', content: 'Check out XpertCoder\'s portfolio showcasing successful web and mobile development projects across various industries.' },
+      { name: 'keywords', content: 'XpertCoder portfolio, web development projects, mobile app development examples, case studies , ui/ux design , software testing' },
+      { name: 'robots', content: 'index, follow' }
+    ]);
   }
 }

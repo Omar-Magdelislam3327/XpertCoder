@@ -35,6 +35,18 @@ import { AdminBlogEditComponent } from './adminPanel/admin-blog-edit/admin-blog-
 import { AdminClientEditComponent } from './adminPanel/admin-client-edit/admin-client-edit.component';
 import { AdminLoginComponent } from './adminPanel/admin-login/admin-login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeModule } from './userPanel/home/home.module';
+import { AboutModule } from './userPanel/about/about.module';
+import { WebModule } from './userPanel/services/web/web.module';
+import { MobileModule } from './userPanel/services/mobile/mobile.module';
+import { UiuxModule } from './userPanel/services/uiux/uiux.module';
+import { SoftTestingModule } from './userPanel/services/soft-testing/soft-testing.module';
+import { PortfolioModule } from './userPanel/portfolio/portfolio.module';
+import { ProjectDetailsModule } from './userPanel/project-details/project-details.module';
+import { JoinModule } from './userPanel/join/join.module';
+import { ContactModule } from './userPanel/contact/contact.module';
+import { BlogModule } from './userPanel/blog/blog.module';
+import { BlogDetailsModule } from './userPanel/blog-details/blog-details.module';
 
 @NgModule({
   declarations: [
@@ -76,7 +88,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HomeModule,
+    AboutModule,
+    WebModule,
+    MobileModule,
+    UiuxModule,
+    SoftTestingModule,
+    PortfolioModule,
+    ProjectDetailsModule,
+    JoinModule,
+    ContactModule,
+    BlogModule,
+    BlogDetailsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
