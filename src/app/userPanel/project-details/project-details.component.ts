@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Projects, Feature } from 'src/app/modules/projects';
 import { ProjectsApiService } from 'src/app/services/projects-api.service';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-project-details',
@@ -32,7 +32,8 @@ export class ProjectDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private projectsService: ProjectsApiService,
     private fb: FormBuilder,
-    private meta: Meta
+    private meta: Meta,
+    private titleService: Title
   ) {
     this.projectForm = this.fb.group({
       projectName: [''],
@@ -54,6 +55,8 @@ export class ProjectDetailsComponent implements OnInit {
   getProjectDetails(id: string) {
     this.projectsService.getById(id).subscribe(data => {
       this.allProjects = data;
+      this.titleService.setTitle(`XpertCoder Project  | ${this.allProjects.projectName}`);
+      this.meta.updateTag({ name: 'description', content: this.allProjects.projectDescription });
       this.projectForm.patchValue({
         projectName: data.projectName,
         projectDescription: data.projectDescription,

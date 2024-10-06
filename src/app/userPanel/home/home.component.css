@@ -55,7 +55,7 @@
 
   .animated-button:hover {
     box-shadow: 0 0 0 12px transparent;
-    color: black;
+    color: white;
     border-radius: 12px;
   }
 
@@ -73,7 +73,7 @@
   }
 
   .animated-button:hover svg {
-    fill: black;
+    fill: white;
   }
 
   .animated-button:active {
