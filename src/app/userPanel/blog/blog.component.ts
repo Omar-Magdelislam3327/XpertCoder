@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BlogApiService } from 'src/app/services/blog-api.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
-import { Meta } from '@angular/platform-browser';
+import { DomSanitizer, Meta, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog',
@@ -21,7 +21,7 @@ import { Meta } from '@angular/platform-browser';
 })
 export class BlogComponent {
   blogs!: any;
-  constructor(private api: BlogApiService, private meta: Meta) {
+  constructor(private api: BlogApiService, private meta: Meta, private sanitizer: DomSanitizer) {
     this.api.get().subscribe((data: any) => {
       this.blogs = data;
     })
@@ -32,5 +32,8 @@ export class BlogComponent {
       { name: 'keywords', content: 'XpertCoder blog, web development blog, mobile development articles, technology insights ,' },
       { name: 'robots', content: 'index, follow' }
     ]);
+  }
+  sanitizeHtml(blogDescription: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(blogDescription);
   }
 }

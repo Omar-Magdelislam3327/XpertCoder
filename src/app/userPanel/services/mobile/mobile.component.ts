@@ -24,6 +24,7 @@ export class MobileComponent {
   projects: any[] = [];
 
   constructor(private api: ProjectsApiService, private meta: Meta) {
+    window.scrollTo(0, 0);
     this.api.get().subscribe((data: any) => {
       this.projects = data.filter((project: Projects) => project.projectType === 'Mobile Development');
     }, error => {

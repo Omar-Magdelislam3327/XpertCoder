@@ -23,7 +23,9 @@ import { Meta } from '@angular/platform-browser';
 export class ContactComponent {
   message: Messages = new Messages();
 
-  constructor(private api: MessagesApiService, private meta: Meta) { }
+  constructor(private api: MessagesApiService, private meta: Meta) {
+    window.scrollTo(0, 0);
+  }
 
   onSubmit() {
     this.api.post(this.message).subscribe((response) => {

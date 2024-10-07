@@ -46,13 +46,22 @@ export class AdminBlogEditComponent implements OnInit {
   }
 
   loadBlog(id: number): void {
-    this.api.getById(id).subscribe((data: Blogs) => {
-      if (data) {
-        this.blogForm.patchValue(data);
+    this.api.getById(id).subscribe(
+      (data: Blogs) => {
+        console.log('Loaded blog data:', data);
+        if (data) {
+          this.blogForm.patchValue({
+            title: data.title,
+            description: data.description || '',
+            type: data.type,
+          });
+        }
+        this.blogForm.get('description')!.setValue(data.description || '');
+      },
+      (error) => {
+        console.error('Failed to load blog:', error);
       }
-    }, error => {
-      console.error('Failed to load blog:', error);
-    });
+    );
   }
 
   update(): void {
@@ -64,16 +73,6 @@ export class AdminBlogEditComponent implements OnInit {
       });
     } else {
       console.warn('Form is invalid');
-    }
-  }
-
-  delete(): void {
-    if (confirm('Are you sure you want to delete this blog?')) {
-      this.api.delete(this.blogId).subscribe(() => {
-        this.router.navigate(['/admin/blogs']);
-      }, error => {
-        console.error('Failed to delete blog:', error);
-      });
     }
   }
 }

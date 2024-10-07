@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TeamApiService } from 'src/app/services/team-api.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-team',
@@ -28,6 +29,9 @@ export class AdminTeamComponent {
       title: ['', Validators.required],
       image: ['', Validators.required]
     })
+    this.loadTeam();
+  }
+  loadTeam() {
     this.api.get().subscribe({
       next: (data) => {
         this.team = data;
@@ -41,11 +45,7 @@ export class AdminTeamComponent {
     if (this.teamForm.valid) {
       this.api.post(this.teamForm.value).subscribe({
         next: () => {
-          this.api.get().subscribe((data) => {
-            this.teamForm.reset();
-            this.team = data;
-
-          })
+          this.loadTeam()
         },
         error: (error) => {
           console.log(error);
@@ -53,16 +53,25 @@ export class AdminTeamComponent {
       })
     }
   }
-  remove(id: any) {
-    this.api.delete(id).subscribe({
-      next: () => {
-        this.api.get().subscribe((data) => {
-          this.team = data;
-        })
-      },
-      error: (error) => {
-        console.log(error);
+  remove(id: number): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00816F',
+      cancelButtonColor: '#c4002b',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.api.delete(id).subscribe(() => {
+          this.loadTeam();
+          Swal.fire(
+            'Deleted!',
+            'Your blog has been deleted.',
+            'success'
+          );
+        });
       }
-    })
+    });
   }
 }

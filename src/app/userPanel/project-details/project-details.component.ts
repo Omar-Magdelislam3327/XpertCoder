@@ -35,6 +35,7 @@ export class ProjectDetailsComponent implements OnInit {
     private meta: Meta,
     private titleService: Title
   ) {
+    window.scrollTo(0, 0);
     this.projectForm = this.fb.group({
       projectName: [''],
       projectDescription: [''],

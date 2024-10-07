@@ -1,12 +1,12 @@
 <app-navbar></app-navbar>
 <main id="home" @fadeInOut>
 
-  <section class="section1 py-5">
+  <section class="section1 py-5 px-3">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-6 col-12">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-12 order-2 order-lg-1">
           <div class="shadow"></div>
-          <div class="txt pt-5">
+          <div class="txt">
             <h1 class="fw-bold pb-3">Dedicated teams
               for web and mobile development</h1>
             <p class="pb-3">
@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-6 col-12">
+        <div class="col-lg-6 col-12 order-1 order-lg-2">
           <div class="imag">
             <img src="../../../assets/vendors/imgs/Pair programming-bro.png" class="img-fluid" alt="">
           </div>
@@ -41,10 +41,11 @@
 
   </section>
 
-  <section class="section2 py-5">
+  <section class="section2 py-5 px-3">
     <div class="container">
       <div class="title text-center">
-        <h2 class="fw-bold text-black">Our clients love us</h2>
+        <h2 class="fw-bold text-black">Our clients
+          love us</h2>
         <p class="text-black-50">
           We've worked with some of the world's most renowned companies and organizations.
         </p>
@@ -60,7 +61,7 @@
     </div>
   </section>
 
-  <section class="section3 py-5">
+  <section class="section3 py-5 px-3">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-none d-lg-block">
@@ -130,33 +131,35 @@
     </div>
   </section>
 
-  <section class="section4 py-5">
+  <section class="section4 py-5 px-3">
     <div class="container">
       <div class="title text-center">
         <h2 class="text-black">About Us</h2>
-        <p class="text-black-50">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis amet illum ipsa quam
-          enim accusantium.</p>
+        <p class="text-black-50">
+          We are a team of experienced software developers with a focus on
+          innovative solutions for businesses and individuals.
+        </p>
       </div>
       <div class="row mt-5">
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="col-lg-3 col-md-6 col-sm-12 mt-lg-0 mt-3">
           <div class="card text-center p-4">
             <h2 class="fs-1 text-black">+5</h2>
             <h6 class="text-black-50">Years of experience</h6>
           </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="col-lg-3 col-md-6 col-sm-12 mt-lg-0 mt-3">
           <div class="card text-center p-4">
             <h2 class="fs-1 text-black">99%</h2>
             <h6 class="text-black-50">Satisfication rate</h6>
           </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="col-lg-3 col-md-6 col-sm-12 mt-lg-0 mt-3">
           <div class="card text-center p-4">
             <h2 class="fs-1 text-black">89</h2>
             <h6 class="text-black-50">Clients</h6>
           </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="col-lg-3 col-md-6 col-sm-12 mt-lg-0 mt-3">
           <div class="card text-center p-4">
             <h2 class="fs-1 text-black">77</h2>
             <h6 class="text-black-50">Completed Projects</h6>
@@ -166,7 +169,7 @@
     </div>
   </section>
 
-  <section class="section6 py-2">
+  <section class="section6 py-2 px-3">
     <div class="container">
       <div class="row">
         <div class="col-12 mt-lg- mt-4">
@@ -219,92 +222,119 @@
               <!-- Web Projects Tab -->
               <div class="tab-pane fade" id="pills-second" role="tabpanel" aria-labelledby="pills-second-tab">
                 <div class="row mt-5">
-                  <div class="col-lg-4 mt-2" *ngFor="let project of webProjects">
-                    <div class="card p-3" routerLink="/project/{{project.id}}">
-                      <div class="imag">
-                        <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
-                      </div>
-                      <div class="d-flex justify-content-between align-items-end">
-                        <div class="title mt-3">
-                          <span class="text-black-50">{{ project.projectType }}</span>
-                          <h4 class=" text-black">{{ project.projectName }}</h4>
+                  <ng-container *ngIf="webProjects.length > 0 else noWeb">
+                    <div class="col-lg-4 mt-2" *ngFor="let project of webProjects">
+                      <div class="card p-3" routerLink="/project/{{project.id}}">
+                        <div class="imag">
+                          <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
                         </div>
-                        <div class="rit">
-                          <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
+                        <div class="d-flex justify-content-between align-items-end">
+                          <div class="title mt-3">
+                            <span class="text-black-50">{{ project.projectType }}</span>
+                            <h4 class=" text-black">{{ project.projectName }}</h4>
+                          </div>
+                          <div class="rit">
+                            <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </ng-container>
                 </div>
               </div>
-
+              <ng-template #noWeb>
+                <div class="alert  alert-danger">
+                  <p class="text-center text-danger">No web projects available at the moment.</p>
+                </div>
+              </ng-template>
               <!-- Mobile Projects Tab -->
               <div class="tab-pane fade" id="pills-third" role="tabpanel" aria-labelledby="pills-third-tab">
                 <div class="row mt-5">
-                  <div class="col-lg-4 mt-2" *ngFor="let project of mobileProjects">
-                    <div class="card p-3" routerLink="/project/{{project.id}}">
-                      <div class="imag">
-                        <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
-                      </div>
-                      <div class="d-flex justify-content-between align-items-end">
-                        <div class="title mt-3">
-                          <span class="text-black-50">{{ project.projectType }}</span>
-                          <h4 class=" text-black">{{ project.projectName }}</h4>
+                  <ng-container *ngIf="mobileProjects.length > 0; else noMobile">
+                    <div class="col-lg-4 mt-2" *ngFor="let project of mobileProjects else noMobile">
+                      <div class="card p-3" routerLink="/project/{{project.id}}">
+                        <div class="imag">
+                          <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
                         </div>
-                        <div class="rit">
-                          <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
+                        <div class="d-flex justify-content-between align-items-end">
+                          <div class="title mt-3">
+                            <span class="text-black-50">{{ project.projectType }}</span>
+                            <h4 class=" text-black">{{ project.projectName }}</h4>
+                          </div>
+                          <div class="rit">
+                            <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </ng-container>
+
                 </div>
               </div>
+              <ng-template #noMobile>
+                <div class="alert alert-danger">
+                  <p class="text-center p-0 m-0 text-danger">No mobile projects available at the moment.</p>
+                </div>
+              </ng-template>
 
               <!-- UI/UX Projects Tab -->
               <div class="tab-pane fade" id="pills-forth" role="tabpanel" aria-labelledby="pills-forth-tab">
                 <div class="row mt-5">
-                  <div class="col-lg-4 mt-2" *ngFor="let project of uiProjects" routerLink="/project/{{project.id}}">
-                    <div class="card p-3">
-                      <div class="imag">
-                        <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
-                      </div>
-                      <div class="d-flex justify-content-between align-items-end">
-                        <div class="title mt-3">
-                          <span class="text-black-50">{{ project.projectType }}</span>
-                          <h4 class=" text-black">{{ project.projectName }}</h4>
+                  <ng-container *ngIf="uiProjects.length > 0 else noUI">
+                    <div class="col-lg-4 mt-2" *ngFor="let project of uiProjects" routerLink="/project/{{project.id}}">
+                      <div class="card p-3">
+                        <div class="imag">
+                          <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
                         </div>
-                        <div class="rit">
-                          <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
+                        <div class="d-flex justify-content-between align-items-end">
+                          <div class="title mt-3">
+                            <span class="text-black-50">{{ project.projectType }}</span>
+                            <h4 class=" text-black">{{ project.projectName }}</h4>
+                          </div>
+                          <div class="rit">
+                            <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </ng-container>
                 </div>
               </div>
+              <ng-template #noUI>
+                <div class="alert alert-danger">
+                  <p class="text-center p-0 m-0 text-danger">No UI/UX projects available at the moment.</p>
+                </div>
+              </ng-template>
 
               <!-- Testing Projects Tab -->
               <div class="tab-pane fade" id="pills-fifth" role="tabpanel" aria-labelledby="pills-fifth-tab">
                 <div class="row mt-5">
-                  <div class="col-lg-4 mt-2" *ngFor="let project of testingProjects"
-                    routerLink="/project/{{project.id}}">
-                    <div class="card p-3">
-                      <div class="imag">
-                        <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
-                      </div>
-                      <div class="d-flex justify-content-between align-items-end">
-                        <div class="title mt-3">
-                          <span class="text-black-50">{{ project.projectType }}</span>
-                          <h4 class=" text-black">{{ project.projectName }}</h4>
+                  <ng-container *ngIf="testingProjects.length > 0 else noTesting">
+                    <div class="col-lg-4 mt-2" *ngFor="let project of testingProjects"
+                      routerLink="/project/{{project.id}}">
+                      <div class="card p-3">
+                        <div class="imag">
+                          <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
                         </div>
-                        <div class="rit">
-                          <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
+                        <div class="d-flex justify-content-between align-items-end">
+                          <div class="title mt-3">
+                            <span class="text-black-50">{{ project.projectType }}</span>
+                            <h4 class=" text-black">{{ project.projectName }}</h4>
+                          </div>
+                          <div class="rit">
+                            <i class="fa-solid fa-square-arrow-up-right fs-1 text-black p-1"></i>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </ng-container>
                 </div>
               </div>
-
+              <ng-template #noTesting>
+                <div class="alert alert-danger">
+                  <p class="text-center p-0 m-0 text-danger">No testing projects available at the moment.</p>
+                </div>
+              </ng-template>
             </div>
           </div>
         </div>
@@ -312,8 +342,7 @@
     </div>
   </section>
 
-
-  <section class="section7 py-5">
+  <section class="section7 py-5 px-3">
     <div class="container">
       <div class="title text-center">
         <h2 class=" text-black">Our Blog</h2>
@@ -330,7 +359,7 @@
             <div>
               <div class="main p-3">
                 <h4 class="my-3 text-black">{{blog.title}}</h4>
-                <p class="text-black-50">{{blog.description | slice : 10 : 100 }}</p>
+                <p class="text-black-50" [innerHTML]="blog.description | stripHtmlPipe | slice: 0: 160"></p>
                 <div class="date">
                   <small class="text-black-50">{{blog.date}}</small>
                 </div>
@@ -347,7 +376,7 @@
     </div>
   </section>
 
-  <section class="section8 py-5">
+  <section class="section8 py-5 px-3">
     <div class="container">
       <div class="title mb-2 p-4">
         <h2 class="fw-bold text-black">What clients say about us?</h2>

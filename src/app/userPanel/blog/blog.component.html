@@ -21,7 +21,7 @@
             <div>
               <div class="main p-3">
                 <h4 class="my-3 text-black">{{blog.title}}</h4>
-                <p class="text-black-50">{{blog.description | slice : 10 : 100 }}</p>
+                <p class="text-black-50" [innerHTML]="blog.description | stripHtmlPipe | slice: 0: 160"></p>
                 <div class="date">
                   <small class="text-black-50">{{blog.date}}</small>
                 </div>

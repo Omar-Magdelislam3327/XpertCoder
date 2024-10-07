@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Projects } from 'src/app/modules/projects';
 import { ProjectsApiService } from 'src/app/services/projects-api.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-projects',
@@ -87,14 +88,25 @@ export class AdminProjectsComponent implements OnInit {
       this.projects = data;
     })
   }
-  remove(id: any) {
-    this.api.delete(id).subscribe({
-      next: () => {
-        this.fetchProjects();
-      },
-      error: (error) => {
-        console.log(error);
+  remove(id: number): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00816F',
+      cancelButtonColor: '#c4002b',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.api.delete(id).subscribe(() => {
+          this.fetchProjects();
+          Swal.fire(
+            'Deleted!',
+            'Your project has been deleted.',
+            'success'
+          );
+        });
       }
-    })
+    });
   }
 }

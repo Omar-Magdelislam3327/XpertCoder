@@ -1,3 +1,7 @@
+#portfolio {
+  min-height: 80vh;
+}
+
 .box {
   position: relative;
   background-color: whitesmoke;

@@ -22,6 +22,7 @@ import { Meta } from '@angular/platform-browser';
 export class PortfolioComponent {
   projects!: any;
   constructor(private api: ProjectsApiService, private meta: Meta) {
+    window.scrollTo(0, 0);
     this.api.get().subscribe((data: any) => {
       this.projects = data;
     });

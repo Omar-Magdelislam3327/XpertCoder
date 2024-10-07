@@ -35,7 +35,9 @@ export class JoinComponent {
     { value: 'Graphic Designer', label: 'Graphic Designer' },
   ];
 
-  constructor(private careersApiService: CareersApiService) { }
+  constructor(private careersApiService: CareersApiService) {
+    window.scrollTo(0, 0);
+  }
 
 
   handleFileInput(event: any): void {

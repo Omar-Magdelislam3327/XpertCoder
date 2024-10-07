@@ -47,6 +47,9 @@ import { JoinModule } from './userPanel/join/join.module';
 import { ContactModule } from './userPanel/contact/contact.module';
 import { BlogModule } from './userPanel/blog/blog.module';
 import { BlogDetailsModule } from './userPanel/blog-details/blog-details.module';
+import { EditorModule } from 'primeng/editor';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+import { StripHtmlPipePipe } from './pipes/strip-html-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -78,6 +81,7 @@ import { BlogDetailsModule } from './userPanel/blog-details/blog-details.module'
     AdminBlogEditComponent,
     AdminClientEditComponent,
     AdminLoginComponent,
+    StripHtmlPipePipe,
 
   ],
   imports: [
@@ -100,7 +104,9 @@ import { BlogDetailsModule } from './userPanel/blog-details/blog-details.module'
     JoinModule,
     ContactModule,
     BlogModule,
-    BlogDetailsModule
+    BlogDetailsModule,
+    EditorModule,
+    AnimateOnScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

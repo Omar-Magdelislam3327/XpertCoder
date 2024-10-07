@@ -14,24 +14,24 @@
             <img [src]="blog.image" class="img-fluid" alt="">
           </div>
           <div class="mt-3">
-            <p class="text-black-50">{{ blog.description }}</p>
+            <p class="text-black-50" [innerHTML]="blog.description"></p>
           </div>
         </div>
         <div class="col-12">
           <div class="title">
             <h3 class="fs-2 fw-bold text-black">Related Posts</h3>
             <div class="row">
-              <div class="col-lg-4 col-12 mt-3" *ngFor="let bloge of relatedBlogs">
-                <a [routerLink]="['/blog', bloge.id]" class="card text-decoration-none">
+              <div class="col-lg-4 col-12 mt-3" *ngFor="let blog of relatedBlogs">
+                <a [routerLink]="['/blog', blog.id]" class="card text-decoration-none">
                   <div class="imag">
-                    <img [src]="bloge.image" class="img-fluid" alt="">
+                    <img [src]="blog.image" class="img-fluid" alt="">
                   </div>
                   <div>
                     <div class="main p-3">
-                      <h4 class="my-3 text-black">{{bloge.title}}</h4>
-                      <p class="text-black-50">{{bloge.description | slice : 10 : 100 }}</p>
+                      <h4 class="my-3 text-black">{{blog.title}}</h4>
+                      <p class="text-black-50" [innerHTML]="blog.description | stripHtmlPipe | slice: 0: 160"></p>
                       <div class="date">
-                        <small class="text-black-50">{{bloge.date}}</small>
+                        <small class="text-black-50">{{blog.date}}</small>
                       </div>
                     </div>
                   </div>

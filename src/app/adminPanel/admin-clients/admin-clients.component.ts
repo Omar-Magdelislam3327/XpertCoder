@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Clients } from 'src/app/modules/clients';
 import { ClientsApiService } from 'src/app/services/clients-api.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-clients',
@@ -49,9 +50,25 @@ export class AdminClientsComponent implements OnInit {
       });
     }
   }
-  remove(id: any) {
-    this.api.delete(id).subscribe(() => {
-      this.loadClients();
+  remove(id: number): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00816F',
+      cancelButtonColor: '#c4002b',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.api.delete(id).subscribe(() => {
+          this.loadClients();
+          Swal.fire(
+            'Deleted!',
+            'Your client has been deleted.',
+            'success'
+          );
+        });
+      }
     });
   }
 }

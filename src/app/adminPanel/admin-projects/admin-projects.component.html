@@ -113,6 +113,7 @@
           <i class="fa-solid fa-trash" (click)="remove(project.id)"></i>
           <h5 class="card-title">{{ project.projectName }}</h5>
           <p class="card-text">Client Name: {{ project.clientName }}</p>
+          <p class="card-text">Project Type: {{ project.projectType }}</p>
           <i class="fa-solid fa-pen-to-square" routerLink="/admin/project-edit/{{project.id}}"></i>
         </div>
       </div>

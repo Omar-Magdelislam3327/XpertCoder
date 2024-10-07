@@ -47,7 +47,7 @@ export class HomeComponent {
     });
 
     this.blogApi.get().subscribe((data: any) => {
-      this.blogs = data;
+      this.blogs = data.slice(0, 3);
     });
   }
 
@@ -94,8 +94,6 @@ export class HomeComponent {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
       }
-      AOS.init({
-      });
     });
     this.meta.addTags([
       { name: 'description', content: 'XperTCoder offers top-notch web and mobile development solutions.' },

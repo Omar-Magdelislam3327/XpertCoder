@@ -2,23 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Blogs } from 'src/app/modules/blogs';
 import { BlogApiService } from 'src/app/services/blog-api.service';
-import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-blogs',
   templateUrl: './admin-blogs.component.html',
   styleUrls: ['./admin-blogs.component.css'],
-  animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('300ms ease-in', style({ opacity: 1 })),
-      ]),
-      transition(':leave', [
-        animate('300ms ease-out', style({ opacity: 0 })),
-      ]),
-    ]),
-  ],
 })
 export class AdminBlogsComponent implements OnInit {
   blogForm: FormGroup;
@@ -31,7 +20,7 @@ export class AdminBlogsComponent implements OnInit {
       title: ['', Validators.required],
       description: ['', Validators.required],
       image: ['', Validators.required],
-      type: ['', Validators.required]
+      type: ['', Validators.required],
     });
   }
 
@@ -40,41 +29,52 @@ export class AdminBlogsComponent implements OnInit {
   }
 
   loadBlogs(): void {
-    this.api.get().subscribe((data: any) => {
+    this.api.get().subscribe((data: Blogs[]) => {
       this.blogs = data;
     });
   }
 
   add(): void {
-    if (this.blogForm.valid) {
-      if (this.isEditMode && this.currentBlogId !== null) {
-        this.api.put(this.currentBlogId, this.blogForm.value).subscribe(() => {
-          this.resetForm();
-          this.loadBlogs();
-        });
-      } else {
-        this.api.post(this.blogForm.value).subscribe(() => {
-          this.resetForm();
-          this.loadBlogs();
-        });
-      }
-    }
-  }
-
-  remove(id: any) {
-    this.api.delete(id).subscribe(() => {
+    this.api.post(this.blogForm.value).subscribe(() => {
       this.loadBlogs();
+      this.resetForm();
     });
   }
+
+  remove(id: number): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00816F',
+      cancelButtonColor: '#c4002b',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.api.delete(id).subscribe(() => {
+          this.loadBlogs();
+          Swal.fire(
+            'Deleted!',
+            'Your blog has been deleted.',
+            'success'
+          );
+        });
+      }
+    });
+  }
+
   edit(blog: Blogs): void {
     this.isEditMode = true;
     this.currentBlogId = blog.id;
-    this.blogForm.patchValue(blog);
+    this.blogForm.patchValue({
+      title: blog.title,
+      description: blog.description,
+      image: blog.image,
+      type: blog.type,
+    });
   }
 
   resetForm(): void {
     this.blogForm.reset();
-    this.isEditMode = false;
-    this.currentBlogId = null;
   }
 }
