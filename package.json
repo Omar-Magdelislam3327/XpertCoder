@@ -26,7 +26,7 @@
     "ngx-quill": "^16.2.1",
     "primeicons": "^7.0.0",
     "primeng": "^16.9.1",
-    "quill": "^2.0.2",
+    "quill": "^1.3.7",
     "rxjs": "~7.8.0",
     "simple-datatables": "^9.1.0",
     "sweetalert2": "^11.14.1",
@@ -36,6 +36,7 @@
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^16.0.1",
     "@angular-devkit/build-angular": "^16.2.16",
     "@angular/cli": "^16.2.16",
     "@angular/compiler-cli": "^16.2.0",
@@ -49,6 +50,8 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "svg-inline-loader": "^0.8.2",
+    "svg-url-loader": "^8.0.0",
     "typescript": "4.9"
   }
 }
