@@ -6,8 +6,8 @@
     "XpertCoder": {
       "projectType": "application",
       "schematics": {},
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/XpertCoder",
+      "sourceRoot": "projects/XpertCoder/src",
       "prefix": "app",
       "architect": {
         "build": {
@@ -19,9 +19,7 @@
             "outputPath": "dist/xpert-coder",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -60,7 +58,7 @@
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": false,
+              "sourceMap": true,
               "namedChunks": true
             }
           },
@@ -82,7 +80,7 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "customWebpackConfig": {
-              "path": "./webpack.config.js"
+              "path": "/webpack.config.js"
             },
             "browserTarget": "XpertCoder:build"
           }
@@ -90,36 +88,32 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "main": "src/test.ts",
             "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
               "src/styles.css"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+          },
+          "lint": {
+            "builder": "@angular-eslint/builder:lint",
+            "options": {
+              "lintFilePatterns": [
+                "src/**/*.ts",
+                "src/**/*.html"
+              ]
+            }
           }
         }
       }
+    },
+    "cli": {
+      "root": "E:/XpertCoder/XpertCoder"
     }
-  },
-  "cli": {
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
   }
 }
