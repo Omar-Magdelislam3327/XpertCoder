@@ -6,8 +6,8 @@
     "XpertCoder": {
       "projectType": "application",
       "schematics": {},
-      "root": "projects/XpertCoder",
-      "sourceRoot": "projects/XpertCoder/src",
+      "root": "src",
+      "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
@@ -19,7 +19,9 @@
             "outputPath": "dist/xpert-coder",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -58,7 +60,7 @@
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
+              "sourceMap": false,
               "namedChunks": true
             }
           },
@@ -113,7 +115,11 @@
       }
     },
     "cli": {
-      "root": "E:/XpertCoder/XpertCoder"
+      "schematicCollections": [
+        "@angular-eslint/schematics"
+      ],
+      "root": "./",
+      "defaultProject": "XpertCoder"
     }
   }
 }
