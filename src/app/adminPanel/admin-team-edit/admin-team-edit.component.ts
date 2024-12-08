@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,7 +23,7 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
   ],
 })
 export class AdminTeamEditComponent {
-  id!: number;
+  id!: any;
   teamForm: FormGroup;
   team: Team = new Team();
 
@@ -30,45 +31,87 @@ export class AdminTeamEditComponent {
     private api: TeamApiService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router // Inject Router to navigate
+    private router: Router
   ) {
     this.id = this.route.snapshot.params['id'];
     this.teamForm = this.fb.group({
-      name: ['', Validators.required],
-      title: ['', Validators.required],
-      image: ['', Validators.required]
+      memberName: ['', Validators.required],
+      memberTitle: ['', Validators.required],
+      imageUrl: ['', Validators.required]
     });
 
-    // Load member data
-    this.api.getById(this.id).subscribe((data: Team) => {
+    this.api.getTeamById(this.id).subscribe((data: Team) => {
       this.team = data;
-      this.teamForm.patchValue(this.team); // Populate form with existing data
+      this.teamForm.patchValue(this.team);
+      console.log(data);
+
     });
   }
 
-  update() {
-    if (this.teamForm.valid) {
-      this.api.put(this.teamForm.value, this.id).subscribe(() => {
-        // Optionally redirect or show success message
-        this.router.navigate(['/admin/team']); // Redirect after update
-      });
+  selectedFile!: any;
+  fileSize: number | null = null;
+  fileTooLarge: boolean = false;
+  invalidFileType: boolean = false;
+  readonly maxFileSizeInMB: number = 50;
+  update(): void {
+    if (this.teamForm.invalid) {
+      console.log("Form is invalid");
+      return;
     }
-  }
 
-  deleteMember() {
-    this.api.delete(this.id).subscribe(() => {
-      this.router.navigate(['/admin/team']); // Redirect to admin/team after deletion
+    const formData = new FormData();
+
+    if (this.selectedFile) {
+      formData.append('imageUrl', this.selectedFile);
+      console.log('imageUrl appended:', this.selectedFile);
+    }
+
+    formData.append('memberName', this.teamForm.get('memberName')?.value || '');
+    formData.append('memberTitle', this.teamForm.get('memberTitle')?.value || '');
+
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
     });
+
+    this.api.updateTeam(this.id, formData).subscribe(
+      () => {
+        this.router.navigate(['/admin/team']);
+      },
+      (error) => {
+        console.error('Failed to update blog:', error);
+      }
+    );
   }
 
-  onImageChange(event: Event) {
-    const file = (event.target as HTMLInputElement).files![0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.teamForm.patchValue({ image: e.target!.result }); // Set the image value
-      };
-      reader.readAsDataURL(file);
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      console.log('File selected:', this.selectedFile);
+    }
+
+    if (this.selectedFile) {
+      const file = this.selectedFile;
+      this.fileSize = file.size / (1024 * 1024);
+      if (this.fileSize > this.maxFileSizeInMB) {
+        this.fileTooLarge = true;
+        this.invalidFileType = false;
+        console.log("File size is too large to be uploaded");
+        return;
+      } else {
+        this.fileTooLarge = false;
+      }
+      if (!file.type.startsWith('image/')) {
+        this.invalidFileType = true;
+        console.log("Invalid file type");
+        return;
+      } else {
+        this.invalidFileType = false;
+      }
     }
   }
+
+
 }

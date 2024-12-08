@@ -22,12 +22,12 @@ import { Meta } from '@angular/platform-browser';
 })
 export class AboutComponent {
   team!: any;
-  clients!: any;
+  clients!: any[];
   constructor(private teamApi: TeamApiService, private clientApi: ClientsApiService, private meta: Meta) {
-    this.teamApi.get().subscribe((data: any) => {
+    this.teamApi.getTeams().subscribe((data: any) => {
       this.team = data;
     });
-    this.clientApi.get().subscribe((data: any) => {
+    this.clientApi.getClients().subscribe((data: any) => {
       this.clients = data;
     });
   }

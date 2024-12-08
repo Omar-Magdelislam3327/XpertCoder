@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { CareersApiService } from 'src/app/services/careers-api.service';
 import { Careers } from 'src/app/modules/careers';
-import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import { trigger, transition, style, animate } from '@angular/animations';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-join',
@@ -19,63 +21,118 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
     ]),
   ],
 })
-export class JoinComponent {
-  career: Careers = new Careers();
-  uploadedCVUrl: string = '';
-  enabledCategories: string[] = [];
+export class JoinComponent implements OnInit {
+  joinForm!: FormGroup;
+  selectedFile: any | null = null;
+  fileTooLarge = false;
+  invalidFileType = false;
 
-  jobCategories = [
-    { value: 'Frontend Developer', label: 'Frontend Developer' },
-    { value: 'Backend Developer', label: 'Backend Developer' },
-    { value: 'Flutter Developer', label: 'Flutter Developer' },
-    { value: 'UI/UX Designer', label: 'UI/UX Designer' },
-    { value: 'Sales', label: 'Sales' },
-    { value: 'e-marketer', label: 'e-marketer' },
-    { value: 'Video Editor', label: 'Video Editor' },
-    { value: 'Graphic Designer', label: 'Graphic Designer' },
-  ];
-
-  constructor(private careersApiService: CareersApiService) {
+  constructor(private careersApiService: CareersApiService, private fb: FormBuilder) {
     window.scrollTo(0, 0);
   }
 
-
-  handleFileInput(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.career.cv = file.name;
-    }
+  ngOnInit(): void {
+    this.joinForm = this.fb.group({
+      Name: ['', Validators.required],
+      Email: ['', [Validators.required]],
+      Phone: ['', [Validators.required]],
+      Salary: ['', Validators.required],
+      Experience: ['', Validators.required],
+      File: ['', Validators.required],
+      Title: ['', Validators.required],
+    });
   }
 
-  submitApplication() {
-    if (this.validateForm()) {
-      this.careersApiService.post(this.career).subscribe({
-        next: (response) => {
-          console.log('Application submitted successfully:', response);
-          location.reload();
-        },
-        error: (error) => {
-          console.log('Error submitting application:', error);
-        },
-      });
+  onSubmit(): void {
+    if (this.joinForm.invalid || this.fileTooLarge || this.invalidFileType) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Please enter valid data in all fields',
+        icon: 'error',
+        confirmButtonText: 'Retry',
+        confirmButtonColor: '#00816F',
+      })
+      return;
+    }
+
+    const formData = new FormData();
+
+    if (this.selectedFile) {
+      formData.append('File', this.selectedFile);
     } else {
-      console.log('Form is invalid');
+      Swal.fire({
+        title: 'Error',
+        text: 'Please select a valid file type and a file name to upload to the server',
+        icon: 'error',
+        confirmButtonText: 'Okay',
+        confirmButtonColor: '#00816F',
+      })
+      return;
     }
-  }
 
-  validateForm(): boolean {
-    return (
-      !!this.career.title &&
-      !!this.career.name &&
-      !!this.career.email &&
-      !!this.career.phone &&
-      !!this.career.salary &&
-      !!this.career.experience &&
-      !!this.career.cv
+    formData.append('Name', this.joinForm.get('Name')?.value || '');
+    formData.append('Email', this.joinForm.get('Email')?.value || '');
+    formData.append('Phone', this.joinForm.get('Phone')?.value || '');
+    formData.append('Salary', this.joinForm.get('Salary')?.value || '');
+    formData.append('Experience', this.joinForm.get('Experience')?.value || '');
+    formData.append('Title', this.joinForm.get('Title')?.value || '');
+
+    this.careersApiService.postCareers(formData).subscribe(
+      (response) => {
+        Swal.fire({
+          title: 'Message sent',
+          text: 'Thank you for your application. We will get back to you shortly.',
+          icon: 'success',
+          confirmButtonText: 'Okay',
+          confirmButtonColor: '#00816F',
+        })
+        this.resetForm();
+        console.log("Sent message", response);
+
+      },
+      (error) => {
+        console.log(error);
+        Swal.fire({
+          title: 'Error',
+          text: 'There was an error sending your application. Please try again later.',
+          icon: 'error',
+          confirmButtonText: 'Retry',
+          confirmButtonColor: '#00816F',
+        })
+      }
     );
   }
 
-  isSubmitEnabled(): boolean {
-    return this.validateForm(); // Button is enabled if form is valid
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      const fileSize = file.size / (1024 * 1024);
+      if (fileSize > 5) {
+        this.fileTooLarge = true;
+        this.invalidFileType = false;
+        return;
+      } else {
+        this.fileTooLarge = false;
+      }
+
+      if (!file.type.startsWith('application/pdf')) {
+        this.invalidFileType = true;
+        return;
+      } else {
+        this.invalidFileType = false;
+      }
+
+      this.selectedFile = file;
+    }
   }
+
+  resetForm(): void {
+    this.joinForm.reset();
+    this.selectedFile = null;
+    this.fileTooLarge = false;
+    this.invalidFileType = false;
+  }
+
 }

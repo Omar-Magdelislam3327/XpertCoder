@@ -1,3 +1,4 @@
+<!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
 <app-navbar></app-navbar>
 <main id="join" @fadeInOut>
   <section class="section1 py-5 px-3">
@@ -14,48 +15,71 @@
             </p>
           </div>
         </div>
-        <!-- Job application form -->
-        <form (ngSubmit)="submitApplication()">
+        <form [formGroup]="joinForm" (ngSubmit)="onSubmit()">
           <h3>Get your job now in XpertCoder</h3>
+
           <div class="row mb-5 job-categories">
-            <!-- Job category selection -->
-            <div class="col-md-3 mt-3" *ngFor="let job of jobCategories">
-              <input type="radio" name="job-category" [(ngModel)]="career.title" [value]="job.value" required>
-              <label class="job-option">{{ job.label }}</label>
+            <div class="col-md-3 mt-3">
+              <input type="radio" formControlName="Title" value="FrontEndDeveloper" required>
+              <label class="job-option">Front End Developer</label>
+            </div>
+            <div class="col-md-3 mt-3">
+              <input type="radio" formControlName="Title" value="BackEndDeveloper" required>
+              <label class="job-option">Back End Developer</label>
+            </div>
+            <div class="col-md-3 mt-3">
+              <input type="radio" formControlName="Title" value="FlutterDeveloper" required>
+              <label class="job-option">Flutter Developer</label>
+            </div>
+            <div class="col-md-3 mt-3">
+              <input type="radio" formControlName="Title" value="UiUxDesign" required>
+              <label class="job-option">Ui / Ux Designer</label>
+            </div>
+            <div class="col-md-3 mt-3">
+              <input type="radio" formControlName="Title" value="Sales" required>
+              <label class="job-option">Sales</label>
+            </div>
+            <div class="col-md-3 mt-3">
+              <input type="radio" formControlName="Title" value="EMarketer" required>
+              <label class="job-option">E Marketer</label>
+            </div>
+            <div class="col-md-3 mt-3">
+              <input type="radio" formControlName="Title" value="VideoEditor" required>
+              <label class="job-option">Video Editor</label>
+            </div>
+            <div class="col-md-3 mt-3">
+              <input type="radio" formControlName="Title" value="GraphicDesigner" required>
+              <label class="job-option">Graphic Designer</label>
             </div>
           </div>
 
-          <!-- Form inputs for user data -->
           <div class="mb-5">
-            <input type="text" class="form-control" id="name" placeholder="Your Name" [(ngModel)]="career.name"
-              name="name" required>
+            <input type="text" class="form-control" id="name" placeholder="Your Name" formControlName="Name" required>
           </div>
           <div class="mb-5">
-            <input type="email" class="form-control" id="email" placeholder="Your Email" [(ngModel)]="career.email"
-              name="email" required>
+            <input type="email" class="form-control" id="email" placeholder="Your Email" formControlName="Email"
+              required>
           </div>
           <div class="mb-5">
-            <input type="tel" class="form-control" id="phone" placeholder="Your Phone" [(ngModel)]="career.phone"
-              name="phone" required>
+            <input type="tel" class="form-control" id="phone" placeholder="Your Phone" formControlName="Phone" required>
           </div>
           <div class="mb-5">
-            <input type="number" class="form-control" id="salary" placeholder="Expected Salary"
-              [(ngModel)]="career.salary" name="salary" required>
+            <input type="number" class="form-control" id="salary" placeholder="Expected Salary" formControlName="Salary"
+              required>
           </div>
           <div class="mb-5">
             <input type="number" class="form-control" id="exp" placeholder="Years Of Experience"
-              [(ngModel)]="career.experience" name="experience" required>
+              formControlName="Experience" required>
           </div>
           <div class="mb-5 custom-file-upload">
             <label for="resume" class="upload-label">
               <i class="fa fa-paperclip"></i> Upload your CV
             </label>
-            <input type="file" id="resume" class="form-control-file" (change)="handleFileInput($event)" accept=".pdf"
-              required>
+            <input formControlName="File" type="file" id="resume" class="form-control-file"
+              (change)="onFileSelected($event)" accept=".pdf" required>
           </div>
 
-          <!-- Submit button -->
-          <button type="submit" class="btn-xpert" [disabled]="!isSubmitEnabled()">Submit Application</button>
+          <button type="submit" class="btn-xpert" [disabled]="joinForm.invalid">Submit Application</button>
         </form>
       </div>
     </div>

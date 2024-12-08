@@ -8,25 +8,33 @@
       <div class="row info">
         <div class="form-group mt-3 col-lg-6">
           <label for="name">Client Name</label>
-          <input type="text" class="form-control shadow-none" id="name" formControlName="name" required>
+          <input type="text" class="form-control shadow-none" id="name" formControlName="Name" required>
         </div>
         <div class="form-group mt-3 col-lg-6">
           <label for="title">Client Title</label>
-          <input type="text" class="form-control shadow-none" id="title" formControlName="title" required>
+          <input type="text" class="form-control shadow-none" id="title" formControlName="Title" required>
         </div>
       </div>
 
       <div class="row clientInfo">
         <div class="form-group mt-3 col-lg-6">
-          <label for="logo">Client Logo</label>
-          <input type="file" class="form-control shadow-none" id="logo" formControlName="logo" required>
+          <label for="Image">Client Logo</label>
+          <input type="file" (change)="onFileSelected($event)" class="form-control shadow-none" id="Image"
+            formControlName="Image" required>
         </div>
 
         <div class="form-group mt-3 col-lg-6">
           <label for="review">Client Review</label>
-          <textarea class="form-control shadow-none" id="review" formControlName="review" required></textarea>
+          <textarea class="form-control shadow-none" id="review" formControlName="Review" required></textarea>
         </div>
 
+      </div>
+      <div class="row clientInfo">
+        <div class="form-group mt-3 col-lg-6">
+          <label for="number">Client Rating</label>
+          <input type="number" class="form-control shadow-none" id="number" placeholder="Enter client number"
+            formControlName="Rating" required>
+        </div>
       </div>
 
       <div class="text-center mt-3">

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Projects, Feature } from 'src/app/modules/projects';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 import { ProjectsApiService } from 'src/app/services/projects-api.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Meta, Title } from '@angular/platform-browser';
@@ -24,61 +23,51 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class ProjectDetailsComponent implements OnInit {
   id: any;
-  allProjects = new Projects();
-  relatedProjects: Projects[] = [];
-  projectForm: FormGroup;
+  allProjects: any;
+  relatedProjects: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private projectsService: ProjectsApiService,
-    private fb: FormBuilder,
     private meta: Meta,
-    private titleService: Title
+    private titleService: Title,
+    private router: Router
   ) {
     window.scrollTo(0, 0);
-    this.projectForm = this.fb.group({
-      projectName: [''],
-      projectDescription: [''],
-      clientName: [''],
-    });
   }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.getProjectDetails(this.id);
+    this.route.params.subscribe((params) => {
+      this.id = params['id'];
+      this.getProjectDetails(this.id);
+    });
+
     this.meta.addTags([
-      { name: 'description', content: 'Check out XpertCoder\'s portfolio showcasing successful web and mobile development projects across various industries.' },
-      { name: 'keywords', content: 'XpertCoder portfolio, web development projects, mobile app development examples, case studies , ui/ux design , software testing' },
+      { name: 'description', content: 'XpertCoder portfolio showcasing successful web and mobile development projects.' },
+      { name: 'keywords', content: 'web development, mobile app development, portfolio, case studies, ui/ux design' },
       { name: 'robots', content: 'index, follow' }
     ]);
   }
 
-  getProjectDetails(id: string) {
-    this.projectsService.getById(id).subscribe(data => {
+  getProjectDetails(id: any) {
+    this.projectsService.getProjectById(id).subscribe((data: any) => {
       this.allProjects = data;
-      this.titleService.setTitle(`XpertCoder Project  | ${this.allProjects.projectName}`);
+      this.titleService.setTitle(`XpertCoder Project | ${this.allProjects.projectName}`);
       this.meta.updateTag({ name: 'description', content: this.allProjects.projectDescription });
-      this.projectForm.patchValue({
-        projectName: data.projectName,
-        projectDescription: data.projectDescription,
-        clientName: data.clientName,
-      });
-      this.getRelatedProjects(data.projectType);
+      this.getRelatedProjects(this.allProjects.projectType);
     });
   }
 
   getRelatedProjects(type: string) {
-    this.projectsService.get().subscribe(data => {
-      this.relatedProjects = data.filter(project => project.projectType === type && project.id !== this.allProjects.id);
+    this.projectsService.getProjects().subscribe((data: any) => {
+      this.relatedProjects = data.data.filter((project: any) => project.projectType === type && project.id !== this.allProjects.id);
     });
   }
 
-  submitForm() {
-    if (this.projectForm.valid) {
-      console.log(this.projectForm.value);
-    }
+  navigateToRelatedProject(id: string) {
+    this.router.navigate([`/project/${id}`]);
+    window.scrollTo(0, 0);
   }
-
   onMouseMove(event: MouseEvent) {
     const card = event.currentTarget as HTMLElement;
     const cardRect = card.getBoundingClientRect();

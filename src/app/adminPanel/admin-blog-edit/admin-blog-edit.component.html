@@ -7,40 +7,54 @@
 
       <div class="form-group mt-3">
         <label for="title">Blog Title</label>
-        <input type="text" class="form-control shadow-none" id="title" formControlName="title" required>
+        <input type="text" class="form-control shadow-none" id="title" formControlName="Title" required>
+        <div *ngIf="blogForm.get('Title')?.invalid && blogForm.get('Title')?.touched" class="text-danger">
+          Blog Title is required
+        </div>
       </div>
 
       <div class="row">
         <div class="form-group mt-3 col-lg-6 col-12">
           <label for="image">Blog Image</label>
-          <input type="file" class="form-control shadow-none" id="image" formControlName="image">
+          <input type="file" (change)="onFileSelected($event)" class="form-control shadow-none" id="Image"
+            formControlName="Image" required>
 
+          <div *ngIf="fileTooLarge" class="text-danger">
+            File size is too large. Max size is {{ maxFileSizeInMB }} MB.
+          </div>
+          <div *ngIf="invalidFileType" class="text-danger">
+            Invalid file type. Please upload an image file.
+          </div>
         </div>
         <div class="form-group mt-3 col-lg-6 col-12">
           <label for="type">Blog Type</label>
-          <select class="form-select shadow-none" id="type" formControlName="type">
-            <option value="" disabled>Select Blog Type</option>
-            <option value="all">All</option>
-            <option value="Web Development">Web Development</option>
-            <option value="Mobile Development">Mobile Development</option>
-            <option value="UI/UX">UI/UX</option>
-            <option value="Software Testing">Software Testing</option>
+          <select class="form-select shadow-none" id="type" formControlName="Type">
+            <option value="" disabled selected>Select Blog Type</option>
+            <option value="Web">Web Development</option>
+            <option value="Mobile">Mobile Development</option>
+            <option value="Ui">UI/UX</option>
+            <option value="Testing">Software Testing</option>
           </select>
+          <div *ngIf="blogForm.get('Type')?.invalid && blogForm.get('Type')?.touched" class="text-danger">
+            Blog Type is required
+          </div>
         </div>
       </div>
 
       <div class="form-group mt-3">
         <label for="description">Blog Description</label>
         <div class="card">
-          <p-editor id="description" formControlName="description" [style]="{ height: '300px' }">
+          <p-editor id="description" formControlName="Description" [style]="{ height: '300px' }">
           </p-editor>
+          <div *ngIf="blogForm.get('Description')?.invalid && blogForm.get('Description')?.touched" class="text-danger">
+            Blog Description is required
+          </div>
         </div>
       </div>
 
       <div class="text-center mt-3">
-        <button type="button" class="btn-xpert-success shadow-none" [disabled]="blogForm.invalid"
-          (click)="update()">Update
-          Blog</button>
+        <button type="button" class="btn-xpert-success shadow-none"
+          [disabled]="blogForm.invalid || fileTooLarge || invalidFileType" (click)="update()">Update Blog</button>
         <button type="button" class="btn-xpert-danger ms-3 shadow-none" (click)="blogForm.reset()">Reset</button>
       </div>
 

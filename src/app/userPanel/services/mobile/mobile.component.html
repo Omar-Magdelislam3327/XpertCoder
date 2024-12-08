@@ -140,12 +140,12 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="projects.length > 0 else noMobile">
         <div class="col-12 mt-4" *ngFor="let project of projects">
           <div routerLink="/project/{{project.id}}" class="row box">
             <div class="col-lg-6 p-lg-3 p-0">
               <div class="imag img-wrapper">
-                <img [src]="project.projectImage" class="img-fluid" alt="">
+                <img [src]="project.image" class="img-fluid" alt="">
               </div>
             </div>
 
@@ -158,8 +158,8 @@
                 <div class="d-flex flex-column gap-5 mt-3">
                   <div class="d-flex flex-wrap gap-3">
                     <div class="country">
-                      <!-- <img src="../../../assets/vendors/imgs/egypt.webp" width="30" class="img-fluid" alt=""> -->
-                      {{project.clientCountry}}
+                      <img src="{{project.cLient.country.image}}" width="30" class="img-fluid" alt="">
+                      {{project.cLient.country.name}}
                     </div>
                     <div class="type">
                       {{project.projectType}}
@@ -169,7 +169,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="btn-conteiner">
+                <div class="btn-conteiner d-none d-lg-block">
                   <a class="btn-content">
                     <span class="icon-arrow">
                       <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1"
@@ -205,3 +205,8 @@
 
 </main>
 <app-footer></app-footer>
+<ng-template #noMobile>
+  <div class="alert mt-3 alert-danger">
+    <p class="text-center p-0 m-0 text-danger">No mobile projects available at the moment.</p>
+  </div>
+</ng-template>

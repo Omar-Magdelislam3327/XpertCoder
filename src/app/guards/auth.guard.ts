@@ -9,8 +9,8 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router) { }
 
   canActivate(): boolean {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
+    const token = localStorage.getItem('token');
+    if (token) {
       return true;
     } else {
       this.router.navigate(['/xc-login']);
@@ -18,3 +18,4 @@ export class AuthGuard implements CanActivate {
     }
   }
 }
+

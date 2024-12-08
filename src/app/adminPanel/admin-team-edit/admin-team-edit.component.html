@@ -8,24 +8,35 @@
       <div class="row info">
         <div class="form-group mt-3 col-lg-6">
           <label for="name">Member Name</label>
-          <input type="text" class="form-control shadow-none" name="name" id="name" formControlName="name" required>
+          <input type="text" class="form-control shadow-none" name="name" id="name" formControlName="memberName"
+            required>
         </div>
         <div class="form-group mt-3 col-lg-6">
           <label for="title">Member Title</label>
-          <input type="text" class="form-control shadow-none" name="title" id="title" formControlName="title" required>
+          <input type="text" class="form-control shadow-none" name="title" id="title" formControlName="memberTitle"
+            required>
         </div>
       </div>
 
       <div class="form-group mt-3">
         <label for="image">Member Image</label>
-        <input type="file" class="form-control shadow-none" id="image" (change)="onImageChange($event)" required>
-        <img *ngIf="teamForm.get('image')?.value" [src]="teamForm.get('image')?.value" alt="Current Image" class="mt-2"
-          style="width: 100px; height: auto;" />
+        <input type="file" (change)="onFileSelected($event)" class="form-control shadow-none" id="Image"
+          formControlName="imageUrl" required>
+
+        <div *ngIf="fileTooLarge" class="text-danger">
+          File size is too large. Max size is {{ maxFileSizeInMB }} MB.
+        </div>
+        <div *ngIf="invalidFileType" class="text-danger">
+          Invalid file type. Please upload an image file.
+        </div>
+        <img *ngIf="teamForm.get('imageUrl')?.value" [src]="teamForm.get('imageUrl')?.value" alt="Current Image"
+          class="mt-2" style="width: 100px; height: auto;" />
       </div>
 
       <div class="text-center mt-3">
-        <button type="submit" class="btn-xpert-success shadow-none">Update Member</button>
-        <button type="button" class="btn-xpert-danger ms-3 shadow-none" (click)="deleteMember()">Delete</button>
+        <button type="submit" [disabled]="teamForm.invalid" class="btn-xpert-success shadow-none">Update Member</button>
+        <!-- <button type="button" class="btn-xpert-danger ms-3 shadow-none" (click)="deleteMember()">Delete</button> -->
+        <button type="button" class="btn-xpert-danger ms-3 shadow-none" (click)="teamForm.reset()">Reset</button>
       </div>
 
     </form>

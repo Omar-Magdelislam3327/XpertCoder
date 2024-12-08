@@ -1,12 +1,13 @@
+<!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
 <div class="container p-5" @fadeInOut>
   <div class="row">
-    <form [formGroup]="projectForm" (ngSubmit)="updateProject()" class="container mt-4">
+    <form [formGroup]="projectForm" (ngSubmit)="update()" class="container mt-4">
       <h2 class="mb-4">Edit Project</h2>
 
       <div class="mb-3">
         <label for="projectName" class="form-label">Project Name:</label>
-        <input id="projectName" formControlName="projectName" class="form-control shadow-none" />
-        <div *ngIf="projectForm.get('projectName')?.invalid && projectForm.get('projectName')?.touched"
+        <input id="projectName" formControlName="ProjectName" class="form-control shadow-none" />
+        <div *ngIf="projectForm.get('projectName')?.invalid && projectForm.get('ProjectName')?.touched"
           class="text-danger">
           Project Name is required.
         </div>
@@ -14,73 +15,54 @@
 
       <div class="mb-3">
         <label for="projectDescription" class="form-label">Project Description:</label>
-        <textarea id="projectDescription" formControlName="projectDescription" class="form-control shadow-none"
+        <textarea id="projectDescription" formControlName="ProjectDescription" class="form-control shadow-none"
           rows="4"></textarea>
-        <div *ngIf="projectForm.get('projectDescription')?.invalid && projectForm.get('projectDescription')?.touched"
+        <div *ngIf="projectForm.get('projectDescription')?.invalid && projectForm.get('ProjectDescription')?.touched"
           class="text-danger">
           Project Description is required.
         </div>
       </div>
 
       <div class="mb-3">
-        <label for="projectType" class="form-label">Project Type:</label>
-        <input id="projectType" formControlName="projectType" class="form-control shadow-none" />
-        <div *ngIf="projectForm.get('projectType')?.invalid && projectForm.get('projectType')?.touched"
+        <label for="ProjectType" class="form-label">Project Type:</label>
+        <select id="ProjectType" formControlName="ProjectType" class="form-select shadow-none">
+          <option value="">Select project type</option>
+          <option value="Web">Web Development</option>
+          <option value="Mobile">Mobile Development</option>
+          <option value="Ui">UI/UX Design</option>
+          <option value="SoftwareTesting">Software Testing</option>
+        </select>
+        <div *ngIf="projectForm.get('ProjectType')?.invalid && projectForm.get('ProjectType')?.touched"
           class="text-danger">
           Project Type is required.
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-lg-3">
-          <div class="mb-3">
-            <label for="clientName" class="form-label">Client Name:</label>
-            <input id="clientName" formControlName="clientName" class="form-control shadow-none" />
-            <div *ngIf="projectForm.get('clientName')?.invalid && projectForm.get('clientName')?.touched"
-              class="text-danger">
-              Client Name is required.
-            </div>
+      <div class="row my-2">
+        <!-- <div class="col-lg-6">
+          <div class="form-group">
+            <label for="client">Select Client</label>
+            <select class="form-select shadow-none" formControlName="cLientId" required>
+              <option value="" disabled>Select Client</option>
+              <option *ngFor="let client of clients" [value]="client.id">{{ client.name }}</option>
+            </select>
           </div>
-
-        </div>
-        <div class="col-lg-3">
-          <div class="mb-3">
-            <label for="clientCountry" class="form-label">Client Country:</label>
-            <input id="clientCountry" formControlName="clientCountry" class="form-control shadow-none" />
-            <div *ngIf="projectForm.get('clientCountry')?.invalid && projectForm.get('clientCountry')?.touched"
-              class="text-danger">
-              Client Country is required.
-            </div>
-          </div>
-        </div>
-
-        <div class="mb-3 col-lg-3">
-          <label for="clientLogo" class="form-label">Client Logo:</label>
-          <input id="clientLogo" formControlName="clientLogo" class="form-control shadow-none" />
-          <div *ngIf="projectForm.get('clientLogo')?.invalid && projectForm.get('clientLogo')?.touched"
+        </div> -->
+        <div class="col-lg-12">
+          <label for="ClientIndustry" class="form-label">Client Industry:</label>
+          <input id="ClientIndustry" formControlName="ClientIndustry" class="form-control shadow-none" />
+          <div *ngIf="projectForm.get('ClientIndustry')?.invalid && projectForm.get('ClientIndustry')?.touched"
             class="text-danger">
-            Client Logo is required.
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="mb-3">
-            <label for="clientIndustry" class="form-label">Client Industry:</label>
-            <input id="clientIndustry" formControlName="clientIndustry" class="form-control shadow-none" />
-            <div *ngIf="projectForm.get('clientIndustry')?.invalid && projectForm.get('clientIndustry')?.touched"
-              class="text-danger">
-              Client Industry is required.
-            </div>
+            Client Industry is required.
           </div>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-6">
           <div class="mb-3">
             <label for="projectDuration" class="form-label">Project Duration (in months):</label>
-            <input type="number" id="projectDuration" formControlName="projectDuration"
-              class="form-control shadow-none" />
+            <input type="number" id="projectDuration" formControlName="Duration" class="form-control shadow-none" />
             <div *ngIf="projectForm.get('projectDuration')?.invalid && projectForm.get('projectDuration')?.touched"
               class="text-danger">
               Project Duration is required.
@@ -88,52 +70,33 @@
           </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-lg-6">
           <div class="mb-3">
             <label for="members" class="form-label">Number of Members:</label>
-            <input type="number" id="members" formControlName="members" class="form-control shadow-none" />
+            <input type="number" id="members" formControlName="Members" class="form-control shadow-none" />
             <div *ngIf="projectForm.get('members')?.invalid && projectForm.get('members')?.touched" class="text-danger">
               Members count is required.
             </div>
           </div>
         </div>
 
-        <div class="col-lg-4">
-          <div class="mb-3">
-            <label for="clientRating" class="form-label">Client Rating:</label>
-            <input type="number" id="clientRating" formControlName="clientRating" class="form-control shadow-none" />
-            <div *ngIf="projectForm.get('clientRating')?.invalid && projectForm.get('clientRating')?.touched"
-              class="text-danger">
-              Client Rating is required.
-            </div>
-          </div>
-        </div>
-
       </div>
-      <div formArrayName="features" class="mb-3">
-        <label class="form-label">Features:</label>
-        <div *ngFor="let feature of features.controls; let i = index" [formGroupName]="i" class="mb-2">
-          <input formControlName="featureName" class="form-control shadow-none" placeholder="Feature Name" />
-          <button type="button" (click)="removeFeature(i)" class="btn-xpert-danger btn-sm mt-1">Remove</button>
+
+      <div class="row mt-1">
+        <label for="Features" class="form-label">Project Features</label>
+        <p-editor id="features" formControlName="Features" [style]="{ height: '300px' }">
+        </p-editor>
+        <div *ngIf="projectForm.get('Features')?.invalid && projectForm.get('Features')?.touched" class="text-danger">
+          Features is required.
         </div>
-        <button type="button" (click)="addFeature()" class="btn btn-primary">Add Feature</button>
       </div>
 
       <div class="mb-3">
-        <label for="projectImage" class="form-label">Project Image:</label>
-        <input id="projectImage" formControlName="projectImage" class="form-control shadow-none" />
-        <div *ngIf="projectForm.get('projectImage')?.invalid && projectForm.get('projectImage')?.touched"
-          class="text-danger">
+        <label for="Image" class="form-label">Project Image:</label>
+        <input type="file" (change)="onFileSelected($event)" class="form-control shadow-none" id="Image"
+          formControlName="Image" required>
+        <div *ngIf="projectForm.get('Image')?.invalid && projectForm.get('Image')?.touched" class="text-danger">
           Project Image is required.
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label for="clientReview" class="form-label">Client Review:</label>
-        <textarea id="clientReview" formControlName="clientReview" class="form-control shadow-none" rows="4"></textarea>
-        <div *ngIf="projectForm.get('clientReview')?.invalid && projectForm.get('clientReview')?.touched"
-          class="text-danger">
-          Client Review is required.
         </div>
       </div>
 

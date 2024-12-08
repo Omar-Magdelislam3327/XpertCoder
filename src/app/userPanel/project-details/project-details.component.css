@@ -61,7 +61,8 @@
   }
 
   .box:hover {
-    background-color: rgb(211, 210, 210);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.10);
+
   }
 
   .img-wrapper {
@@ -69,6 +70,10 @@
     position: relative;
     border-radius: 16px;
     transition: transform 0.3s, box-shadow 0.3s ease-in-out;
+
+    img {
+      max-height: 270px;
+    }
   }
 
   @media (max-width:768px) {
@@ -115,10 +120,11 @@
   }
 
   .country,
-  .type {
+  .type,
+  .industry {
     padding: 10px;
-    background-color: #9a9ead;
-    color: white;
+    background-color: #eeeeee;
+    color: black;
     border-radius: 8px;
   }
 
@@ -131,6 +137,11 @@
 .btn-conteiner {
   display: flex;
   justify-content: end;
+  align-items: end;
+  text-align: end;
+  position: absolute;
+  bottom: 10px;
+  right: 5px;
 
   .btn-content {
     display: flex;

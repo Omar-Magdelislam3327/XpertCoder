@@ -25,7 +25,7 @@ import { AdminCareersComponent } from './adminPanel/admin-careers/admin-careers.
 import { AdminMessagesComponent } from './adminPanel/admin-messages/admin-messages.component';
 import { FormsModule } from '@angular/forms';
 import { AdminTeamComponent } from './adminPanel/admin-team/admin-team.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BlogDetailsComponent } from './userPanel/blog-details/blog-details.component';
 import { AdminBlogsComponent } from './adminPanel/admin-blogs/admin-blogs.component';
@@ -50,6 +50,11 @@ import { BlogDetailsModule } from './userPanel/blog-details/blog-details.module'
 import { EditorModule } from 'primeng/editor';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { StripHtmlPipePipe } from './pipes/strip-html-pipe.pipe';
+import { AdminOpinionsComponent } from './adminPanel/admin-opinions/admin-opinions.component';
+import { AdminOpinionsEditComponent } from './adminPanel/admin-opinions-edit/admin-opinions-edit.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { SpinnerInterceptor } from './interceptor/spinner.interceptor';
 
 @NgModule({
   declarations: [
@@ -82,6 +87,8 @@ import { StripHtmlPipePipe } from './pipes/strip-html-pipe.pipe';
     AdminClientEditComponent,
     AdminLoginComponent,
     StripHtmlPipePipe,
+    AdminOpinionsComponent,
+    AdminOpinionsEditComponent,
 
   ],
   imports: [
@@ -106,9 +113,17 @@ import { StripHtmlPipePipe } from './pipes/strip-html-pipe.pipe';
     BlogModule,
     BlogDetailsModule,
     EditorModule,
-    AnimateOnScrollModule
+    AnimateOnScrollModule,
+    NgxPaginationModule,
+    NgxSpinnerModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

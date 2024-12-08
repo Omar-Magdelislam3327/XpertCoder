@@ -1,9 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectsApiService } from 'src/app/services/projects-api.service';
 import { Projects, Feature } from 'src/app/modules/projects';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import { ClientsApiService } from 'src/app/services/clients-api.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -24,30 +30,28 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
 })
 export class AdminProjectEditComponent implements OnInit {
   projectForm: FormGroup;
-  projectId!: string | null;
+  projectId!: any | null;
   i!: number;
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private projectsApiService: ProjectsApiService,
-    private router: Router
+    private router: Router,
+    private clientApi: ClientsApiService
   ) {
     this.projectForm = this.fb.group({
-      projectName: ['', Validators.required],
-      projectDescription: ['', Validators.required],
-      projectType: ['', Validators.required],
-      clientCountry: ['', Validators.required],
-      clientIndustry: ['', Validators.required],
-      clientLogo: ['', Validators.required],
-      clientName: ['', Validators.required],
-      projectDuration: [null, Validators.required],
-      members: [null, Validators.required],
-      clientRating: [null, Validators.required],
-      features: this.fb.array([]),
-      projectImage: ['', Validators.required],
-      clientReview: ['', Validators.required]
+      ProjectName: ['', Validators.required],
+      ProjectDescription: ['', Validators.required],
+      ProjectType: ['', Validators.required],
+      CLientId: ['', Validators.required],
+      ClientIndustry: ['', Validators.required],
+      Duration: ['', Validators.required],
+      Members: ['', Validators.required],
+      Features: ['', Validators.required],
+      Image: [null, Validators.required],
     });
   }
+
 
   ngOnInit(): void {
     this.projectId = this.route.snapshot.paramMap.get('id');
@@ -55,63 +59,109 @@ export class AdminProjectEditComponent implements OnInit {
     if (this.projectId) {
       this.loadProject(this.projectId);
     }
+    this.fetchClients()
   }
 
-  loadProject(id: string): void {
-    this.projectsApiService.getById(id).subscribe((project: Projects) => {
-      this.populateForm(project);
-    }, error => {
-      console.error('Error fetching project data:', error);
-    });
+  loadProject(id: number): void {
+    this.projectsApiService.getProjectById(id).subscribe(
+      (project: any) => {
+        console.log('Loaded Project data:', project);
+        console.log("Project Features:", project.features);
+
+        if (project) {
+          this.projectForm.patchValue({
+            ProjectName: project.projectName,
+            ProjectDescription: project.projectDescription,
+            ProjectType: project.projectType,
+            CLientId: project.cLient.id,
+            ClientIndustry: project.clientIndustry,
+            Duration: project.duration,
+            Members: project.members,
+            Image: project.image,
+            Features: project.features,
+          });
+        }
+        this.projectForm.get('Features')!.setValue(project.features || '');
+      },
+      (error: any) => {
+        console.error('Failed to load Project:', error);
+      }
+    );
   }
 
-  populateForm(project: Projects): void {
-    this.projectForm.patchValue({
-      projectName: project.projectName,
-      projectDescription: project.projectDescription,
-      projectType: project.projectType,
-      clientCountry: project.clientCountry,
-      clientIndustry: project.clientIndustry,
-      clientLogo: project.clientLogo,
-      clientName: project.clientName,
-      projectDuration: project.projectDuration,
-      members: project.members,
-      clientRating: project.clientRating,
-      projectImage: project.projectImage,
-      clientReview: project.clientReview
-    });
 
-    this.features.clear();
-    project.features.forEach(feature => {
-      this.features.push(this.fb.group({
-        featureName: [feature.featureName, Validators.required]
-      }));
-    });
-  }
-
-  get features(): FormArray {
-    return this.projectForm.get('features') as FormArray;
-  }
-
-  addFeature(): void {
-    const featureForm = this.fb.group({
-      featureName: ['', Validators.required]
-    });
-    this.features.push(featureForm);
-  }
-
-  removeFeature(index: number): void {
-    this.features.removeAt(index);
-  }
-
-  updateProject(): void {
-    if (this.projectForm.valid) {
-      const updatedProject = this.projectForm.value;
-      this.projectsApiService.put(this.projectId, updatedProject).subscribe(() => {
-        this.router.navigate(["admin/projects"]);
-      }, error => {
-        console.error('Error updating project:', error);
-      });
+  update(): void {
+    if (this.projectForm.invalid) {
+      console.log("Form is invalid");
+      return;
     }
+
+    const formData = new FormData();
+
+    if (this.selectedFile) {
+      formData.append('Image', this.selectedFile);
+      console.log('Image appended:', this.selectedFile);
+    }
+    formData.append('ProjectName', this.projectForm.get('ProjectName')?.value || '');
+    formData.append('ProjectDescription', this.projectForm.get('ProjectDescription')?.value || '');
+    formData.append('ProjectType', this.projectForm.get('ProjectType')?.value || '');
+    formData.append('CLientId', this.projectForm.get('CLientId')?.value || '');
+    formData.append('ClientIndustry', this.projectForm.get('ClientIndustry')?.value || '');
+    formData.append('Members', this.projectForm.get('Members')?.value || '');
+    formData.append('Duration', this.projectForm.get('Duration')?.value || '');
+    formData.append('Features', this.projectForm.get('Features')?.value || '');
+
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
+
+    this.projectsApiService.updateProject(this.projectId, formData).subscribe(
+      () => {
+        this.router.navigate(['/admin/projects']);
+      },
+      (error: any) => {
+        console.error('Failed to update project:', error);
+      }
+    );
+  }
+  selectedFile!: any;
+  fileSize: number | null = null;
+  fileTooLarge: boolean = false;
+  invalidFileType: boolean = false;
+  readonly maxFileSizeInMB: number = 50;
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      console.log('File selected:', this.selectedFile);
+    }
+
+    if (this.selectedFile) {
+      const file = this.selectedFile;
+      this.fileSize = file.size / (1024 * 1024);
+      if (this.fileSize > this.maxFileSizeInMB) {
+        this.fileTooLarge = true;
+        this.invalidFileType = false;
+        console.log("File size is too large to be uploaded");
+        return;
+      } else {
+        this.fileTooLarge = false;
+      }
+      if (!file.type.startsWith('image/')) {
+        this.invalidFileType = true;
+        console.log("Invalid file type");
+        return;
+      } else {
+        this.invalidFileType = false;
+      }
+    }
+  }
+
+  clients!: any[];
+  fetchClients(): void {
+    this.clientApi.getClients().subscribe((data: any) => {
+      this.clients = data;
+    });
   }
 }

@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @angular-eslint/use-lifecycle-interface */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import { ProjectsApiService } from 'src/app/services/projects-api.service';
 import { Component, HostListener } from '@angular/core';
 import { ClientsApiService } from 'src/app/services/clients-api.service';
@@ -5,7 +9,7 @@ import { BlogApiService } from 'src/app/services/blog-api.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 import { Title, Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
-import * as AOS from 'aos';
+import { OpinionsService } from 'src/app/services/opinions.service';
 
 @Component({
   selector: 'app-home',
@@ -24,30 +28,40 @@ import * as AOS from 'aos';
   ],
 })
 export class HomeComponent {
-  clients!: any;
+  clients!: any[];
   projects!: any[];
   webProjects!: any[];
   mobileProjects!: any[];
   uiProjects!: any[];
   testingProjects!: any[];
   allProjects!: any[];
-  blogs!: any;
-  constructor(private api: ClientsApiService, private projectApi: ProjectsApiService, private blogApi: BlogApiService, private meta: Meta, private router: Router) {
-    this.api.get().subscribe((data: any) => {
-      this.clients = data;
-    });
+  blogs!: any[];
+  reviews!: any[];
+  currentPage !: number;
+  pageSize = 12;
+  projectsCount!: number;
+  clientsCount!: number;
+  constructor(private api: ClientsApiService, private projectApi: ProjectsApiService, private blogApi: BlogApiService, private meta: Meta, private router: Router, private opinionsService: OpinionsService) {
+    this.loadClients();
 
-    this.projectApi.get().subscribe((data: any) => {
-      this.projects = data;
-      this.webProjects = this.projects.filter(project => project.projectType === 'Web Development').slice(0, 3);
-      this.mobileProjects = this.projects.filter(project => project.projectType === 'Mobile Development').slice(0, 3);
+    this.projectApi.getProjects().subscribe((data: any) => {
+      this.projects = data.data;
+      this.projectsCount = data.count;
+      this.webProjects = this.projects.filter(project => project.projectType === 'Web').slice(0, 3);
+      this.mobileProjects = this.projects.filter(project => project.projectType === 'Mobile').slice(0, 3);
       this.uiProjects = this.projects.filter(project => project.projectType === 'ui/ux').slice(0, 3);
-      this.testingProjects = this.projects.filter(project => project.projectType === 'Software Testing').slice(0, 3);
+      this.testingProjects = this.projects.filter(project => project.projectType === 'SoftwareTesting').slice(0, 3);
       this.allProjects = this.projects.slice(0, 3);
     });
 
-    this.blogApi.get().subscribe((data: any) => {
-      this.blogs = data.slice(0, 3);
+    this.blogApi.getBlogs(this.currentPage, this.pageSize).subscribe((data: any) => {
+      this.blogs = data.data.slice(0, 3);
+      console.log(this.blogs);
+
+    });
+
+    this.opinionsService.getOpinions().subscribe((data: any) => {
+      this.reviews = data;
     });
   }
 
@@ -60,26 +74,7 @@ export class HomeComponent {
     }
   }
   //
-  reviews = [
-    {
-      title: 'Great Work',
-      text: 'Lorem ipsum dolor sit amet consectetur. Eu a et ultricies sed volutpat in. Hendrerit eget nulla purus volutpat eu enim. In lectus convallis tortor facilisis malesuada lobortis gravida diam',
-      img: 'https://media.gettyimages.com/id/1332113666/photo/young-businesswoman-using-digital-tablet.jpg?s=612x612&w=gi&k=20&c=jBVr_LzGgIjvmyF6pmgXBqfSZkzmpNWUHxv-zKgw8pQ=',
-      name: 'Sara Magdy',
-      job: 'CEO at the University of MUST'
-    },
-    {
-      title: 'Amazing',
-      text: 'Lorem ipsum dolor sit amet consectetur. Eu a et ultricies sed volutpat in. Hendrerit eget nulla purus volutpat eu enim. In lectus convallis tortor facilisis malesuada lobortis gravida diam',
-      img: 'assets/vendors/imgs/anba.jpg'
-      , name: 'Mohamed Ahmed', job: 'CEO at the University of MUST'
-    },
-    { title: 'Good Job', text: 'Lorem ipsum dolor sit amet consectetur. Eu a et ultricies sed volutpat in. Hendrerit eget nulla purus volutpat eu enim. In lectus convallis tortor facilisis malesuada lobortis gravida diam', img: 'assets/vendors/imgs/ahmed.png', name: 'Ahmed Magdy', job: 'CEO at the University of MUST' },
-    { title: 'Amazing', text: 'Lorem ipsum dolor sit amet consectetur. Eu a et ultricies sed volutpat in. Hendrerit eget nulla purus volutpat eu enim. In lectus convallis tortor facilisis malesuada lobortis gravida diam', img: 'assets/vendors/imgs/mohamed.png', name: 'Mohamed Ahmed', job: 'CEO at the University of MUST' },
-    { title: 'Good Job', text: 'Lorem ipsum dolor sit amet consectetur. Eu a et ultricies sed volutpat in. Hendrerit eget nulla purus volutpat eu enim. In lectus convallis tortor facilisis malesuada lobortis gravida diam', img: 'assets/vendors/imgs/ahmed.png', name: 'Ahmed Magdy', job: 'CEO at the University of MUST' },
-    { title: 'Amazing', text: 'Lorem ipsum dolor sit amet consectetur. Eu a et ultricies sed volutpat in. Hendrerit eget nulla purus volutpat eu enim. In lectus convallis tortor facilisis malesuada lobortis gravida diam', img: 'assets/vendors/imgs/mohamed.png', name: 'Mohamed Ahmed', job: 'CEO at the University of MUST' },
-    { title: 'Good Job', text: 'Lorem ipsum dolor sit amet consectetur. Eu a et ultricies sed volutpat in. Hendrerit eget nulla purus volutpat eu enim. In lectus convallis tortor facilisis malesuada lobortis gravida diam', img: 'assets/vendors/imgs/ahmed.png', name: 'Ahmed Magdy', job: 'CEO at the University of MUST' }
-  ];
+
   numVisible = 3;
 
   @HostListener('window:resize', ['$event'])
@@ -113,5 +108,21 @@ export class HomeComponent {
       this.numVisible = 3;
     }
   }
-
+  loadClients() {
+    this.api.getClients().subscribe({
+      next: (data: any) => {
+        this.clients = data.slice(0, 4);
+        console.log('Clients:', this.clients);
+        this.clients.forEach(client => {
+          console.log('Client Name:', client.name);
+          console.log('Client Image URL:', client.image);
+        });
+      },
+      error: (error: any) => {
+        console.error('Error fetching clients', error);
+      }
+    });
+  }
+  currentYear = new Date().getFullYear();
+  year = this.currentYear - 2023;
 }

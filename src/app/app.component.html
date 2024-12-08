@@ -1,5 +1,7 @@
-<!-- <div (contextmenu)="disableRightClick($event)"> -->
-<router-outlet></router-outlet>
-<!-- </div> -->
-
-<app-custom-cursor></app-custom-cursor>
+<div (contextmenu)="disableRightClick($event)">
+  <router-outlet></router-outlet>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#00816F" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color: black" class="fw-bold mt-5 mx-auto"> </p>
+</ngx-spinner>

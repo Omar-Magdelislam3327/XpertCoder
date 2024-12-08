@@ -25,8 +25,8 @@ export class SoftTestingComponent {
 
   constructor(private api: ProjectsApiService, private meta: Meta) {
     window.scrollTo(0, 0);
-    this.api.get().subscribe((data: any) => {
-      this.projects = data.filter((project: Projects) => project.projectType === 'Software Testing');
+    this.api.getProjects().subscribe((data: any) => {
+      this.projects = data.data.filter((project: Projects) => project.projectType === 'SoftwareTesting');
     }, error => {
       console.error('Error fetching projects', error);
     });

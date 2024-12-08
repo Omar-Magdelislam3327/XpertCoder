@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin',
@@ -19,7 +20,7 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
   ],
 })
 export class AdminComponent {
-  showSidebar: boolean = true;
+  showSidebar = true;
 
   constructor(private router: Router) {
     this.router.events.subscribe(() => {
@@ -27,7 +28,18 @@ export class AdminComponent {
     });
   }
   logOut() {
-    localStorage.removeItem('isLoggedIn');
-    this.router.navigate(['/xc-login']);
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00816F',
+      cancelButtonColor: '#c4002b',
+      confirmButtonText: 'Log Out',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('token');
+        this.router.navigate(['/xc-login']);
+      }
+    });
   }
 }

@@ -25,3 +25,61 @@
     filter: brightness(115%);
   }
 }
+
+
+/* .pagination-container {
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+  border-bottom: 2px solid #e9e9ee !important;
+  border-left: 2px solid #e9e9ee !important;
+  border-right: 2px solid #e9e9ee !important;
+} */
+
+.my-pagination {
+  background-color: transparent !important;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: var(--primaryColor);
+  border-radius: 6px;
+  color: white;
+  text-align: center !important;
+  padding: 4px 10px;
+}
+
+.my-pagination ::ng-deep ul {
+  margin: 0 !important;
+}
+
+.my-pagination ::ng-deep .ngx-pagination a {
+  background: none;
+  border-radius: 6px;
+  color: black;
+  font-weight: bold;
+  padding: 4px 10px;
+  margin-inline: 3px !important;
+  text-align: center !important;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.my-pagination ::ng-deep .ngx-pagination a:hover {
+  background: var(--primaryColor);
+  border-radius: 6px;
+  color: white;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .disabled {
+  color: gray;
+  margin-inline: 3px;
+  text-decoration: none;
+  text-align: center !important;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .pagination-previous {
+  margin: 0px !important;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .pagination-next {
+  margin: 0px !important;
+}

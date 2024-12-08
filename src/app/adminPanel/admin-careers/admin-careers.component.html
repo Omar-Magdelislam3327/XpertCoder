@@ -1,3 +1,6 @@
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
 <div class="container p-5" @fadeInOut>
   <div class="row">
     <div class="col-lg-12">
@@ -20,7 +23,7 @@
     </div>
   </div>
 
-  <div class="row mt-4">
+  <div class="row mt-4" *ngIf="careers.length > 0  else noCareers">
     <div class="col-lg-4 mt-4" *ngFor="let career of careers">
       <div class="box p-4">
         <div class="upper d-flex justify-content-between gap-3 align-items-center flex-wrap">
@@ -33,9 +36,17 @@
           <p>Phone : <span class="fw-bold">{{ career.phone }}</span></p>
           <p>Expected Salary : <span class="fw-bold">{{ career.salary }} $</span></p>
           <p>EXP : <span class="fw-bold">{{ career.experience }} Years</span></p>
-          <p>CV : <span class="fw-bold"><a [href]="uploadedCVUrl" target="_blank">Download CV</a></span></p>
+          <p>CV : <span class="fw-bold"><a href="javascript:void(0)" class="cv-link fw-bold"
+                (click)="downloadFile(career.file)">
+                Download
+              </a></span></p>
         </div>
       </div>
     </div>
   </div>
 </div>
+<ng-template #noCareers>
+  <div class="alert alert-danger mt-4">
+    <p class="text-center p-0 m-0 text-danger">No careers available at the moment.</p>
+  </div>
+</ng-template>

@@ -218,6 +218,17 @@
       "cv": "new1-1.pdf",
       "title": "Flutter Developer",
       "id": 6
+    },
+    {
+      "isDisabled": false,
+      "title": "Frontend Developer",
+      "name": "Omar Magd",
+      "phone": "01501883344",
+      "email": "omagd206@gmail.com",
+      "salary": 10000,
+      "experience": 1,
+      "cv": "Omar-Magdelislam-Frontend.pdf",
+      "id": 7
     }
   ]
 }

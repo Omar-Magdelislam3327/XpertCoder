@@ -1,3 +1,5 @@
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
 <div class="container p-5" @fadeInOut>
   <div class="title">
     <h2 class="fw-bold text-success">Add New Project</h2>
@@ -8,91 +10,67 @@
 
       <div class="form-group mt-3">
         <label for="name">Project Name</label>
-        <input type="text" class="form-control shadow-none" id="name" formControlName="projectName" required>
+        <input type="text" placeholder="Enter project name" class="form-control shadow-none" id="name"
+          formControlName="ProjectName" required>
       </div>
 
       <div class="form-group mt-3">
         <label for="description">Project Description</label>
-        <input type="text" class="form-control shadow-none" id="description" formControlName="projectDescription"
-          required>
+        <textarea placeholder="Enter project description" id="projectDescription" formControlName="ProjectDescription"
+          class="form-control shadow-none" rows="4"></textarea>
       </div>
 
       <div class="form-group mt-3">
         <label for="type">Project Type</label>
-        <select class="form-select shadow-none" formControlName="projectType" required>
-          <option value="" disabled>Select Project Type</option>
-          <option value="Web Development">Web Development</option>
-          <option value="Mobile Development">Mobile Development</option>
-          <option value="UI/UX">UI/UX Design</option>
-          <option value="Software Testing">Software Testing</option>
+        <select class="form-select shadow-none" formControlName="ProjectType" required>
+          <option value="" selected disabled>Select Project Type</option>
+          <option value="Web">Web Development</option>
+          <option value="Mobile">Mobile Development</option>
+          <option value="Ui">UI/UX Design</option>
+          <option value="SoftwareTesting">Software Testing</option>
         </select>
       </div>
 
       <div class="row">
         <div class="form-group mt-3 col-lg-6">
-          <label for="country">Client Country</label>
-          <select class="form-select shadow-none" formControlName="clientCountry" required>
-            <option value="" disabled>Select Country</option>
-            <option value="USA">USA</option>
-            <option value="UK">UK</option>
-            <option value="Canada">Canada</option>
-            <option value="Australia">Australia</option>
+          <label for="client">Select Client</label>
+          <select class="form-select shadow-none" formControlName="CLientId" required>
+            <option value="" disabled>Select Client</option>
+            <option *ngFor="let client of clients" [value]="client.id">{{ client.name }}</option>
           </select>
         </div>
         <div class="form-group mt-3 col-lg-6">
           <label for="industry">Client Industry</label>
-          <input type="text" class="form-control shadow-none" id="industry" formControlName="clientIndustry" required>
+          <input type="text" placeholder="Enter client industry" class="form-control shadow-none" id="industry"
+            formControlName="ClientIndustry" required>
         </div>
       </div>
 
       <div class="row">
         <div class="form-group mt-3 col-lg-6">
-          <label for="logo">Client Logo</label>
-          <input type="file" class="form-control shadow-none" id="logo" formControlName="clientLogo" required>
-        </div>
-        <div class="form-group mt-3 col-lg-6">
-          <label for="Cname">Client Name</label>
-          <input type="text" class="form-control shadow-none" id="Cname" formControlName="clientName" required>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="form-group mt-3 col-4">
           <label for="duration">Project Duration</label>
-          <input type="number" class="form-control shadow-none" id="duration" formControlName="projectDuration"
-            required>
+          <input type="number" placeholder="Enter project duration" class="form-control shadow-none" id="duration"
+            formControlName="Duration" required>
         </div>
-        <div class="form-group mt-3 col-4">
+        <div class="form-group mt-3 col-lg-6">
           <label for="members">Team Members</label>
-          <input type="number" class="form-control shadow-none" id="members" formControlName="members" required>
-        </div>
-        <div class="form-group mt-3 col-4">
-          <label for="rating">Client Rating</label>
-          <input type="number" class="form-control shadow-none" id="rating" formControlName="clientRating" required>
+          <input type="number" placeholder="Enter team members" class="form-control shadow-none" id="members"
+            formControlName="Members" required>
         </div>
       </div>
 
-      <div class="row mt-3 align-items-center" formArrayName="features">
-        <div *ngFor="let feature of features.controls; let i = index" [formGroupName]="i" class="form-group col-10">
-          <label for="feature{{i}}">Feature {{i + 1}}</label>
-          <input type="text" class="form-control shadow-none" formControlName="featureName" required>
-        </div>
-        <div class="col-2">
-          <button type="button" class="btn-xpert-danger" (click)="removeFeature(i)">Remove</button>
-        </div>
+      <div class="row mt-3">
+        <label for="Description">Project Features</label>
+        <p-editor formControlName="Features" [style]="{ height: '300px' }"></p-editor>
       </div>
-
-      <button type="button" class="btn btn-primary mt-3" (click)="addFeature()">+ Add Feature</button>
 
       <div class="form-group mt-3">
         <label for="pImage">Project Image</label>
-        <input type="file" class="form-control shadow-none" id="pImage" formControlName="projectImage" required>
+        <input type="file" class="form-control shadow-none" id="pImage" formControlName="Image"
+          (change)="onFileSelected($event)" required>
+        <!-- Preview : <img src="" alt=""> -->
       </div>
 
-      <div class="form-group mt-3">
-        <label for="review">Client Review</label>
-        <input type="text" class="form-control shadow-none" id="review" formControlName="clientReview" required>
-      </div>
 
       <div class="text-center mt-3">
         <button type="submit" class="btn-xpert-success shadow-none" [disabled]="projectForm.invalid">Submit</button>
@@ -108,11 +86,11 @@
     </div>
     <div *ngFor="let project of projects" class="col-md-4 mb-3">
       <div class="card">
-        <img [src]="project.projectImage" class="card-img-top" alt="{{ project.projectName }}">
+        <img [src]="project.image" class="card-img-top" alt="{{ project.projectName }}">
         <div class="card-body">
           <i class="fa-solid fa-trash" (click)="remove(project.id)"></i>
           <h5 class="card-title">{{ project.projectName }}</h5>
-          <p class="card-text">Client Name: {{ project.clientName }}</p>
+          <p class="card-text">Client Name: {{ project.cLient.name }}</p>
           <p class="card-text">Project Type: {{ project.projectType }}</p>
           <i class="fa-solid fa-pen-to-square" routerLink="/admin/project-edit/{{project.id}}"></i>
         </div>

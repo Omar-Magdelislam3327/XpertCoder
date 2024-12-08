@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 import { MessagesApiService } from 'src/app/services/messages-api.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-messages',
@@ -24,13 +27,48 @@ export class AdminMessagesComponent {
     this.getMessages();
   }
   getMessages() {
-    this.api.get().subscribe((data: any) => {
+    this.api.getMessage().subscribe((data: any) => {
       this.messages = data;
     })
   }
-  remove(id: any) {
-    this.api.delete(id).subscribe((data: any) => {
-      this.getMessages();
+  remove(id: number): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00816F',
+      cancelButtonColor: '#c4002b',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.api.deleteMessage(id).subscribe(
+          () => {
+            this.getMessages();
+          },
+          (error) => {
+            Swal.fire({
+              title: 'Error!',
+              text: 'There was an issue deleting the message.',
+              icon: 'error',
+              confirmButtonText: 'Retry',
+              confirmButtonColor: '#00816F',
+            })
+          }
+        );
+      }
     });
+  }
+  downloadFile(fileUrl: string): void {
+    fetch(fileUrl)
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileUrl.split('/').pop() || 'download';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      })
+      .catch(err => console.error('Download failed:', err));
   }
 }

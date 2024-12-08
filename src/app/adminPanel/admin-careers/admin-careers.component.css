@@ -74,13 +74,9 @@ input[type="radio"]:disabled {
 
 input[type="radio"]:checked+.job-option {
   background-color: #109482;
-  /* Change background color on selection */
   color: white;
-  /* Change text color on selection */
   border-color: transparent;
-  /* Hide border when selected */
   font-weight: bold;
-  /* Bold text on selection */
 }
 
 .col-lg-3 {

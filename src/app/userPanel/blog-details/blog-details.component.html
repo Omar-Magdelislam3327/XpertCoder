@@ -14,13 +14,13 @@
             <img [src]="blog.image" class="img-fluid" alt="">
           </div>
           <div class="mt-3">
-            <p class="text-black-50" [innerHTML]="blog.description"></p>
+            <p class=" fs-5" [innerHTML]="blog.description"></p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 mt-4">
           <div class="title">
-            <h3 class="fs-2 fw-bold text-black">Related Posts</h3>
-            <div class="row">
+            <h3 class="fs-2 fw-bold text-black">Related Blogs</h3>
+            <div class="row" *ngIf="relatedBlogs.length > 0">
               <div class="col-lg-4 col-12 mt-3" *ngFor="let blog of relatedBlogs">
                 <a [routerLink]="['/blog', blog.id]" class="card text-decoration-none">
                   <div class="imag">
@@ -31,11 +31,16 @@
                       <h4 class="my-3 text-black">{{blog.title}}</h4>
                       <p class="text-black-50" [innerHTML]="blog.description | stripHtmlPipe | slice: 0: 160"></p>
                       <div class="date">
-                        <small class="text-black-50">{{blog.date}}</small>
+                        <small class="text-black-50">{{blog.date | slice : 0 : 10}}</small>
                       </div>
                     </div>
                   </div>
                 </a>
+              </div>
+            </div>
+            <div class="row" *ngIf="relatedBlogs.length === 0">
+              <div class="col-12 mt-3">
+                <p class="text-black-50 text-center fs-5">No related posts found.</p>
               </div>
             </div>
           </div>

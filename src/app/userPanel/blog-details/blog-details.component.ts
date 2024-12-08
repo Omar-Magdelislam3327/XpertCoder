@@ -25,28 +25,51 @@ export class BlogDetailsComponent implements OnInit {
   id!: string;
   blog!: Blogs;
   relatedBlogs: Blogs[] = [];
+  currentPage!: number;
+  pageSize = 12;
 
-  constructor(private api: BlogApiService, private activ: ActivatedRoute, private meta: Meta, private titleService: Title) { }
+  constructor(
+    private api: BlogApiService,
+    private activ: ActivatedRoute,
+    private meta: Meta,
+    private titleService: Title
+  ) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
+
     this.activ.params.subscribe((params) => {
       this.id = params['id'];
       this.fetchBlogDetails(this.id);
     });
+
     this.meta.addTags([
-      { name: 'description', content: 'Explore expert insights and articles on the latest trends in web and mobile development at XpertCoder.' },
-      { name: 'keywords', content: 'XpertCoder blog, web development blog, mobile development articles, technology insights , software testing' },
-      { name: 'robots', content: 'index, follow' }
+      {
+        name: 'description',
+        content:
+          'Explore expert insights and articles on the latest trends in web and mobile development at XpertCoder.',
+      },
+      {
+        name: 'keywords',
+        content:
+          'XpertCoder blog, web development blog, mobile development articles, technology insights , software testing',
+      },
+      { name: 'robots', content: 'index, follow' },
     ]);
   }
 
-  fetchBlogDetails(id: string) {
-    this.api.getById(id).subscribe((data: Blogs) => {
+  fetchBlogDetails(id: any) {
+    this.api.getBlogById(id).subscribe((data: Blogs) => {
       this.blog = data;
       this.titleService.setTitle(`XpertCoder Blog | ${this.blog.title}`);
       this.meta.updateTag({ name: 'description', content: this.blog.description });
-      this.api.get().subscribe((blogs: Blogs[]) => {
-        this.relatedBlogs = blogs.filter(b => b.type === this.blog.type && b.id !== this.blog.id);
+      window.scrollTo(0, 0);
+
+      this.api.getBlogs(this.currentPage, this.pageSize).subscribe((blogs: any) => {
+        this.relatedBlogs = blogs.data.filter(
+          (b: any) => b.type === this.blog.type && b.id !== this.blog.id
+        );
+        console.log(this.relatedBlogs);
       });
     });
   }

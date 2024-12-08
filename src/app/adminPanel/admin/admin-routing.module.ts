@@ -13,6 +13,7 @@ import { AdminBlogEditComponent } from '../admin-blog-edit/admin-blog-edit.compo
 import { AdminClientEditComponent } from '../admin-client-edit/admin-client-edit.component';
 import { AdminLoginComponent } from '../admin-login/admin-login.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { AdminOpinionsComponent } from '../admin-opinions/admin-opinions.component';
 
 const routes: Routes = [
   { path: "xc-login", component: AdminLoginComponent },
@@ -29,7 +30,8 @@ const routes: Routes = [
       { path: "team", canActivate: [AuthGuard], component: AdminTeamComponent },
       { path: "team-edit/:id", canActivate: [AuthGuard], component: AdminTeamEditComponent },
       { path: "blogs", canActivate: [AuthGuard], component: AdminBlogsComponent },
-      { path: "/blog-edit/:id", canActivate: [AuthGuard], component: AdminBlogEditComponent }
+      { path: "blog-edit/:id", canActivate: [AuthGuard], component: AdminBlogEditComponent },
+      // { path: "blog-edit/:id", canActivate: [AuthGuard], component: AdminOpinionsComponent }
     ]
   }
 ];

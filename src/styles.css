@@ -1,10 +1,12 @@
 :root {
   --primaryColor: #00816F;
   --secondaryColor: #2ddbca;
+  --btn: linear-gradient(to right, #00816f 0%, #2ddbc9 100%);
+  --btn-hover: linear-gradient(to right, #6a9b94 0%, #3b5754 100%);
 }
 
 .btn-xpert {
-  background-color: var(--primaryColor);
+  background: var(--btn);
   color: white;
   padding: 8px 20px;
   border: none;
@@ -13,7 +15,7 @@
 }
 
 .btn-xpert:hover {
-  background-color: var(--secondaryColor);
+  /* background: var(--btn-hover); */
 }
 
 .btn-xpert:disabled {
@@ -108,4 +110,9 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primaryColor) !important;
 }

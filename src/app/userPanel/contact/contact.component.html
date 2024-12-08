@@ -1,3 +1,4 @@
+<!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
 <app-navbar></app-navbar>
 <main id="contact" @fadeInOut>
   <section class="section1 py-5 px-3">
@@ -13,65 +14,62 @@
             </p>
           </div>
         </div>
-        <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class="row mb-5 job-categories">
             <div class="col-md-4 mt-3">
-              <input type="radio" name="job-category" value="Web Design and Development" [(ngModel)]="message.type"
-                required>
+              <input type="radio" formControlName="Type" value="Web">
               <label class="job-option">Web Design and Development</label>
             </div>
             <div class="col-md-4 mt-3">
-              <input type="radio" name="job-category" value="Mobile Development" [(ngModel)]="message.type" required>
+              <input type="radio" formControlName="Type" value="Mobile">
               <label class="job-option">Mobile Development</label>
             </div>
             <div class="col-md-4 mt-3">
-              <input type="radio" name="job-category" value="Software Testing" [(ngModel)]="message.type" required>
+              <input type="radio" formControlName="Type" value="SoftwareTesting">
               <label class="job-option">Software Testing</label>
             </div>
           </div>
 
           <div class="row">
             <div class="mb-5 col-lg-6 col-12">
-              <input type="text" class="form-control" id="name" placeholder="Your Name" [(ngModel)]="message.name"
-                name="name" required>
+              <input type="text" class="form-control" formControlName="Name" placeholder="Your Name">
             </div>
             <div class="mb-5 col-lg-6 col-12">
-              <input type="text" class="form-control" id="company" placeholder="Your Company"
-                [(ngModel)]="message.companyName" name="companyName" required>
+              <input type="text" class="form-control" formControlName="Company" placeholder="Your Company">
             </div>
           </div>
+
           <div class="row">
             <div class="mb-5 col-lg-6 col-12">
-              <input type="email" class="form-control" id="email" placeholder="Your Email" [(ngModel)]="message.email"
-                name="email" required>
+              <input type="email" class="form-control" formControlName="Email" placeholder="Your Email">
             </div>
             <div class="mb-5 col-lg-6 col-12">
-              <input type="tel" class="form-control" id="phone" placeholder="Your Phone" [(ngModel)]="message.phone"
-                name="phone" required>
+              <input type="tel" class="form-control" formControlName="Phone" placeholder="Your Phone">
             </div>
           </div>
+
           <div class="mb-5 col-lg-12">
-            <input type="text" class="form-control" id="project" placeholder="Tell us about project"
-              [(ngModel)]="message.description" name="description" required>
+            <input type="text" class="form-control" formControlName="Description" placeholder="Tell us about project">
           </div>
 
           <div class="row mb-5 job-categories">
             <label class="budget">Project Budget (EGP)</label>
             <div class="col-md-3 mt-3">
-              <input type="radio" name="budget-category" value="20k - 30k" [(ngModel)]="message.budget" required>
-              <label class="job-option">20k - 30k</label>
+              <input type="radio" formControlName="Budget" value="TenToTwentyk">
+              <label class="job-option">10k - 20k</label>
             </div>
             <div class="col-md-3 mt-3">
-              <input type="radio" name="budget-category" value="30k - 50k" [(ngModel)]="message.budget" required>
-              <label class="job-option">30k - 50k</label>
+              <input type="radio" formControlName="Budget" value="ThirtyToFourtyk">
+              <label class="job-option">30k - 40k</label>
             </div>
             <div class="col-md-3 mt-3">
-              <input type="radio" name="budget-category" value="50k - 80k" [(ngModel)]="message.budget" required>
-              <label class="job-option">50k - 80k</label>
+              <input type="radio" formControlName="Budget" value="FiftyToHundredk">
+              <label class="job-option">50k - 100k</label>
             </div>
             <div class="col-md-3 mt-3">
-              <input type="radio" name="budget-category" value="> 80k" [(ngModel)]="message.budget" required>
-              <label class="job-option">> 80k</label>
+              <input type="radio" formControlName="Budget" value="MoreThanHundredk">
+              <label class="job-option">> 100k</label>
             </div>
           </div>
 
@@ -79,11 +77,17 @@
             <label for="resume" class="upload-label">
               <i class="fa fa-paperclip"></i> Add attachment
             </label>
-            <input type="file" id="resume" (change)="onFileSelect($event)" class="form-control-file" accept=".pdf"
-              required>
+            <input type="file" id="resume" (change)="onFileSelected($event)" class="form-control-file"
+              formControlName="File" accept=".pdf">
+            <div *ngIf="fileTooLarge" class="error-message">File size exceeds the limit (5MB).</div>
+            <div *ngIf="invalidFileType" class="error-message">Invalid file type. Only PDF is allowed.</div>
           </div>
-          <button type="submit" class="btn-xpert" [disabled]="contactForm.invalid">Send Request</button>
+
+          <button type="submit" class="btn-xpert" [disabled]="contactForm.invalid">
+            Send Request
+          </button>
         </form>
+
 
       </div>
     </div>

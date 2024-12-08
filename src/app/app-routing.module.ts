@@ -26,6 +26,8 @@ import { AdminBlogEditComponent } from './adminPanel/admin-blog-edit/admin-blog-
 import { AdminClientEditComponent } from './adminPanel/admin-client-edit/admin-client-edit.component';
 import { AdminLoginComponent } from './adminPanel/admin-login/admin-login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AdminOpinionsComponent } from './adminPanel/admin-opinions/admin-opinions.component';
+import { AdminOpinionsEditComponent } from './adminPanel/admin-opinions-edit/admin-opinions-edit.component';
 const routes: Routes = [
   { path: "home", loadChildren: () => import('./userPanel/home/home.module').then(m => m.HomeModule), title: "XpertCoder |  Leading Web & Mobile Development" },
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -55,7 +57,9 @@ const routes: Routes = [
       { path: "team", canActivate: [AuthGuard], component: AdminTeamComponent },
       { path: "team-edit/:id", canActivate: [AuthGuard], component: AdminTeamEditComponent },
       { path: "blogs", canActivate: [AuthGuard], component: AdminBlogsComponent },
-      { path: "blog-edit/:id", canActivate: [AuthGuard], component: AdminBlogEditComponent }
+      { path: "blog-edit/:id", canActivate: [AuthGuard], component: AdminBlogEditComponent },
+      { path: "opinions", canActivate: [AuthGuard], component: AdminOpinionsComponent },
+      { path: "opinion-edit/:id", canActivate: [AuthGuard], component: AdminOpinionsEditComponent },
     ]
   },
   { path: "**", redirectTo: "home", pathMatch: "full" }

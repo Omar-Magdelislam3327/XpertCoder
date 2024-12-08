@@ -1,3 +1,5 @@
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
 <div class="container p-5" @fadeInOut>
   <div class="title">
     <h2 class="fw-bold text-success">Add New Client</h2>
@@ -8,28 +10,48 @@
       <div class="row info">
         <div class="form-group mt-3 col-lg-6">
           <label for="name">Client Name</label>
-          <input type="text" class="form-control shadow-none" id="name" formControlName="name" required>
+          <input type="text" class="form-control shadow-none" id="name" placeholder="Enter client name"
+            formControlName="Name" required>
         </div>
         <div class="form-group mt-3 col-lg-6">
           <label for="title">Client Title</label>
-          <input type="text" class="form-control shadow-none" id="title" formControlName="title" required>
+          <input type="text" class="form-control shadow-none" id="title" placeholder="Enter client title"
+            formControlName="Title" required>
         </div>
       </div>
 
       <div class="row clientInfo">
         <div class="form-group mt-3 col-lg-6">
           <label for="logo">Client Logo</label>
-          <input type="file" class="form-control shadow-none" id="logo" formControlName="logo" required>
+          <input type="file" class="form-control shadow-none" formControlName="Image" id="logo"
+            placeholder="Enter client logo" (change)="onFileSelected($event)" required>
+
         </div>
 
         <div class="form-group mt-3 col-lg-6">
           <label for="review">Client Review</label>
-          <textarea class="form-control shadow-none" id="review" formControlName="review" required></textarea>
+          <textarea class="form-control shadow-none" id="review" placeholder="Enter client review"
+            formControlName="Review" required></textarea>
+        </div>
+      </div>
+      <div class="row clientInfo">
+        <div class="form-group mt-3 col-lg-6">
+          <label for="number">Client Rating</label>
+          <input type="number" class="form-control shadow-none" id="number" placeholder="Enter client number"
+            formControlName="Rating" required>
+        </div>
+        <div class="form-group mt-3 col-lg-6">
+          <label for="number">Client Country</label>
+          <select formControlName="CountryId" name="CountryId" id="CountryId" class="form-select shadow-none">
+            <option value="">Select Country</option>
+            <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+          </select>
         </div>
       </div>
 
       <div class="text-center mt-3">
-        <button type="submit" class="btn-xpert-success shadow-none" [disabled]="clientForm.invalid" (click)="add()">Add
+        <button type="submit" class="btn-xpert-success shadow-none"
+          [disabled]="clientForm.invalid || fileTooLarge || invalidFileType" (click)="add()">Add
           Client</button>
         <button type="button" class="btn-xpert-danger ms-3 shadow-none" (click)="clientForm.reset()">Reset</button>
       </div>
@@ -42,7 +64,7 @@
       <div class="card">
         <div class="card-body">
           <i class="fa-solid fa-pen-to-square" routerLink="/admin/client-edit/{{client.id}}"></i>
-          <img src="{{client.logo}}" alt="Client Logo" class="img-fluid" width="300" height="200">
+          <img src="{{client.image}}" alt="Client Logo" class="img-fluid">
           <i class="fa-solid fa-trash" (click)="remove(client.id)"></i>
         </div>
       </div>

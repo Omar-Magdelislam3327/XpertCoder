@@ -45,19 +45,21 @@
     <div class="container">
       <div class="title text-center">
         <h2 class="fw-bold text-black">Our clients
-          love us</h2>
+        </h2>
         <p class="text-black-50">
           We've worked with some of the world's most renowned companies and organizations.
         </p>
       </div>
-      <div class="row pt-3 text-center">
-        <div class="col-lg-3 col-md-6 col-12 mt-3" *ngFor="let client of clients">
+      <div class="row photos pt-3 text-center">
+        <div class="col-lg-3 col-md-6 col-12 mt-3 p-0" *ngFor="let client of clients | slice :0 : 4">
           <div class="client">
-            <img loading="lazy" [src]="client.logo" class="img-fluid" alt="">
+            <img [src]="client.image" class="img-fluid" alt="failed" />
           </div>
         </div>
-
       </div>
+
+
+
     </div>
   </section>
 
@@ -143,7 +145,7 @@
       <div class="row mt-5">
         <div class="col-lg-3 col-md-6 col-sm-12 mt-lg-0 mt-3">
           <div class="card text-center p-4">
-            <h2 class="fs-1 text-black">+5</h2>
+            <h2 class="fs-1 text-black">+{{year}}</h2>
             <h6 class="text-black-50">Years of experience</h6>
           </div>
         </div>
@@ -155,13 +157,13 @@
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 mt-lg-0 mt-3">
           <div class="card text-center p-4">
-            <h2 class="fs-1 text-black">89</h2>
+            <h2 class="fs-1 text-black">{{clients.length}}</h2>
             <h6 class="text-black-50">Clients</h6>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 mt-lg-0 mt-3">
           <div class="card text-center p-4">
-            <h2 class="fs-1 text-black">77</h2>
+            <h2 class="fs-1 text-black">{{projectsCount}}</h2>
             <h6 class="text-black-50">Completed Projects</h6>
           </div>
         </div>
@@ -172,7 +174,7 @@
   <section class="section6 py-2 px-3">
     <div class="container">
       <div class="row">
-        <div class="col-12 mt-lg- mt-4">
+        <div class="col-12 mt-lg-1 mt-4 p-0">
           <div class="nav-tab p-3">
             <ul class="nav nav-pills mb-3 d-flex justify-content-center " id="pills-tab" role="tablist">
               <li class="nav-item ms-lg-5" role="presentation">
@@ -201,11 +203,11 @@
               <div class="tab-pane fade show active" id="pills-first" role="tabpanel" aria-labelledby="pills-first-tab">
                 <div class="row mt-5">
                   <div class="col-lg-4 mt-2" *ngFor="let project of allProjects">
-                    <div class="card p-3" routerLink="/project/{{project.id}}">
+                    <div class="card" routerLink="/project/{{project.id}}">
                       <div class="imag">
-                        <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
+                        <img loading="lazy" [src]="project.image" class="img-fluid rounded" alt="">
                       </div>
-                      <div class="d-flex justify-content-between align-items-end">
+                      <div class="d-flex justify-content-between align-items-end card-text pt-0 p-2">
                         <div class="title mt-3">
                           <span class="text-black-50">{{ project.projectType }}</span>
                           <h4 class=" text-black">{{ project.projectName }}</h4>
@@ -226,7 +228,7 @@
                     <div class="col-lg-4 mt-2" *ngFor="let project of webProjects">
                       <div class="card p-3" routerLink="/project/{{project.id}}">
                         <div class="imag">
-                          <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
+                          <img loading="lazy" [src]="project.image" class="img-fluid rounded" alt="">
                         </div>
                         <div class="d-flex justify-content-between align-items-end">
                           <div class="title mt-3">
@@ -244,7 +246,7 @@
               </div>
               <ng-template #noWeb>
                 <div class="alert  alert-danger">
-                  <p class="text-center text-danger">No web projects available at the moment.</p>
+                  <p class="text-center p-0 m-0 text-danger">No web projects available at the moment.</p>
                 </div>
               </ng-template>
               <!-- Mobile Projects Tab -->
@@ -254,7 +256,7 @@
                     <div class="col-lg-4 mt-2" *ngFor="let project of mobileProjects else noMobile">
                       <div class="card p-3" routerLink="/project/{{project.id}}">
                         <div class="imag">
-                          <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
+                          <img loading="lazy" [src]="project.image" class="img-fluid rounded" alt="">
                         </div>
                         <div class="d-flex justify-content-between align-items-end">
                           <div class="title mt-3">
@@ -284,7 +286,7 @@
                     <div class="col-lg-4 mt-2" *ngFor="let project of uiProjects" routerLink="/project/{{project.id}}">
                       <div class="card p-3">
                         <div class="imag">
-                          <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
+                          <img loading="lazy" [src]="project.image" class="img-fluid rounded" alt="">
                         </div>
                         <div class="d-flex justify-content-between align-items-end">
                           <div class="title mt-3">
@@ -314,7 +316,7 @@
                       routerLink="/project/{{project.id}}">
                       <div class="card p-3">
                         <div class="imag">
-                          <img loading="lazy" [src]="project.projectImage" class="img-fluid rounded" alt="">
+                          <img loading="lazy" [src]="project.image" class="img-fluid rounded" alt="">
                         </div>
                         <div class="d-flex justify-content-between align-items-end">
                           <div class="title mt-3">
@@ -354,14 +356,14 @@
         <div class="col-lg-4 col-12 mt-3" *ngFor="let blog of blogs">
           <a [routerLink]="['/blog', blog.id]" class="card text-decoration-none">
             <div class="imag">
-              <img loading="lazy" [src]="blog.image" class="img-fluid" alt="">
+              <img loading="lazy" [src]="blog.image" class="img-fluid w-100" alt="">
             </div>
             <div>
               <div class="main p-3">
                 <h4 class="my-3 text-black">{{blog.title}}</h4>
-                <p class="text-black-50" [innerHTML]="blog.description | stripHtmlPipe | slice: 0: 160"></p>
+                <p class="text-black-50" [innerHTML]="blog.description | stripHtmlPipe | slice: 0: 90"></p>
                 <div class="date">
-                  <small class="text-black-50">{{blog.date}}</small>
+                  <small class="text-black-50">{{blog.date | slice : 0 : 10}}</small>
                 </div>
               </div>
             </div>
@@ -382,23 +384,21 @@
         <h2 class="fw-bold text-black">What clients say about us?</h2>
       </div>
       <p-carousel [value]="reviews" [numVisible]="numVisible" [numScroll]="1" [circular]="true"
-        [autoplayInterval]="2300" [showIndicators]="false" [showNavigators]="false" [autoplayInterval]="2300">
+        [autoplayInterval]="2300" [showIndicators]="false" [showNavigators]="false">
         <ng-template pTemplate="item" let-review>
           <div class="carde p-3 m-2">
-            <div class="tope d-flex justify-content-between align-items-center flex-wrap pb-3">
+            <div class="tope d-flex justify-content-start align-items-start flex-wrap pb-3">
               <div class="imag">
-                <img loading="lazy" [src]="review.img" class="rounded" width="90" alt="">
+                <img loading="lazy" [src]="review.image" class="rounded" width="170" alt="">
               </div>
-              <div class="txt">
+              <div class="txt ms-2">
                 <h6 class="p-0 m-0 text-black">{{ review.name }}</h6>
-                <p class="p-0 m-0 text-black-50">{{ review.job }}</p>
+                <p class="p-0 m-0 text-black-50">{{ review.title }}</p>
               </div>
               <img loading="lazy" src="assets/vendors/imgs/quote.svg" alt="">
             </div>
-            <p class="text-black-50">{{ review.text }}</p>
+            <p class="text-black-50">{{ review.description }}</p>
             <div class="btm d-flex justify-content-start align-items-center flex-wrap">
-
-              <!-- <h6>{{ review.title }}</h6> -->
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star ms-1"></i>
               <i class="fa-solid fa-star ms-1"></i>
@@ -408,6 +408,7 @@
           </div>
         </ng-template>
       </p-carousel>
+
     </div>
   </section>
 

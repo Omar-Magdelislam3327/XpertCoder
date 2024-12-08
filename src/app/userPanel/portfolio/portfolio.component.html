@@ -19,15 +19,16 @@
   <section class="section2 py-5 px-3">
     <div class="container">
       <div class="row">
-        <div class="col-12 mt-4" *ngFor="let project of projects">
+        <div class="col-12 mt-4"
+          *ngFor="let project of projects | paginate : { id: 'paginate', itemsPerPage: pageSize, currentPage: currentPage, totalItems: total }">
           <div routerLink="/project/{{project.id}}" class="row box">
             <div class="col-lg-6 p-lg-3 p-0">
               <div class="imag img-wrapper">
-                <img [src]="project.projectImage" class="img-fluid" alt="">
+                <img [src]="project.image" class="img-fluid" alt="">
               </div>
             </div>
 
-            <div class="col-lg-6 p-3">
+            <div class="col-lg-6 irghtbox p-3">
               <div class="txt">
                 <h3 class="text-black fs-1">{{project.projectName}}</h3>
                 <p class="text-black-50">
@@ -35,14 +36,14 @@
                 </p>
                 <div class="d-flex flex-column gap-5 mt-3">
                   <div class="d-flex flex-wrap gap-3">
-                    <div class="country">
-                      <!-- <img src="../../../assets/vendors/imgs/egypt.webp" width="30" class="img-fluid" alt=""> -->
-                      {{project.clientCountry}}
+                    <div class="country m-0">
+                      <img src="{{project.cLient.country.image}}" width="30" class="img-fluid" alt="">
+                      {{project.cLient.country.name}}
                     </div>
-                    <div class="type">
+                    <div class="type m-0">
                       {{project.projectType}}
                     </div>
-                    <div class="type">
+                    <div class="industry m-0">
                       {{project.clientIndustry}}
                     </div>
                   </div>
@@ -50,7 +51,7 @@
                 <!-- <button class="arrow d-lg-block d-none">
                   <i class="fa-solid fa-arrow-right fs-1 p-1"></i>
                 </button> -->
-                <div class="btn-conteiner">
+                <div class="btn-conteiner d-none d-lg-block">
                   <a class="btn-content">
                     <span class="icon-arrow">
                       <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1"
@@ -80,6 +81,23 @@
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12" *ngIf="showPagination">
+          <div *ngIf="projects.length > 0"
+            class="pagination-container my-0 px-3 py-2 d-flex justify-content-between align-items-center">
+            <p class="m-0 text-secondary">
+              Show
+              <span class="mx-1 fw-bold text-black">{{ currentPage }}</span>
+              From
+              <span class="mx-1 fw-bold text-black">{{ fixed }}</span>
+            </p>
+            <div class="my-pagination">
+              <pagination-controls id="paginate" (pageChange)="pageChanged($event)" [maxSize]="12"
+                [directionLinks]="true" [autoHide]="true" [responsive]="true" previousLabel="" nextLabel="">
+              </pagination-controls>
+
             </div>
           </div>
         </div>
